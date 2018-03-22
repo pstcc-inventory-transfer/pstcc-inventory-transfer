@@ -157,6 +157,7 @@ function setSelectedID(button)
 // * Still in progress
 function submitFinal()
 {
+    //Zach: dunno why this happened :P
     transfersArray.forEach(function(element, index){
         element.custodian = $('#custodian').val();
     });
@@ -264,6 +265,7 @@ function submitNew()
                     preRoom:$('#pre_room').val(),
                     preOwner:$('#pre_owner').val(),
                     preDept:$('#pre_dept').val(),
+                    //Get the current email address (basically grabbing the first select tag's value)
                     custodian:undefined
                 };
 
