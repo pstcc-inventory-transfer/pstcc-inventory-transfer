@@ -36,7 +36,7 @@
             </div>
             <ul class="nav navbar-nav">
                 <li>
-                    <select class="form-control">
+                    <select class="form-control" id="custodian">
                       <!-- possibly make this auto-filled with database stuff -->
                         <option>jmknight2@pstcc.edu</option>
                         <option>lbates@pstcc.edu</option>

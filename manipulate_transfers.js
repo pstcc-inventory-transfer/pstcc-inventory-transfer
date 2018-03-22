@@ -266,7 +266,7 @@ function submitNew()
                     preOwner:$('#pre_owner').val(),
                     preDept:$('#pre_dept').val(),
                     //Get the current email address (basically grabbing the first select tag's value)
-                    custodian:document.getElementsByTagName("select")[0].value
+                    custodian:document.getElementById("custodian").value
                 };
 
                 transfersArray.push(transfer);
