@@ -158,9 +158,9 @@ function setSelectedID(button)
 function submitFinal()
 {
     //Zach: dunno why this happened :P
-    /*transfersArray.forEach(function(element, index){
+    transfersArray.forEach(function(element, index){
         element.custodian = $('#custodian').val();
-    });*/
+    });
 
     var myJsonString = JSON.stringify(transfersArray);
     var xmlhttp = new XMLHttpRequest();
@@ -266,7 +266,7 @@ function submitNew()
                     preOwner:$('#pre_owner').val(),
                     preDept:$('#pre_dept').val(),
                     //Get the current email address (basically grabbing the first select tag's value)
-                    custodian:document.getElementById("custodian").value
+                    custodian:undefined
                 };
 
                 transfersArray.push(transfer);
