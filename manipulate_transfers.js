@@ -154,7 +154,6 @@ function setSelectedID(button)
 
 // * Stringifies the object array in JSON format.
 //
-// * Still in progress
 function submitFinal()
 {
     transfersArray.forEach(function(element, index){
@@ -163,15 +162,15 @@ function submitFinal()
 
     var myJsonString = JSON.stringify(transfersArray);
     var xmlhttp = new XMLHttpRequest();
+    alert(myJsonString);
+    console.log(myJsonString);
     xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
+        if (this.readyState === 4 && this.status === 200) {
             alert(this.responseText);
-        }/* else {
-           console.log("ERROR: " + this.readyState + this.status + this.statusText + this.responseText);
-        }*/
+        }
     };
     xmlhttp.open("GET", "addTransfers.php?json=" + myJsonString, true);
-    xmlhttp.send(null);
+    xmlhttp.send();
 }
 
 // * Determines if the user is trying to edit a transfer, or create a new one.
@@ -196,9 +195,9 @@ function submitEdit()
 {
 
   // Remove "edit" from all of these if we manage to get it working with one modal.
-  if($('#IDAdd').val() != '')
+  if($('#IDAdd').val() !== '')
   {
-      if($('#model').val() != '' && $('#pre_room').val() != '' && $('#pre_owner').val() != '' && $('#pre_dept').val() != '')
+      if($('#model').val() !== '' && $('#pre_room').val() !== '' && $('#pre_owner').val() !== '' && $('#pre_dept').val() !== '')
       {
           if($('#newRoom').val() != null && $('#newOwner').val() != null && $('#newDept').val() != null)
           {
@@ -263,9 +262,9 @@ function submitEdit()
 // * Refreshes the list when the new object is added to the array.
 function submitNew()
 {
-    if($('#IDAdd').val() != '')
+    if($('#IDAdd').val() !== '')
     {
-        if($('#model').val() != '' && $('#pre_room').val() != '' && $('#pre_owner').val() != '' && $('#pre_dept').val() != '')
+        if($('#model').val() !== '' && $('#pre_room').val() !== '' && $('#pre_owner').val() !== '' && $('#pre_dept').val() !== '')
         {
             if($('#newRoom').val() != null && $('#newOwner').val() != null && $('#newDept').val() != null)
             {
@@ -375,7 +374,7 @@ function getInfoFromTag(str)
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.onreadystatechange = function()
 		{
-			if (this.readyState == 4 && this.status == 200)
+			if (this.readyState === 4 && this.status === 200)
 			{
 				var results = this.responseText.trim();
 
