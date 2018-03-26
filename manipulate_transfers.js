@@ -162,7 +162,7 @@ function submitFinal()
 
     var myJsonString = JSON.stringify(transfersArray);
     var xmlhttp = new XMLHttpRequest();
-    alert(myJsonString);
+
     console.log(myJsonString);
     xmlhttp.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
