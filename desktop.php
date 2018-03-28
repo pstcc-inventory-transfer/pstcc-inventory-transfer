@@ -100,7 +100,7 @@
                 <div class="col-sm-6">
                     <div class="form-group" style="text-align: left; margin: 0 auto;">
                         <h4>PSCC ID#</h4>
-                        <input class="form-control" name="ID" id="IDAdd" placeholder="Please enter/scan ID" value="" onkeyup="getInfoFromTag(this.value)">
+                        <input style="text-transform: uppercase" class="form-control" name="ID" id="IDAdd" placeholder="Please enter/scan ID" value="" onkeyup="getInfoFromTag(this.value)">
                     </div>
 
                     <div class="form-group" style="text-align: left; margin: 0 auto;">
