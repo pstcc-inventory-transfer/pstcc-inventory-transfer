@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e423e2c4-0222-41cd-b26f-6e7fbd742be3" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/addTransfers.php" afterPath="$PROJECT_DIR$/addTransfers.php" />
-      <change beforePath="$PROJECT_DIR$/desktop.php" afterPath="$PROJECT_DIR$/desktop.php" />
-      <change beforePath="$PROJECT_DIR$/manipulate_transfers.js" afterPath="$PROJECT_DIR$/manipulate_transfers.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,12 +13,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="addTransfers.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="addTransfers.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/addTransfers.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="47" column="45" lean-forward="true" selection-start-line="47" selection-start-column="45" selection-end-line="47" selection-end-column="45" />
+            <state relative-caret-position="-111">
+              <caret line="47" column="45" lean-forward="false" selection-start-line="47" selection-start-column="45" selection-end-line="47" selection-end-column="45" />
               <folding>
+                <element signature="e#205#675#0#PHP" expanded="false" />
                 <marker date="1522043807282" expanded="true" signature="1801:2175" ph="INSERT INTO tblTransTemp... " />
                 <marker date="1522043807282" expanded="true" signature="1801:2193" ph="INSERT INTO tblTransTemp... " />
                 <marker date="1522043807282" expanded="true" signature="1801:2216" ph="INSERT INTO tblTransTemp... " />
@@ -34,8 +32,8 @@
       <file leaf-file-name="desktop.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/desktop.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="50" column="25" lean-forward="true" selection-start-line="50" selection-start-column="25" selection-end-line="50" selection-end-column="25" />
+            <state relative-caret-position="442">
+              <caret line="110" column="53" lean-forward="true" selection-start-line="110" selection-start-column="53" selection-end-line="110" selection-end-column="53" />
               <folding>
                 <marker date="1522042549810" expanded="true" signature="1772:1817" ph="SELECT DISTI... " />
                 <marker date="1522042549810" expanded="true" signature="4548:4616" ph="SELECT DISTI... " />
@@ -46,11 +44,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="manipulate_transfers.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="manipulate_transfers.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/manipulate_transfers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="168" column="37" lean-forward="true" selection-start-line="168" selection-start-column="37" selection-end-line="168" selection-end-column="37" />
+            <state relative-caret-position="-833">
+              <caret line="35" column="28" lean-forward="false" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <marker date="1522043842574" expanded="true" signature="1025:1657" ph="..." />
@@ -70,8 +68,8 @@
       <file leaf-file-name="phpFunctions.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/phpFunctions.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+            <state relative-caret-position="459">
+              <caret line="27" column="32" lean-forward="true" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
               <folding>
                 <marker date="1522041703591" expanded="true" signature="552:622" ph="SELECT * FRO... " />
                 <marker date="1522041703591" expanded="true" signature="782:852" ph="SELECT * FRO... " />
@@ -93,7 +91,13 @@
     </findStrings>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Jake Simms &lt;jake.simms@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SIGN_OFF_COMMIT" value="true" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -114,12 +118,12 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="width" value="1592" />
     <option name="height" value="867" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator currentView="Scope" currentSubView="Changed Files" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -133,19 +137,34 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
+      <pane id="Scope">
+        <subPane subId="Changed Files">
           <expand>
             <path>
-              <item name="Pellissippi-Transfer-Project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Pellissippi-Transfer-Project" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="pstcc-inventory-transfer" type="cbb8eebc:String" user="pstcc-inventory-transfer" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="pstcc-inventory-transfer" type="cbb8eebc:String" user="pstcc-inventory-transfer" />
+              <item name=".idea" type="cbb8eebc:String" user=".idea" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="pstcc-inventory-transfer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pstcc-inventory-transfer" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -157,6 +176,7 @@
     <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.selected.package.standard" value="" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -199,7 +219,8 @@
       <workItem from="1520091072079" duration="29237000" />
       <workItem from="1520308327111" duration="28394000" />
       <workItem from="1520431730068" duration="7254000" />
-      <workItem from="1522042073065" duration="1955000" />
+      <workItem from="1522042073065" duration="2382000" />
+      <workItem from="1522067087558" duration="3685000" />
     </task>
     <task id="LOCAL-00001" summary="Added the PHP JSON parser, SQL insert statement and functionality in the addTransfers.php file. Moved the DB connection function from phpFunctions.php to it's own file called db_connection.php. I updated some of the SQL select statements in the desktop.php file to pull from other tables.">
       <created>1520195658590</created>
@@ -215,16 +236,23 @@
       <option name="project" value="LOCAL" />
       <updated>1520196714085</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Merge branch 'web_ui' of https://github.com/jmknight2/Pellissippi-Transfer-Project into web_ui&#10;&#10;# Conflicts:&#10;#&#9;desktop.php">
+      <created>1522044154633</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1522044154633</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87723000" />
+    <option name="totallyTimeSpent" value="91835000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1592" height="867" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15580183" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12886049" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -264,9 +292,67 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/addTransfers.php">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="47" column="45" lean-forward="false" selection-start-line="47" selection-start-column="45" selection-end-line="47" selection-end-column="45" />
+          <folding>
+            <element signature="e#205#675#0#PHP" expanded="false" />
+            <marker date="1522043807282" expanded="true" signature="1801:2175" ph="INSERT INTO tblTransTemp... " />
+            <marker date="1522043807282" expanded="true" signature="1801:2193" ph="INSERT INTO tblTransTemp... " />
+            <marker date="1522043807282" expanded="true" signature="1801:2216" ph="INSERT INTO tblTransTemp... " />
+            <marker date="1522043807282" expanded="true" signature="2811:2875" ph="SELECT [ID] " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/desktop.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="50" column="25" lean-forward="true" selection-start-line="50" selection-start-column="25" selection-end-line="50" selection-end-column="25" />
+          <folding>
+            <marker date="1522042549810" expanded="true" signature="1772:1817" ph="SELECT DISTI... " />
+            <marker date="1522042549810" expanded="true" signature="4548:4616" ph="SELECT DISTI... " />
+            <marker date="1522042549810" expanded="true" signature="5318:5363" ph="SELECT DISTI... " />
+            <marker date="1522042549810" expanded="true" signature="6059:6106" ph="SELECT DISTI... tblTransTemp_072017" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/phpFunctions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding>
+            <marker date="1522041703591" expanded="true" signature="552:622" ph="SELECT * FRO... " />
+            <marker date="1522041703591" expanded="true" signature="782:852" ph="SELECT * FRO... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manipulate_transfers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2856">
+          <caret line="168" column="37" lean-forward="true" selection-start-line="168" selection-start-column="37" selection-end-line="168" selection-end-column="37" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <marker date="1522043842574" expanded="true" signature="1025:1657" ph="..." />
+            <marker date="1522043842574" expanded="true" signature="1328:1482" ph="..." />
+            <marker date="1522043842574" expanded="true" signature="1495:1647" ph="..." />
+            <marker date="1522043842574" expanded="true" signature="2436:4039" ph="..." />
+            <marker date="1522043842574" expanded="true" signature="2483:2750" ph="..." />
+            <marker date="1522043842574" expanded="true" signature="2530:2724" ph="..." />
+            <marker date="1522043842574" expanded="true" signature="2826:4013" ph="..." />
+            <marker date="1522043842574" expanded="true" signature="2874:3987" ph="..." />
+            <marker date="1522043842574" expanded="true" signature="2939:3619" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addTransfers.php">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="e#205#675#0#PHP" expanded="false" />
             <marker date="1522043807282" expanded="true" signature="1801:2175" ph="INSERT INTO tblTransTemp... " />
             <marker date="1522043807282" expanded="true" signature="1801:2193" ph="INSERT INTO tblTransTemp... " />
             <marker date="1522043807282" expanded="true" signature="1801:2216" ph="INSERT INTO tblTransTemp... " />
@@ -323,6 +409,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="e#205#675#0#PHP" expanded="false" />
             <marker date="1522043807282" expanded="true" signature="1801:2175" ph="INSERT INTO tblTransTemp... " />
             <marker date="1522043807282" expanded="true" signature="1801:2193" ph="INSERT INTO tblTransTemp... " />
             <marker date="1522043807282" expanded="true" signature="1801:2216" ph="INSERT INTO tblTransTemp... " />
@@ -389,6 +476,7 @@
         <state relative-caret-position="867">
           <caret line="51" column="12" lean-forward="false" selection-start-line="51" selection-start-column="12" selection-end-line="51" selection-end-column="12" />
           <folding>
+            <element signature="e#205#675#0#PHP" expanded="false" />
             <marker date="1522043807282" expanded="true" signature="1801:2175" ph="INSERT INTO tblTransTemp... " />
             <marker date="1522043807282" expanded="true" signature="1801:2193" ph="INSERT INTO tblTransTemp... " />
             <marker date="1522043807282" expanded="true" signature="1801:2216" ph="INSERT INTO tblTransTemp... " />
@@ -461,6 +549,7 @@
         <state relative-caret-position="255">
           <caret line="15" column="37" lean-forward="true" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
           <folding>
+            <element signature="e#205#675#0#PHP" expanded="false" />
             <marker date="1522043807282" expanded="true" signature="1801:2175" ph="INSERT INTO tblTransTemp... " />
             <marker date="1522043807282" expanded="true" signature="1801:2193" ph="INSERT INTO tblTransTemp... " />
             <marker date="1522043807282" expanded="true" signature="1801:2216" ph="INSERT INTO tblTransTemp... " />
@@ -502,8 +591,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/phpFunctions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+        <state relative-caret-position="459">
+          <caret line="27" column="32" lean-forward="true" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
           <folding>
             <marker date="1522041703591" expanded="true" signature="552:622" ph="SELECT * FRO... " />
             <marker date="1522041703591" expanded="true" signature="782:852" ph="SELECT * FRO... " />
@@ -511,36 +600,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/addTransfers.php">
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="47" column="45" lean-forward="true" selection-start-line="47" selection-start-column="45" selection-end-line="47" selection-end-column="45" />
-          <folding>
-            <marker date="1522043807282" expanded="true" signature="1801:2175" ph="INSERT INTO tblTransTemp... " />
-            <marker date="1522043807282" expanded="true" signature="1801:2193" ph="INSERT INTO tblTransTemp... " />
-            <marker date="1522043807282" expanded="true" signature="1801:2216" ph="INSERT INTO tblTransTemp... " />
-            <marker date="1522043807282" expanded="true" signature="2811:2875" ph="SELECT [ID] " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/desktop.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="50" column="25" lean-forward="true" selection-start-line="50" selection-start-column="25" selection-end-line="50" selection-end-column="25" />
-          <folding>
-            <marker date="1522042549810" expanded="true" signature="1772:1817" ph="SELECT DISTI... " />
-            <marker date="1522042549810" expanded="true" signature="4548:4616" ph="SELECT DISTI... " />
-            <marker date="1522042549810" expanded="true" signature="5318:5363" ph="SELECT DISTI... " />
-            <marker date="1522042549810" expanded="true" signature="6059:6106" ph="SELECT DISTI... tblTransTemp_072017" />
-          </folding>
+        <state relative-caret-position="-3417">
+          <caret line="10" column="67" lean-forward="true" selection-start-line="10" selection-start-column="67" selection-end-line="10" selection-end-column="67" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/manipulate_transfers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="168" column="37" lean-forward="true" selection-start-line="168" selection-start-column="37" selection-end-line="168" selection-end-column="37" />
+        <state relative-caret-position="-833">
+          <caret line="35" column="28" lean-forward="false" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <marker date="1522043842574" expanded="true" signature="1025:1657" ph="..." />
@@ -552,6 +623,33 @@
             <marker date="1522043842574" expanded="true" signature="2826:4013" ph="..." />
             <marker date="1522043842574" expanded="true" signature="2874:3987" ph="..." />
             <marker date="1522043842574" expanded="true" signature="2939:3619" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/desktop.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="110" column="53" lean-forward="true" selection-start-line="110" selection-start-column="53" selection-end-line="110" selection-end-column="53" />
+          <folding>
+            <marker date="1522042549810" expanded="true" signature="1772:1817" ph="SELECT DISTI... " />
+            <marker date="1522042549810" expanded="true" signature="4548:4616" ph="SELECT DISTI... " />
+            <marker date="1522042549810" expanded="true" signature="5318:5363" ph="SELECT DISTI... " />
+            <marker date="1522042549810" expanded="true" signature="6059:6106" ph="SELECT DISTI... tblTransTemp_072017" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addTransfers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-111">
+          <caret line="47" column="45" lean-forward="false" selection-start-line="47" selection-start-column="45" selection-end-line="47" selection-end-column="45" />
+          <folding>
+            <element signature="e#205#675#0#PHP" expanded="false" />
+            <marker date="1522043807282" expanded="true" signature="1801:2175" ph="INSERT INTO tblTransTemp... " />
+            <marker date="1522043807282" expanded="true" signature="1801:2193" ph="INSERT INTO tblTransTemp... " />
+            <marker date="1522043807282" expanded="true" signature="1801:2216" ph="INSERT INTO tblTransTemp... " />
+            <marker date="1522043807282" expanded="true" signature="2811:2875" ph="SELECT [ID] " />
           </folding>
         </state>
       </provider>
