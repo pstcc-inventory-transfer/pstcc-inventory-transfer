@@ -36,10 +36,20 @@
             </div>
             <ul class="nav navbar-nav">
                 <li>
-                    <select class="form-control">
-                      <!-- possibly make this auto-filled with database stuff -->
-                        <option>jmknight2@pstcc.edu</option>
-                        <option>lbates@pstcc.edu</option>
+                    <select class="form-control" id="custodian">
+                        <!-- possibly make this auto-filled with database stuff -->
+                        <?php
+                        $query= "SELECT DISTINCT [NAME] FROM dbo_tblCustodians;";
+                        $options = queryDB($con1, $query);
+
+                        foreach($options as $row)
+                        {
+                            foreach($row as $value)
+                            {
+                                echo "<option>" . $value . "</option>";
+                            }
+                        }
+                        ?>
                     </select>
                 </li>
 
