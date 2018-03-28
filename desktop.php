@@ -44,8 +44,11 @@
                 </li>
 
                 <li><button data-toggle="modal" data-target="#Add_Modal" class="btn btn-block" id="addBtn">Add Item</button></li>
-                <li><button class="btn btn-success btn-block" onclick="submitFinal()">Submit Transfer</button></li>
                 <li><button class="btn btn-danger btn-block" onclick="window.location.href='logout.php'">Logout</button></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li style="margin-right: 50px;"><button class="btn btn-success btn-block" onclick="submitFinal()">Submit Transfer</button></li>
+              </ul>
             </ul>
           </div>
         </nav>

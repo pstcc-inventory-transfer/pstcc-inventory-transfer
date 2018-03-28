@@ -45,7 +45,7 @@ $Hold = ''; // YES or NO are the only answers allowed
              $DeptFrom = $json[$i]['preDept'];
              $To = $json[$i]['newRoom'];
              $New = $json[$i]['newOwner'];
-             $NewOwnerPnum = '';    //pnumLookUp($dbCon, $json[$i]['newOwner']);
+             $NewOwnerPnum = pnumLookUp($dbCon, $json[$i]['newOwner']);
              $DeptTo = $json[$i]['newDept'];
              $Notes = $json[$i]['notes'];
              $Instance = $i + 1;
@@ -84,7 +84,12 @@ function pnumLookUp($con, $newName) {
        $pNumNew = "SELECT [ID] FROM dbo_tblCustodians where [NAME] = '".$newName."';";
        $pNumAnsr = odbc_exec($con, $pNumNew);
 
-       /*for ($i = 1; $i <= 6; $i++) {
+       if (!is_array($pNumAnsr)) {
+         echo "Is array";
+       }
+       foreach($pNumAnsr as $key => $value) {
+         echo "PNum: " . $pNumAnsr . "\nKey: " . $key . "\nValue: " . $value;
+       }
 
        }*/
        echo $pNumAnsr[0]['ID'];
