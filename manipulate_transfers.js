@@ -156,21 +156,28 @@ function setSelectedID(button)
 //
 function submitFinal()
 {
-    transfersArray.forEach(function(element, index){
-        element.custodian = $('#custodian').val();
-    });
+    if(transfersArray.length != 0)
+    {
+        transfersArray.forEach(function(element, index){
+            element.custodian = $('#custodian').val();
+        });
 
-    var myJsonString = JSON.stringify(transfersArray);
-    var xmlhttp = new XMLHttpRequest();
+        var myJsonString = JSON.stringify(transfersArray);
+        var xmlhttp = new XMLHttpRequest();
 
-    console.log(myJsonString);
-    xmlhttp.onreadystatechange = function() {
-        if (this.readyState === 4 && this.status === 200) {
-            alert(this.responseText);
-        }
-    };
-    xmlhttp.open("GET", "addTransfers.php?json=" + myJsonString, true);
-    xmlhttp.send();
+        console.log(myJsonString);
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                alert(this.responseText);
+            }
+        };
+        xmlhttp.open("GET", "addTransfers.php?json=" + myJsonString, true);
+        xmlhttp.send();
+    }
+    else
+    {
+        alert("Please add transfers before submitting.");
+    }
 }
 
 // * Determines if the user is trying to edit a transfer, or create a new one.

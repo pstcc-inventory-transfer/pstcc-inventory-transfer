@@ -124,7 +124,7 @@
           <form method="post">
             <div class="form-group">
                 <div class="input-group">
-                    <input class="form-control" style="width: 100%" name="pwd" id="pwd" placeholder="Please enter technician password" type="password">
+                    <input class="form-control" style="width: 100%" name="pwd" id="pwd" placeholder="Technician Password" type="password">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
                 </div>
             </div>
