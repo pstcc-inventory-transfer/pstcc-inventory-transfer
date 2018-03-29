@@ -26,6 +26,7 @@ namespace cliEmailConfig
         }
 
         bool everythingEnabled = false;
+        //This disables the following elements, not the entire window
         private void enableDisableEverything()
         {
             changePasswordButton.Enabled = !changePasswordButton.Enabled;
@@ -132,8 +133,10 @@ namespace cliEmailConfig
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Program.changedPassword = false;
-            new changePassword().Show();
+            if (everythingEnabled)
+                enableDisableEverything();
             resetVals();
+            new changePassword().Show();
         }
 
         private void startPage_EnabledChanged(object sender, EventArgs e)

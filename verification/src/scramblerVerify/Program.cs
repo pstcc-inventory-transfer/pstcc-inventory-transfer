@@ -24,7 +24,10 @@ namespace scramblerVerify
             bool useFile = false;
             bool removeWord = false;
             bool replaceWord = false;
+            bool help = false;
             string saveLocation = "";
+
+            string usage = "Usage:\n\nEncrypting: scramblerVerify.exe -e password [password2] [password3] [-f ./path/to/textFile]\nDecrypting: ./scramblerVerify.exe password scrambledString [scrambledString2] [scrambledString3] [-f ./path/to/textFile.txt]\n\nThis program can check a password amongst a \"database\" of phrases that only unlock with said password.\n\nSee included README.MD for more information.";
 
             bool gotFirstWord = false;
             List<string> wordList = new List<string>();
@@ -54,6 +57,9 @@ namespace scramblerVerify
                     case "-p":
                         replaceWord = true;
                         break;
+                    case "-h":
+                        help = true;
+                        break;
                     default:
                         if (args[i] != saveLocation)
                         {
@@ -67,7 +73,11 @@ namespace scramblerVerify
                         break;
                 }
             }
-            if (removeWord)
+            if (help || args.Length == 0)
+            {
+                Console.WriteLine(usage);
+            }
+            else if (removeWord)
             {
                 //Guessing this should be removed as well:
                 wordList.Add(compare);

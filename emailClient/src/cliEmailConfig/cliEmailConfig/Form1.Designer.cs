@@ -166,7 +166,7 @@
             this.connectionSettings.Size = new System.Drawing.Size(185, 303);
             this.connectionSettings.TabIndex = 5;
             this.connectionSettings.TabStop = false;
-            this.connectionSettings.Text = "Connection Settigns";
+            this.connectionSettings.Text = "Connection Settings";
             // 
             // label1
             // 

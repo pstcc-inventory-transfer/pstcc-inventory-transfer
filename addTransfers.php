@@ -40,8 +40,8 @@ $GLOBALS['readyToSend'] = false;
    if (isset($_GET['json'])){
      $json=json_decode($_GET['json'], true);
      if ( is_array( $json )) {
+        $i=0;
          foreach($json as $string) {
-             $i=0;
              $Tech = $json[$i]['custodian'];
              $Date = date("m/d/Y");   // figure out how to get data and time
              $Tag = $json[$i]['itemID'];
@@ -57,7 +57,7 @@ $GLOBALS['readyToSend'] = false;
              $Instance = $i + 1;
              $InstanceID = $i + 1;
              $Submit = '';
-             $Hold = 'Yes';
+             $Hold = 'No';
 
              $sql =  "INSERT INTO tblTransTemp(Tech, Tag, Model, [From], Previous, DeptFrom, [To], New, NewOwnerPnum, DeptTo, Notes, Instance, InstanceID, Submit, Hold) VALUES ('".$Tech."', '".$Tag."','".$Model."','".$From."','".$Previous."','".$DeptFrom."','".$To."','".$New."','".$NewOwnerPnum."','".$DeptTo."','".$Notes."','".$Instance."','".$InstanceID."','".$Submit."',".$Hold.")";$sql =  "INSERT INTO tblTransTemp(Tech, [Date], Tag, Model, [From], Previous, DeptFrom, [To], New, NewOwnerPnum, DeptTo, Notes, Instance, InstanceID, Submit, Hold) VALUES ('".$Tech
              ."','".$Date."','".$Tag."','".$Model."','".$From."','".$Previous."','".$DeptFrom."','".$To."','".$New."','".$NewOwnerPnum
@@ -66,8 +66,6 @@ $GLOBALS['readyToSend'] = false;
              if(insertTransfers($sql))
                  $GLOBALS['readyToSend'] = true;
          }
-     } else {
-         echo "ERROR in the is_array if statement.";
      }
      if($GLOBALS['readyToSend']){
         sendEmail($_GET['json'], (generatePDF($json)?true:false));
