@@ -165,9 +165,19 @@ function submitFinal()
         transfersArray.forEach(function(element, index){
             element.custodian = $('#custodian').val();
         });
+        
+        var jsonString = JSON.stringify(transfersArray);
+        
+        $.ajax({
+            method: "GET",
+            url: "addTransfers.php",
+            data: {json: jsonString}
+        }).done(function(results){
+            alert(results);
+        });
 
-        var myJsonString = JSON.stringify(transfersArray);
-        var xmlhttp = new XMLHttpRequest();
+        
+        /*var xmlhttp = new XMLHttpRequest();
 
         console.log(myJsonString);
         xmlhttp.onreadystatechange = function() {
@@ -176,7 +186,7 @@ function submitFinal()
             }
         };
         xmlhttp.open("GET", "addTransfers.php?json=" + myJsonString, true);
-        xmlhttp.send();
+        xmlhttp.send();*/
     }
     else
     {
