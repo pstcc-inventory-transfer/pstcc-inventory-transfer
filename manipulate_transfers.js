@@ -1,13 +1,5 @@
-/* Written by: Jon Knight
- * Last Edited By: Mathew Ratliff
- * Date last modified: 3/04/18
- ***************************************
- *  Reason for modification (3/04/18)  *
- ***************************************
- * Small changes such as only show 25 characters on notes,
- * edit button don't work still
- * other stuff that might matter in the future
- * ((((((((((((()))))))))))))*
+/* Written by: Jon Knight, Mathew Ratliff
+ * Date last modified: 4/01/18
  * Dependencies: desktop.html
  */
 var transfersArray = [];
@@ -15,8 +7,16 @@ var selectedTransferID;
 var url = window.location.pathname;
 var filename = url.substring(url.lastIndexOf('/')+1);
 
+// Stored conditionals
+var isIdValid = function(){
+        return $('#model').val() !== '' && $('#pre_room').val() !== '' && $('#pre_owner').val() !== '' && $('#pre_dept').val() !== '';
+    };
+var isOptionSelected = function(){
+        return $('#newRoom').val() != null && $('#newOwner').val() != null && $('#newDept').val() != null;
+    };
+
 window.onbeforeunload = function(e) {
-    return 'Dialog text here.';
+    return 'Are you sure?';
 };
 
 function refreshListDesktop()
@@ -204,49 +204,43 @@ function submit()
 // * Refreshes the list when the object's fields have been altered in the array.
 function submitEdit()
 {
-
-    // Remove "edit" from all of these if we manage to get it working with one modal.
-    if($('#IDAdd').val() !== '')
+    if(isIdValid())
     {
-        if($('#model').val() !== '' && $('#pre_room').val() !== '' && $('#pre_owner').val() !== '' && $('#pre_dept').val() !== '')
+        if(isOptionSelected())
         {
-            if($('#newRoom').val() != null && $('#newOwner').val() != null && $('#newDept').val() != null)
-            {
-                var isDuplicate = false;
+            var isDuplicate = false;
 
-                  transfersArray.forEach(function(element, index){
-                      if($('#IDAdd').val().toUpperCase() === element.itemID.toUpperCase() && index != selectedTransferID)
-                      {
-                          isDuplicate = true;
-                      }
-                  });
-
-                  if(!isDuplicate)
+              transfersArray.forEach(function(element, index){
+                  if($('#IDAdd').val().toUpperCase() === element.itemID.toUpperCase() && index != selectedTransferID)
                   {
-                    transfersArray[selectedTransferID].itemID = $('#IDAdd').val();
-                    transfersArray[selectedTransferID].newRoom = $('#newRoom').val();
-                    transfersArray[selectedTransferID].newOwner = $('#newOwner').val();
-                    transfersArray[selectedTransferID].newDept = $('#newDept').val();
-                    transfersArray[selectedTransferID].notes = $('#notes').val();
-                    transfersArray[selectedTransferID].model = $('#model').val();
-                    transfersArray[selectedTransferID].preRoom = $('#pre_room').val();
-                    transfersArray[selectedTransferID].preOwner = $('#pre_owner').val();
-                    transfersArray[selectedTransferID].preDept = $('#pre_dept').val();
-                    if(filename === "desktop.php")
-                    refreshListDesktop();
-                    
-                    else refreshListMobile();
-                    
-                    $('#Add_Modal').modal('hide');
-                    selectedTransferID = undefined;
+                      isDuplicate = true;
                   }
-                  else alert("It appears this item is already being transfered");
-            }
-            else alert("Please ensure you've completed all required fields.");
+              });
+
+              if(!isDuplicate)
+              {
+                transfersArray[selectedTransferID].itemID = $('#IDAdd').val();
+                transfersArray[selectedTransferID].newRoom = $('#newRoom').val();
+                transfersArray[selectedTransferID].newOwner = $('#newOwner').val();
+                transfersArray[selectedTransferID].newDept = $('#newDept').val();
+                transfersArray[selectedTransferID].notes = $('#notes').val();
+                transfersArray[selectedTransferID].model = $('#model').val();
+                transfersArray[selectedTransferID].preRoom = $('#pre_room').val();
+                transfersArray[selectedTransferID].preOwner = $('#pre_owner').val();
+                transfersArray[selectedTransferID].preDept = $('#pre_dept').val();
+                if(filename === "desktop.php")
+                    refreshListDesktop();
+                else 
+                    refreshListMobile();
+
+                $('#Add_Modal').modal('hide');
+                selectedTransferID = undefined;
+              }
+              else alert("It appears this item is already being transfered");
         }
-        else alert("Please ensure you've entered a valid ID");
+        else alert("Please ensure you've completed all required fields.");
     }
-    else alert('Please enter an ID');
+    else alert("Please enter a valid ID");
 }
 
 // * Called when a new transfer is added to the object array.
@@ -256,41 +250,35 @@ function submitEdit()
 // * Refreshes the list when the new object is added to the array.
 function submitNew()
 {
-    if($('#IDAdd').val() !== '')
+    if(isIdValid())
     {
-        if($('#model').val() !== '' && $('#pre_room').val() !== '' && $('#pre_owner').val() !== '' && $('#pre_dept').val() !== '')
+        if(isOptionSelected())
         {
+            var transfer = {
+                itemID:$('#IDAdd').val(),
+                newRoom:$('#newRoom').val(),
+                newOwner:$('#newOwner').val(),
+                newDept:$('#newDept').val(),
+                notes:$('#notes').val(),
+                model:$('#model').val(),
+                preRoom:$('#pre_room').val(),
+                preOwner:$('#pre_owner').val(),
+                preDept:$('#pre_dept').val(),
+                custodian:undefined
+            };
 
-            if($('#newRoom').val() != null && $('#newOwner').val() != null && $('#newDept').val() != null)
-            {
-                var transfer = {
-                    itemID:$('#IDAdd').val(),
-                    newRoom:$('#newRoom').val(),
-                    newOwner:$('#newOwner').val(),
-                    newDept:$('#newDept').val(),
-                    notes:$('#notes').val(),
-                    model:$('#model').val(),
-                    preRoom:$('#pre_room').val(),
-                    preOwner:$('#pre_owner').val(),
-                    preDept:$('#pre_dept').val(),
-                    //Get the current email address (basically grabbing the first select tag's value)
-                    custodian:undefined
-                };
+            transfersArray.push(transfer);
 
-                transfersArray.push(transfer);
-                
-                if(filename === "desktop.php")
-                    refreshListDesktop();
+            if(filename === "desktop.php")
+                refreshListDesktop();
 
-                else refreshListMobile();
+            else refreshListMobile();
 
-                $('#Add_Modal').modal('hide');
-            }
-            else alert("Please ensure you've completed all required fields");
+            $('#Add_Modal').modal('hide');
         }
-        else alert("Please ensure you've entered a valid ID");
+        else alert("Please ensure you've completed all required fields");
     }
-    else alert('Please enter an ID');
+    else alert("Please enter a valid ID");
 }
 
 // * Registers a handler for the modal close event.
@@ -317,57 +305,47 @@ function submitNew()
 // * Changes the color of the text field upon either success or error.
 function getInfoFromTag(str)
 {
-	if (str.length < 6 || str.length > 6)
-	{
-		if($('#IDAdd').hasClass('success'))
+    $.ajax({
+        method: "POST",
+        url: "phpFunctions.php",
+        data: {q: str}
+    }).done(function(results){
+
+        if(results.trim() != 'error' && results.trim() != '')
         {
-            $('#IDAdd').removeClass('success');
-            $('#IDAdd').addClass('error');
+            var resultsArr = results.split(",");
+
+            if($('#IDAdd').hasClass('has-error'))
+            {
+                $('#IDAdd').removeClass('error');
+                $('#IDAdd').addClass('success');
+            }
+            else
+            {
+                $('#IDAdd').addClass('success');
+            }
+
+            $("#model").val(resultsArr[0]);
+            $("#pre_room").val(resultsArr[1]);
+            $("#pre_owner").val(resultsArr[2]);
+            $("#pre_dept").val("Not available");
         }
         else
         {
-            $('#IDAdd').addClass('error');
+            if($('#IDAdd').hasClass('success'))
+            {
+                $('#IDAdd').removeClass('success');
+                $('#IDAdd').addClass('error');
+            }
+            else
+            {
+                $('#IDAdd').addClass('error');
+            }
+
+            $("#model").val("");
+            $("#pre_room").val("");
+            $("#pre_owner").val("");
+            $("#pre_dept").val("");
         }
-
-		$("#model").value = "";
-		$("#pre_room").value = "";
-		$("#pre_owner").value = "";
-		$("#pre_dept").value = "";
-		return;
-	}
-
-	else
-	{
-		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.onreadystatechange = function()
-		{
-			if (this.readyState === 4 && this.status === 200)
-			{
-				var results = this.responseText.trim();
-
-				if(results !== "error")
-				{
-					var resultsArr = results.split(",");
-					console.log(resultsArr);
-
-                    if($('#IDAdd').hasClass('has-error'))
-                    {
-                        $('#IDAdd').removeClass('error');
-                        $('#IDAdd').addClass('success');
-                    }
-                    else
-                    {
-                        $('#IDAdd').addClass('success');
-                    }
-
-					document.getElementById("model").value = resultsArr[0];
-					document.getElementById("pre_room").value = resultsArr[1];
-					document.getElementById("pre_owner").value = resultsArr[2];
-					document.getElementById("pre_dept").value = "Not available";
-				}
-			}
-		};
-		xmlhttp.open("GET", "phpFunctions.php?q=" + str, true);
-		xmlhttp.send();
-	}
+    });
 }

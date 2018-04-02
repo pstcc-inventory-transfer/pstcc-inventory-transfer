@@ -59,7 +59,6 @@
               <ul class="nav navbar-nav navbar-right">
                 <li style="margin-right: 50px;"><button class="btn btn-success btn-block" onclick="submitFinal()">Submit Transfer</button></li>
               </ul>
-            </ul>
           </div>
         </nav>
 
