@@ -229,6 +229,15 @@ function submit()
     else alert("Please enter a valid ID");
 }
 
+function cleanId()
+{
+    if($('#IDAdd').val().length > 7)
+    {
+         var str = $('#IDAdd').val().split(' ');
+         $('#IDAdd').val(str[0]);
+    }
+}
+
 // * Called when a transfer is to be edited.
 //
 // * Doesn't alter object unless there are no errors in the modal.
@@ -253,6 +262,8 @@ function submitEdit()
     $('#Add_Modal').modal('hide');
     selectedTransferID = undefined;
 }
+
+
 
 // * Called when a new transfer is added to the object array.
 //
@@ -319,6 +330,8 @@ function getInfoFromTag(str)
         }
     }).done(function(results)
     {
+        
+        cleanId();
 
         if (results.trim() != 'error' && results.trim() != '')
         {
