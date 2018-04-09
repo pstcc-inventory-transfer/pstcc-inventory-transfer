@@ -58,12 +58,37 @@ function checkForID($id, $con)
 	else echo false;
 }
 
+function getInventoryForRoom($id, $con)
+{
+	// lookup all hints from array if $q is different from "" 
+	if ($id !== "") 
+	{
+		$query = "SELECT * FROM [Complete Active inventory list 52914] WHERE Location = '$id'";
+		$result = queryDB($con, $query);
+		
+		if(count($result) > 0)
+		{
+			echo json_encode($result);
+		}
+		
+		else echo "error";
+	}
+	
+	else echo false;
+}
+
 $con1 = connectToDB();
 
 if(isset($_REQUEST["q"]))
 {
 	$id = $_REQUEST["q"];
 	checkForID($id, $con1);
+}
+
+if(isset($_REQUEST["room"]))
+{
+	$id = $_REQUEST["room"];
+	getInventoryForRoom($id, $con1);
 }
 
 ?>
