@@ -201,7 +201,13 @@
                         <h4 class="modal-title">Password Reset</h4>
                     </div>
                     <div class="modal-body" style="text-align: center">
-                        <h5>Upon confirmation, a reset link will be sent to <b>[insert email here].</b></h5>
+                        <h5 style="text-align: left;">Please select which password to reset:</h5><br/>
+                        <select class="form-control" style="width: 50%;" id="user" name="user">
+                            <option value="null" selected disabled>Please select user</option>
+                            <option value="admin">Administrator</option>
+                            <option value="tech">Technician</option>
+                        </select><br/>
+                        <p>Upon confirmation, a reset link will be sent to <b>[insert email here].</b></p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
