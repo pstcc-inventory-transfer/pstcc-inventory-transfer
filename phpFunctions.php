@@ -1,6 +1,25 @@
 <?php
 include 'db_connection.php';
 
+// DB Connection
+$con1 = connectToDB();
+
+// checks for
+if(isset($_REQUEST["idNum"]))
+{
+    $id = $_REQUEST["idNum"];
+    checkForID($id, $con1);
+}
+
+if(isset($_REQUEST["room"]))
+{
+    $room = $_REQUEST["room"];
+    getInventoryForRoom($room, $con1);
+}
+
+
+// ------ START OF FUNCTIONS ------
+
 function queryDB($con, $query)
 {	
 	$result=odbc_exec($con, $query);
@@ -14,20 +33,20 @@ function queryDB($con, $query)
 	return $rows;
 }
 
-function testQuery($con, $query)
+/*function testQuery($con, $query)
 {
 	$result=odbc_exec($con, $query);
 	$rows = array();
-	
-	while ($row=odbc_fetch_array($result)) 
+
+	while ($row=odbc_fetch_array($result))
 	{
 		$rows[] = $row;
 	}
-	
+
 	foreach($rows as $row1)
 		foreach($row1 as $value)
 			echo $value;
-}
+}*/
 
 function getInfo($id)
 {
@@ -58,39 +77,24 @@ function checkForID($id, $con)
 	else echo false;
 }
 
-function getInventoryForRoom($id, $con)
+function getInventoryForRoom($room, $con)
 {
-	// lookup all hints from array if $q is different from "" 
-	if ($id !== "") 
+	// lookup all hints from array if $q is different from ""
+	if ($room !== "")
 	{
-		$query = "SELECT * FROM [Complete Active inventory list 52914] WHERE Location = '$id'";
+		$query = "SELECT Field1 FROM Inventory_location_lookup WHERE Location = '$room'";
 		$result = queryDB($con, $query);
-		
+
 		if(count($result) > 0)
 		{
 			echo json_encode($result);
 		}
-		
+
 		else echo "error";
 	}
-	
+
 	else echo false;
 }
-
-$con1 = connectToDB();
-
-if(isset($_REQUEST["q"]))
-{
-	$id = $_REQUEST["q"];
-	checkForID($id, $con1);
-}
-
-if(isset($_REQUEST["room"]))
-{
-	$id = $_REQUEST["room"];
-	getInventoryForRoom($id, $con1);
-}
-
 ?>
 
 

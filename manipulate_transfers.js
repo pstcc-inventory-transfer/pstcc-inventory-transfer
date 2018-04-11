@@ -181,7 +181,7 @@ function submitFinal()
     {
         transfersArray.forEach(function(element, index)
         {
-            element.custodian = $('#custodian').val();
+            element.technician = $('#technician').val();
         });
 
         var jsonString = JSON.stringify(transfersArray);
@@ -283,7 +283,7 @@ function submitNew()
         preRoom: $('#pre_room').val(),
         preOwner: $('#pre_owner').val(),
         preDept: $('#pre_dept').val(),
-        custodian: undefined
+        technician: undefined
     };
 
     transfersArray.push(transfer);
@@ -327,7 +327,7 @@ function getInfoFromTag(str)
         url: "phpFunctions.php",
         data:
         {
-            q: str
+            idNum: str
         }
     }).done(function(results)
     {

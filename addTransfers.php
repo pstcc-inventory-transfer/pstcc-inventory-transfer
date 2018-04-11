@@ -4,6 +4,7 @@
  * User: Jacob Simms
  * Date: 3/1/2018
  * Time: 8:40 PM
+ * Last Updated: 4/6/2018
  */
 
 include 'phpFunctions.php';
@@ -13,14 +14,11 @@ require 'fpdf/wordwrap.php';
 date_default_timezone_set("US/Eastern");
 
 
-date_default_timezone_set("US/Eastern");
-
 //DB Connection
 $dbCon=connectToDB();
 
-//tblTransTemp
-
-$Tech = ''; //tech making the move
+//tblTransTemp Column NOTES
+/*$Tech = ''; //tech making the move
 $Date = ''; //date of transaction
 $Tag = ''; //Pellissippi Asset tag number
 $Model = ''; //model number
@@ -33,9 +31,10 @@ $NewOwnerPnum = ''; //new owners P number
 $DeptTo = ''; //new department
 $Notes = ''; //Notes
 $Instance = ''; //transfer number ????? maybe serial number
-$InstanceID = ''; //??????
-$Submit = ''; //????????
-$Hold = ''; // YES or NO are the only answers allowed
+$InstanceID = ''; // This is a combo of the $Tag + $To + $Date
+$Submit = ''; // YES or NO bool - This is set by the user via an Access Form
+$Hold = ''; // YES or NO bool - This is set by the user via an Access Form
+*/
 
 $GLOBALS['readyToSend'] = false;
 
@@ -44,9 +43,10 @@ $GLOBALS['readyToSend'] = false;
      $json=json_decode($_GET['json'], true);
      if ( is_array( $json )) {
         $i=0;
+        $Instance = $i++;  //update to get largest instance number from DB and increase by one.
          foreach($json as $string) {
-             $Tech = $json[$i]['custodian'];
-             $Date = date("m/d/Y");   // figure out how to get data and time
+             $Tech = $json[$i]['technician'];
+             $Date = date("j/d/Y");   // figure out how to get data and time
              $Tag = $json[$i]['itemID'];
              $Model = $json[$i]['model'];
              $From = $json[$i]['preRoom'];
@@ -57,14 +57,10 @@ $GLOBALS['readyToSend'] = false;
              $NewOwnerPnum = pnumLookUp($dbCon, $json[$i]['newOwner']);
              $DeptTo = $json[$i]['newDept'];
              $Notes = $json[$i]['notes'];
-             $Instance = $i + 1;
-             $InstanceID = $i + 1;
-             $Submit = '';
-             $Hold = 'No';
+             $InstanceID = "{$Tag}{$To}".date("jdY");
 
-             $sql =  "INSERT INTO tblTransTemp(Tech, Tag, Model, [From], Previous, DeptFrom, [To], New, NewOwnerPnum, DeptTo, Notes, Instance, InstanceID, Submit, Hold) VALUES ('".$Tech."', '".$Tag."','".$Model."','".$From."','".$Previous."','".$DeptFrom."','".$To."','".$New."','".$NewOwnerPnum."','".$DeptTo."','".$Notes."','".$Instance."','".$InstanceID."','".$Submit."',".$Hold.")";$sql =  "INSERT INTO tblTransTemp(Tech, [Date], Tag, Model, [From], Previous, DeptFrom, [To], New, NewOwnerPnum, DeptTo, Notes, Instance, InstanceID, Submit, Hold) VALUES ('".$Tech
-             ."','".$Date."','".$Tag."','".$Model."','".$From."','".$Previous."','".$DeptFrom."','".$To."','".$New."','".$NewOwnerPnum
-             ."','".$DeptTo."','".$Notes."','".$Instance."','".$InstanceID."','".$Submit."',".$Hold.");";
+             $sql =  "INSERT INTO tblTransTemp(Tech, [Date], Tag, Model, [From], Previous, DeptFrom, [To], New, NewOwnerPnum, DeptTo, Notes, Instance, InstanceID) VALUES (
+                     '".$Tech."','".$Date."','".$Tag."','".$Model."','".$From."','".$Previous."','".$DeptFrom."','".$To."','".$New."','".$NewOwnerPnum."','".$DeptTo."','".$Notes."',".$Instance.",'".$InstanceID."');";
 
              if(insertTransfers($sql))
                  $GLOBALS['readyToSend'] = true;
@@ -80,11 +76,10 @@ $GLOBALS['readyToSend'] = false;
 
 function insertTransfers($uname) {
     $con=connectToDB();
-    //$sql = "INSERT INTO dbo_tblCustodians(ID, NAME, FFBMAST_CUSTODIAN_PIDM) VALUES ('P1234567', '" . $uname ."', 12345)";
-    //This will help us know if we can send an email:
+
     odbc_exec($con,$uname);
     if (odbc_error()){
-    echo odbc_errormsg($con);
+        echo odbc_errormsg($con);
     return false;
     }
 	
@@ -94,17 +89,12 @@ function insertTransfers($uname) {
 function pnumLookUp($con, $newName) {
 
     $pNumNew = "SELECT [ID] FROM dbo_tblCustodians where [NAME] = '".$newName."';";
-    $pNumAnsr = odbc_exec($con, $pNumNew);
-    $reply = odbc_fetch_array($pNumAnsr);
-
-    foreach($reply as $value){
-        return $value;
-    }
        $pNumAnsr = odbc_exec($con, $pNumNew);
        $reply = odbc_fetch_array($pNumAnsr);
        foreach($reply as $value){
         return $value;
     }
+    odbc_close($con);
 }
 
 function generatePDF($jsonArr)

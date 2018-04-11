@@ -40,7 +40,7 @@
                     <select class="form-control" id="roomSelection">
                         <!-- possibly make this auto-filled with database stuff -->
                         <?php
-                        $query= "SELECT DISTINCT Location FROM [Complete Active inventory list 52914];";
+                        $query = "SELECT Field1 FROM Inventory_location_lookup order by Field1 asc;";
                         $options = queryDB($con1, $query);
 
                         foreach($options as $row)
