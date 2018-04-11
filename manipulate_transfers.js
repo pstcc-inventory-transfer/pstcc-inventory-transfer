@@ -163,13 +163,12 @@ function submitFinal()
     if(transfersArray.length != 0)
     {
         transfersArray.forEach(function(element, index){
-            element.custodian = $('#custodian').val();
+            element.technician = $('#technician').val();
         });
 
         var myJsonString = JSON.stringify(transfersArray);
         var xmlhttp = new XMLHttpRequest();
 
-        console.log(myJsonString);
         xmlhttp.onreadystatechange = function() {
             if (this.readyState === 4 && this.status === 200) {
                 alert(this.responseText);
@@ -300,7 +299,7 @@ function submitNew()
                         preRoom:$('#pre_room').val(),
                         preOwner:$('#pre_owner').val(),
                         preDept:$('#pre_dept').val(),
-                        custodian:undefined
+                        technician:undefined
                     };
 
                     transfersArray.push(transfer);

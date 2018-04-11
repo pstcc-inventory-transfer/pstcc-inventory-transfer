@@ -1,5 +1,6 @@
 <!-- Designer(s): Jon Knight, Matthew Ratliff, (Zachary Mitchell - minor edit)
-  -- Date last modified: 3/2/2018
+  -- Date last modified: 4/9/2018
+  -- Jscob Simms: I added the techName sql code to the "
   -- Dependices: Stylesheet = "mobile.css", JS = "manipulate_transfers_mobile.js"
   -->
 
@@ -34,9 +35,19 @@
           <div class="container-fluid">
             <ul class="nav navbar-nav">
                 <li>
-                    <select class="form-control" id="custodian">
-                        <option>jmknight2@pstcc.edu</option>
-                        <option>lbates@pstcc.edu</option>
+                    <select class="form-control" id="technician">
+                        <?php
+                        $query= "SELECT techName FROM tblTech;";
+                        $options = queryDB($con1, $query);
+
+                        foreach($options as $row)
+                        {
+                            foreach($row as $value)
+                            {
+                                echo "<option>" . $value . "</option>";
+                            }
+                        }
+                        ?>
                     </select>
                 </li>
                 <li class="active"><button class="btn btn-success btn-block" onclick="submitFinal()">Submit Transfer</button></li>
@@ -76,18 +87,16 @@
                     <h4>New Room</h4>
                     <select id="newRoom" class="form-control selectpicker" data-show-subtext="true" data-live-search="true">
                         <option value="none" selected disabled>Please choose room...</option>
-						<?php
-							$query= "SELECT DISTINCT Location FROM [Complete Active inventory list 52914];";
-							$options = queryDB($con1, $query);
+                        <?php
+                        $query = "SELECT Field1 FROM Inventory_location_lookup;";
+                        $options = queryDB( $con1, $query );
 
-							foreach($options as $row)
-							{
-								foreach($row as $value)
-								{
-									echo "<option>" . $value . "</option>";
-								}
-							}
-						?>
+                        foreach ($options as $row) {
+                            foreach ($row as $value) {
+                                echo "<option>" . $value . "</option>";
+                            }
+                        }
+                        ?>
                     </select>
                 </div>
                 <div class="form-group" style="text-align: left; margin: 0 auto;">
@@ -112,14 +121,16 @@
                     <h4>New Department</h4>
                     <select id="newDept" class="form-control selectpicker" data-show-subtext="true" data-live-search="true">
                         <option value="none" selected disabled>Please choose dept...</option>
-						<?php
-							$query= "SELECT DISTINCT DeptTo FROM tblTransTemp_072017;";
-							$options = queryDB($con1, $query);
+                        <?php
+                        $query = "SELECT Field1 FROM tblDepts;";
+                        $options = queryDB( $con1, $query );
 
-							foreach($options as $row)
-								foreach($row as $value)
-									echo "<option>" . $value . "</option>";
-						?>
+                        foreach ($options as $row) {
+                            foreach ($row as $value) {
+                                echo "<option>" . $value . "</option>";
+                            }
+                        }
+                        ?>
                     </select>
                 </div>
 

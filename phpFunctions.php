@@ -1,6 +1,17 @@
 <?php
 include 'db_connection.php';
 
+
+$con1 = connectToDB();
+
+if(isset($_REQUEST["q"]))
+{
+    $id = $_REQUEST["q"];
+    checkForID($id, $con1);
+}
+
+// ------ START OF FUNCTIONS ------
+
 function queryDB($con, $query)
 {	
 	$result=odbc_exec($con, $query);
@@ -14,20 +25,20 @@ function queryDB($con, $query)
 	return $rows;
 }
 
-function testQuery($con, $query)
+/*function testQuery($con, $query)
 {
 	$result=odbc_exec($con, $query);
 	$rows = array();
-	
-	while ($row=odbc_fetch_array($result)) 
+
+	while ($row=odbc_fetch_array($result))
 	{
 		$rows[] = $row;
 	}
-	
+
 	foreach($rows as $row1)
 		foreach($row1 as $value)
 			echo $value;
-}
+}*/
 
 function getInfo($id)
 {
@@ -58,13 +69,7 @@ function checkForID($id, $con)
 	else echo false;
 }
 
-$con1 = connectToDB();
 
-if(isset($_REQUEST["q"]))
-{
-	$id = $_REQUEST["q"];
-	checkForID($id, $con1);
-}
 
 ?>
 
