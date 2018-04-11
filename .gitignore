@@ -1,1 +1,5 @@
 barcode/scanjsTest.html
+.vs/
+emailClient/default.econf
+emailTest.php
+emailClient/src/*/*/obj/

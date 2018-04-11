@@ -43,6 +43,7 @@ $GLOBALS['readyToSend'] = false;
      $json=json_decode($_GET['json'], true);
      if ( is_array( $json )) {
         $i=0;
+        $Instance = $i++;  //update to get largest instance number from DB and increase by one.
          foreach($json as $string) {
              $Tech = $json[$i]['technician'];
              $Date = date("j/d/Y");   // figure out how to get data and time
@@ -58,7 +59,7 @@ $GLOBALS['readyToSend'] = false;
              $Notes = $json[$i]['notes'];
              $InstanceID = "{$Tag}{$To}".date("jdY");
 
-             $sql =  "INSERT INTO tblTransTemp(Tech, [Date], Tag, Model, [From], Previous, DeptFrom, [To], New, NewOwnerPnum, DeptTo, Notes, InstanceID) VALUES (
+             $sql =  "INSERT INTO tblTransTemp(Tech, [Date], Tag, Model, [From], Previous, DeptFrom, [To], New, NewOwnerPnum, DeptTo, Notes, Instance, InstanceID) VALUES (
                      '".$Tech."','".$Date."','".$Tag."','".$Model."','".$From."','".$Previous."','".$DeptFrom."','".$To."','".$New."','".$NewOwnerPnum."','".$DeptTo."','".$Notes."',".$Instance.",'".$InstanceID."');";
 
              if(insertTransfers($sql))

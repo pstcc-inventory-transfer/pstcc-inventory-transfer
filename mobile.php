@@ -1,6 +1,5 @@
-<!-- Designer(s): Jon Knight, Matthew Ratliff, (Zachary Mitchell - minor edit)
+<!-- Designer(s): Jon Knight, Matthew Ratliff, (Zachary Mitchell - minor edit), Jacob Simms (SQL queries)
   -- Date last modified: 4/9/2018
-  -- Jscob Simms: I added the techName sql code to the "
   -- Dependices: Stylesheet = "mobile.css", JS = "manipulate_transfers_mobile.js"
   -->
 
@@ -37,7 +36,7 @@
                 <li>
                     <select class="form-control" id="technician">
                         <?php
-                        $query= "SELECT techName FROM tblTech;";
+                        $query= "SELECT techName FROM tblTech order by techName asc;";
                         $options = queryDB($con1, $query);
 
                         foreach($options as $row)
@@ -88,7 +87,7 @@
                     <select id="newRoom" class="form-control selectpicker" data-show-subtext="true" data-live-search="true">
                         <option value="none" selected disabled>Please choose room...</option>
                         <?php
-                        $query = "SELECT Field1 FROM Inventory_location_lookup;";
+                        $query = "SELECT Field1 FROM Inventory_location_lookup order by Field1 asc;";
                         $options = queryDB( $con1, $query );
 
                         foreach ($options as $row) {
@@ -104,7 +103,7 @@
                     <select id="newOwner" class="form-control selectpicker" data-show-subtext="true" data-live-search="true">
                         <option value="none" selected disabled>Please choose owner...</option>
 						<?php
-							$query= "SELECT DISTINCT [NAME] FROM dbo_tblCustodians;";
+							$query= "SELECT DISTINCT [NAME] FROM dbo_tblCustodians order by [NAME] asc;";
 							$options = queryDB($con1, $query);
 
 							foreach($options as $row)
@@ -122,7 +121,7 @@
                     <select id="newDept" class="form-control selectpicker" data-show-subtext="true" data-live-search="true">
                         <option value="none" selected disabled>Please choose dept...</option>
                         <?php
-                        $query = "SELECT Field1 FROM tblDepts;";
+                        $query = "SELECT Field1 FROM tblDepts order by Field1 asc;";
                         $options = queryDB( $con1, $query );
 
                         foreach ($options as $row) {

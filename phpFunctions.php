@@ -1,14 +1,22 @@
 <?php
 include 'db_connection.php';
 
-
+// DB Connection
 $con1 = connectToDB();
 
-if(isset($_REQUEST["q"]))
+// checks for
+if(isset($_REQUEST["idNum"]))
 {
-    $id = $_REQUEST["q"];
+    $id = $_REQUEST["idNum"];
     checkForID($id, $con1);
 }
+
+if(isset($_REQUEST["room"]))
+{
+    $room = $_REQUEST["room"];
+    getInventoryForRoom($room, $con1);
+}
+
 
 // ------ START OF FUNCTIONS ------
 
@@ -69,8 +77,24 @@ function checkForID($id, $con)
 	else echo false;
 }
 
+function getInventoryForRoom($room, $con)
+{
+	// lookup all hints from array if $q is different from ""
+	if ($room !== "")
+	{
+		$query = "SELECT Field1 FROM Inventory_location_lookup WHERE Location = '$room'";
+		$result = queryDB($con, $query);
 
+		if(count($result) > 0)
+		{
+			echo json_encode($result);
+		}
 
+		else echo "error";
+	}
+
+	else echo false;
+}
 ?>
 
 

@@ -38,7 +38,7 @@
                 <li>
                     <select class="form-control" id="technician">
                         <?php
-                        $query = "SELECT techName FROM tblTech;";
+                        $query = "SELECT techName FROM tblTech order by techName asc;";
                         $options = queryDB( $con1, $query );
 
                         foreach ($options as $row) {
@@ -50,18 +50,14 @@
                     </select>
                 </li>
 
-                <li>
-                    <button data-toggle="modal" data-target="#Add_Modal" class="btn btn-block" id="addBtn">Add Item</button>
-                </li>
-                <li>
-                    <button class="btn btn-success btn-block" onclick="submitFinal()">Submit Transfer</button>
-                </li>
-                <li>
-                    <button class="btn btn-danger btn-block" onclick="window.location.href='logout.php'">Logout</button>
-                </li>
-            </ul>
-        </div>
-    </nav>
+                <li style="margin-left: 25px;"><button data-toggle="modal" data-target="#Add_Modal" class="btn btn-block" id="addBtn">Add Item</button></li>
+                <li style="margin-left: 50px;"><button class="btn btn-success btn-block" onclick="submitFinal()">Submit Transfer</button></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li style="margin-right: 50px;"><button class="btn btn-danger btn-block" onclick="window.location.href='logout.php'">Logout</button></li>
+              </ul>
+          </div>
+        </nav>
 
 <div class="content-main container-fluid">
 
@@ -110,7 +106,7 @@
                                 data-live-search="true">
                             <option disabled selected value="none">Please choose room...</option>
                             <?php
-                            $query = "SELECT Field1 FROM Inventory_location_lookup;";
+                            $query = "SELECT Field1 FROM Inventory_location_lookup order by Field1 asc;";
                             $options = queryDB( $con1, $query );
 
                             foreach ($options as $row) {
@@ -130,7 +126,7 @@
                                 data-live-search="true">
                             <option disabled selected value="none">Please choose room...</option>
                             <?php
-                            $query = "SELECT DISTINCT [NAME] FROM dbo_tblCustodians;";
+                            $query = "SELECT DISTINCT [NAME] FROM dbo_tblCustodians order by [NAME] asc;";
                             $options = queryDB( $con1, $query );
 
                             foreach ($options as $row) {
@@ -148,7 +144,7 @@
                                 data-live-search="true">
                             <option disabled selected>Please choose dept. ...</option>
                             <?php
-                            $query = "SELECT Field1 FROM tblDepts;";
+                            $query = "SELECT Field1 FROM tblDepts order by Field1 asc;";
                             $options = queryDB( $con1, $query );
 
                             foreach ($options as $row) {

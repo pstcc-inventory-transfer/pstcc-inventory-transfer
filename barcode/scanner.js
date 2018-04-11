@@ -25,19 +25,13 @@ function bgGo(inputTag){
 
     //QuaggaJS:
     Quagga.decodeSingle({
-      inputStream: {
-        name : "Live",
-        type : "LiveStream",
-         // Or '#yourElement' (optional)
-        target: document.querySelector('#yourElement')
-      }
         decoder:{
         readers:["code_128_reader","ean_reader", "ean_8_reader"]
         },
         src: URL.createObjectURL(document.getElementById("ScannerJS").files[0])
   }, function(data) {
       if (data) {
-          inputTag.value=data.codeResult.code;
+          inputTag.value=data.codeResult.code.split(' ');
           return
       }
       else
