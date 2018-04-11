@@ -2,8 +2,8 @@
  * Date last modified: 4/01/18
  * Dependencies: desktop.html
  */
+ 
 var transfersArray = [];
-var roomInventoryArray = [];
 var selectedTransferID;
 var filename = window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1);
 
@@ -230,13 +230,15 @@ function submit()
     else alert("Please enter a valid ID");
 }
 
-function cleanId()
+function cleanId(str)
 {
-    if($('#IDAdd').val().length > 7)
+    if(str.length > 7)
     {
-         var str = $('#IDAdd').val().split(' ');
-         $('#IDAdd').val(str[0]);
+         str = str.split(' ');
+         return str[0];
     }
+	
+	else return str;
 }
 
 // * Called when a transfer is to be edited.
@@ -331,8 +333,7 @@ function getInfoFromTag(str)
         }
     }).done(function(results)
     {
-        
-        cleanId();
+        $('#IDAdd').val(cleanId($('#IDAdd').val()));
 
         if (results.trim() != 'error' && results.trim() != '')
         {
@@ -371,67 +372,4 @@ function getInfoFromTag(str)
             $("#pre_dept").val("");
         }
     });
-}
-
-function generateWorkingList()
-{
-	var str = $('#roomSelection').val();
-	console.log('room selected = ' + str);
-	
-	$.ajax(
-    {
-        method: "POST",
-        url: "phpFunctions.php",
-        data:
-        {
-            room: str
-        }
-    }).done(
-	function(results)
-	{
-		$('.content-area tr').remove();
-		
-		var roomInventoryArray = JSON.parse(results);
-		
-		console.log(roomInventoryArray);
-		
-		roomInventoryArray.forEach(
-		function(element, index)
-		{
-			var itemID = element['TAG'];
-			var serialNum = element['Serial Number'];
-			var aquiredDate = element['Aquired Date'];
-			var custodian = element['Custodian'];
-			var description = element['Description'];
-			var location = element['Location'];
-			var make = element['Make'];
-			var model = element['Model'];
-			var price = element['Price'];
-			
-
-			var html =
-			   `<tr id="` + index + `">
-				  <td>` + itemID + `</td>
-				  <td>` + serialNum + `</td>
-				  <td>` + custodian + `</td>
-				  <td>` + location + `</td>
-				  <td>` + make + `</td>
-				  <td>` + model + `</td>
-				  <td>` + price + `</td>
-				  <td>` + description + `</td>
-				  <td>` + aquiredDate + `</td>
-				  <td>
-					<button data-toggle="modal" data-target="#Add_Modal" class="btn btn-primary btn-sm" onclick="setSelectedID(this)">Edit</button>
-				  </td>
-				  <td>
-					<button class="btn btn-danger btn-md" onclick="deleteTransfer(this)"><span class="glyphicon glyphicon-trash"></span></button>
-				  </td>
-			    </tr>`;
-				
-			var newElement = $.parseHTML(html);
-
-			$('.content-area').append(newElement);
-			
-		});
-	});
 }

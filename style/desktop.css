@@ -61,3 +61,8 @@ td
 #addBtn:hover {
   background-color: rgba(252, 217, 85, 0.85);
 }
+
+#inputBox {
+	border-radius: 5px;
+	
+}

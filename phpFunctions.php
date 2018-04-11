@@ -82,7 +82,7 @@ function getInventoryForRoom($room, $con)
 	// lookup all hints from array if $q is different from ""
 	if ($room !== "")
 	{
-		$query = "SELECT Field1 FROM Inventory_location_lookup WHERE Location = '$room'";
+		$query = "SELECT * FROM [Complete Active inventory list 52914] WHERE Location = '$room'";
 		$result = queryDB($con, $query);
 
 		if(count($result) > 0)

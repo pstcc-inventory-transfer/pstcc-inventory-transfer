@@ -40,7 +40,7 @@
                     <select class="form-control" id="roomSelection">
                         <!-- possibly make this auto-filled with database stuff -->
                         <?php
-                        $query = "SELECT Field1 FROM Inventory_location_lookup order by Field1 asc;";
+                        $query= "SELECT DISTINCT Location FROM [Complete Active inventory list 52914];";
                         $options = queryDB($con1, $query);
 
                         foreach($options as $row)
@@ -54,8 +54,11 @@
                     </select>
                 </li>
 
-                <li style="margin-left: 50px;"><button class="btn btn-success btn-block" onclick="generateWorkingList()">Generate Inventory List</button></li>
-              </ul>
+				<li><input type='text' style="display: none;" id='inputBox' onkeyup="updateInventory(this.value)"/></li>
+                <li id="generateListBtn" style="margin-left: 50px;"><button class="btn btn-success btn-block" onclick="generateWorkingList()">Generate Inventory List</button></li>
+				<li id="resetBtn" style="margin-left: 50px; display: none;"><button class="btn btn-block" onclick="restartRoomSelection()">Select Another Room</button></li>
+              
+			  </ul>
               <ul class="nav navbar-nav navbar-right">
                 <li style="margin-right: 50px;"><button class="btn btn-danger btn-block" onclick="window.location.href='logout.php'">Logout</button></li>
               </ul>
@@ -64,7 +67,7 @@
 
         <div class="content-main container-fluid">
 
-            <table class="table table-condensed table-striped">
+            <table class="table table-condensed" id="inventoryScanTable">
                 <thead>
                     <th>PSCC ID</th>
                     <th>Serial Num</th>
@@ -75,16 +78,16 @@
                     <th>Price</th>
                     <th>Description</th>
                     <th>Acquired Date</th>
-                    <th></th>
+					<th>Actual Quantity</th>
+					<!--<th>Change Quantity</th>-->
                 </thead>
                 <tbody class="content-area">
-
+				<!-- Table body dynamically generated in manipulate_transfers.js -->
                 </tbody>
             </table>
         </div>
 		
-		
-
         <script src="manipulate_transfers.js"></script>
+		<script src="inventory_scan.js"></script>
     </body>
 </html>
