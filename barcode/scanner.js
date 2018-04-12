@@ -13,7 +13,7 @@ function scan(output){
     if(output == undefined)
          console.error("scan(): Please specifiy the insert tag you wish to output the barcode to.");
     else{
-        var newFile=document.getElementById("ScannerJS");
+        var newFile=$("#ScannerJS")[0];
         newFile.onchange=function(){bgGo(output);};
         newFile.click();
     }
@@ -26,11 +26,13 @@ function bgGo(inputTag){
     //QuaggaJS:
     Quagga.decodeSingle({
         decoder:{
+            //We don't really know what format we will be scanning, so lets try a bunch of 'em:
         readers:["code_128_reader","ean_reader", "ean_8_reader"]
         },
-        src: URL.createObjectURL(document.getElementById("ScannerJS").files[0])
+        src: URL.createObjectURL($("#ScannerJS")[0].files[0])
   }, function(data) {
       if (data) {
+          console.log(data);
           inputTag.value=data.codeResult.code.split(' ');
           return
       }

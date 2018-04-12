@@ -41,12 +41,13 @@ INSERT SUBJECT HERE
 ```
 
 ### Usage:
-### ./cliEmail \[-html "./path/to/message.html"\] \[-config "./path/to/config.econf"\] \[-files \["./path/to/file1.*"\] \["./path/to/file2.*"\] \["./etc/etc.*"\] \]
+```./cliEmail [-html "./path/to/message.html"] [-config "./path/to/config.econf"] [-files ["./path/to/file1.*"] ["./path/to/file2.*"] ["./etc/etc.*"] ] [-emails email@example.com [email2@example.com] [etc@etc.blah] ]```
 
 **WHERE:** 
 * -html is the location of your message. By default, it looks for "./default.html", so this flag is optional.
 * -config is the path to the configuration. This flag is also optional, it looks for "./default.econf" automatically.
 * -files is an infinite list of attachments you would like to use. They can be any file type. This flag isn't required if you don't have anything to attach.
+* -emails Let's you insert extra emails that are not in the econf file at the last minute. Be sure to use this on a terminal that doesn't track history.
 
 ## Example:
 ```

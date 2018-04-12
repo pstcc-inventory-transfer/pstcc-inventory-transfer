@@ -20,6 +20,7 @@ namespace cliEmail
         public static string htmlDir = "";
         private static string uuid = key.getKey();
         public static List<string> filesDir = new List<string>();
+        public static List<string> extraEmails = new List<string>();
         public static bool help = false;
 
         public static string[] argList =
@@ -27,6 +28,7 @@ namespace cliEmail
             "-config",
             "-html",
             "-files",
+            "-emails",
             "-help"
         };
 
@@ -36,6 +38,7 @@ namespace cliEmail
             "To set up this program, create a configuration file with the bundled program (cliEmailConfig.exe), then create an html file that has the message you wish to send.\n\n" +
             "Options: \n\n-config\tThe configuration file."+
             "\n-html\tThe message being sent out to others."+
+            "\n-emails\tAdditional emails that are not in the senders list that you want at the last minute. **WARNING** It's unsafe to use this on a terminal emulator that has history logged; use with caution."+
             "\n-files\tAny attachments desired to be sent out. There isn't a limit to how many attachments can be sent."+
             "\n-help\tShow this menu.\n\nIf -config or -html are not used while launching the program, the program will automatically use \"default.econf\" and \"default.html\" respectively. **If neither of these files are found, the message will not be sent due to the lack of information.**"+
             "\n\nWhen creating an html file, the first line of the file is always the subject.\n\nThe configuration file contains everything to send messages from the desired email address, and contains a list of everybody to send to. While you can speficy names of people with the email addresses, seeing these inputted names will vary depending on the email program receiving the letter (e.g, outlook can intelligently obtain names from a contact list instead of user-defined names in the config file.)";
@@ -55,6 +58,7 @@ namespace cliEmail
             //grab arguments:
             for (int i= 0;i<args.Length;i++)
             {
+                int searchIndex = 0;
                 switch (args[i])
                 {
                     case "-config":
@@ -65,7 +69,7 @@ namespace cliEmail
                     break;
                     case "-files":
                         //grab all the files until we reach another argument:
-                        int searchIndex = i+1;
+                        searchIndex = i+1;
                         while (searchIndex < args.Length && !searchArgs(args[searchIndex]))
                         {
                             //Console.WriteLine("program.cs:"+args[searchIndex]);
@@ -73,6 +77,16 @@ namespace cliEmail
                             searchIndex++;
                         }
                     break;
+                    case "-emails":
+                        //carbon copy of the above, just for email addresses.
+                        searchIndex = i + 1;
+                        while (searchIndex < args.Length && !searchArgs(args[searchIndex]))
+                        {
+                            //Console.WriteLine("program.cs:"+args[searchIndex]);
+                            extraEmails.Add(args[searchIndex]);
+                            searchIndex++;
+                        }
+                        break;
                     case "-help":
                         help = true;
                         break;
@@ -108,6 +122,12 @@ namespace cliEmail
                 try
                 {
                     emailConfiguration eConfig = new emailConfiguration(load(confDir)); //Everything gets converted into a readable format for Microsoft's client
+
+                    //Load extra emails one might want:
+                    foreach (string email in extraEmails)
+                    {
+                        eConfig.to.Add(new System.Net.Mail.MailAddress(email));
+                    }
 
                     //Alright, now we need the html file used for the message:
                     StreamReader htmlIn = File.OpenText(htmlDir);
