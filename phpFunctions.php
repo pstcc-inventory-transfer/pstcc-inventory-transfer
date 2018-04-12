@@ -20,34 +20,6 @@ if(isset($_REQUEST["room"]))
 
 // ------ START OF FUNCTIONS ------
 
-function queryDB($con, $query)
-{	
-	$result=odbc_exec($con, $query);
-	$rows = array();
-	
-	while ($row=odbc_fetch_array($result)) 
-	{
-		$rows[] = $row;
-	}
-	
-	return $rows;
-}
-
-/*function testQuery($con, $query)
-{
-	$result=odbc_exec($con, $query);
-	$rows = array();
-
-	while ($row=odbc_fetch_array($result))
-	{
-		$rows[] = $row;
-	}
-
-	foreach($rows as $row1)
-		foreach($row1 as $value)
-			echo $value;
-}*/
-
 function getInfo($id)
 {
 	// lookup all hints from array if $q is different from "" 

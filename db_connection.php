@@ -19,4 +19,17 @@ function connectToDB()
 
     else return $con;
 }
+
+function queryDB($con, $query)
+{	
+	$result=odbc_exec($con, $query);
+	$rows = array();
+	
+	while ($row=odbc_fetch_array($result)) 
+	{
+		$rows[] = $row;
+	}
+	
+	return $rows;
+}
 ?>
