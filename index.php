@@ -47,6 +47,38 @@
             margin: 0 auto;
             float: none;
             }
+            
+            .modal-header
+            {
+                padding:9px 15px;
+                border-bottom:1px solid #eee;
+                -webkit-border-top-left-radius: 5px;
+                -webkit-border-top-right-radius: 5px;
+                -moz-border-radius-topleft: 5px;
+                -moz-border-radius-topright: 5px;
+                 border-top-left-radius: 5px;
+                 border-top-right-radius: 5px;
+             }
+            
+            .reset-header
+            {
+                color: white;
+                background-color: #33b5e5;
+            }
+            
+            .alert-header
+            {
+                color: white;
+                background-color: #ff4444;
+            }
+            
+            #alertModal > *
+            {
+                width: 400px;
+                margin: auto;
+                margin-top: 30px;
+            }
+            
             #login-panel
             {
             margin: 0 auto;
@@ -92,63 +124,77 @@
             function validatePwd()
             {
                 var password = $('#pwd').val();
-                if(password !== '')
+                var username = $('#user').val();
+                console.log(username);
+                if(username != null)
                 {
-                    if(!password.includes(' '))
+                    if(password !== '')
                     {
-                        $.ajax(
+                        if(!password.includes(' '))
                         {
-                            method: "POST",
-                            url: "validatePwd.php",
-                            data:
+                            $.ajax(
                             {
-                                pwd: password
-                            }
-                        }).done(function(results)
+                                method: "POST",
+                                url: "validatePwd.php",
+                                data:
+                                {
+                                    user: username,
+                                    pwd: password
+                                }
+                            }).done(function(results)
+                            {
+                                if(results == 'tech true')
+                                {
+                                    var isMobile = {
+                                    Android: function() {
+                                    return navigator.userAgent.match(/Android/i);
+                                    },
+                                    BlackBerry: function() {
+                                    return navigator.userAgent.match(/BlackBerry/i);
+                                    },
+                                    iOS: function() {
+                                    return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+                                    },
+                                    Opera: function() {
+                                    return navigator.userAgent.match(/Opera Mini/i);
+                                    },
+                                    Windows: function() {
+                                    return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i);
+                                    },
+                                    any: function() {
+                                    return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+                                    }
+                                    };
+                                    if (isMobile.any()) {
+                                    document.location.replace('mobile.php');
+                                    }
+                                    else {
+                                    document.location.replace('desktop.php');
+                                    }
+                                }
+                                else if(results == 'admin true')
+                                {
+                                    window.location.href = 'inventoryScan.php';
+                                }
+                                else
+                                {
+                                    alertModal('Error', results + 'Incorrect password');
+                                }
+                            });
+                        }
+                        else
                         {
-                            if(results == 'true')
-                            {
-                                var isMobile = {
-                                Android: function() {
-                                return navigator.userAgent.match(/Android/i);
-                                },
-                                BlackBerry: function() {
-                                return navigator.userAgent.match(/BlackBerry/i);
-                                },
-                                iOS: function() {
-                                return navigator.userAgent.match(/iPhone|iPad|iPod/i);
-                                },
-                                Opera: function() {
-                                return navigator.userAgent.match(/Opera Mini/i);
-                                },
-                                Windows: function() {
-                                return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i);
-                                },
-                                any: function() {
-                                return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
-                                }
-                                };
-                                if (isMobile.any()) {
-                                document.location.replace('mobile.php');
-                                }
-                                else {
-                                document.location.replace('desktop.php');
-                                }
-                            }
-                            else
-                            {
-                                alertModal('Error', 'Incorrect password');
-                            }
-                        });
+                            alertModal('Error', 'Password cannot include spaces.');
+                        }
                     }
                     else
                     {
-                        alertModal('Error', 'Password cannot include spaces.');
+                        alertModal('Error', 'Password cannot be blank.');
                     }
                 }
                 else
                 {
-                    alertModal('Error', 'Password cannot be blank.');
+                    alertModal('Error', 'Please select a user.');
                 }
             }
         </script>
@@ -196,22 +242,15 @@
             <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header reset-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Password Reset</h4>
                     </div>
-                    <div class="modal-body" style="text-align: center">
-                        <h5 style="text-align: left;">Please select which password to reset:</h5><br/>
-                        <select class="form-control" style="width: 50%;" id="user" name="user">
-                            <option value="null" selected disabled>Please select user</option>
-                            <option value="admin">Administrator</option>
-                            <option value="tech">Technician</option>
-                        </select><br/>
-                        <p>Upon confirmation, a reset link will be sent to <b>[insert email here].</b></p>
-                    </div>
-                    <div class="modal-footer">
+                    <div class="modal-body" style="text-align: right">
+                        <h5 style="text-align: left;">Upon confirmation, a reset link will be sent to <b>[insert email here].</b></h5>
+                        <br/>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-success" data-dismiss="modal">Confirm</button>
+                        <button type="button" class="btn btn-success"  data-dismiss="modal">Confirm</button>
                     </div>
                 </div>
             </div>
@@ -221,15 +260,12 @@
             <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header alert-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title" id="alert-modal-title"></h4>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" style="text-align: center;">
                         <p id="alert-modal-body"></p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>

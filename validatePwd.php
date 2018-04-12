@@ -1,13 +1,28 @@
 <?php
+include 'db_connection.php';
 session_start();
 
-if(exec('cd verification && scramblerVerify.exe '.$_POST["pwd"].' -f nothingInteresting.txt') == 'True')
+$query = "SELECT password FROM tblUsers WHERE userName = '".($_POST['user'] == 'admin'?'Administrator':'Technician')."'";
+$result = queryDB(connectToDB(), $query);
+
+//As of this writing, we only have two users; You can take down this conditional if it's the future and we have multiple users now :P
+if($_POST['user'] == 'admin')
 {
-    $_SESSION['auth'] = true;
-    echo 'true';
+    $pwd = $_POST['pwd'];
+    
+    if(exec('.\verification\scramblerVerify.exe -d '.$pwd.' "'.trim($result[0]['password']).'"') == "True")
+    {
+        $_SESSION['auth'] = true;
+        echo "admin true";
+    }
 }
-else
+else if($_POST['user'] == 'tech')
 {
-    $_SESSION['auth'] = false;
-    echo 'false';
+    $pwd = $_POST['pwd'];
+    
+    if(exec('.\verification\scramblerVerify.exe -d '.$pwd.' "'.trim($result[0]['password']).'"') == "True")
+    {
+        $_SESSION['auth'] = true;
+        echo "tech true";
+    }
 }
