@@ -103,16 +103,10 @@ namespace scramblerVerify
             bool spaces = false;
             foreach(string argument in args)
             {
-                if (argument != setup.saveLocation)
+                if (blackListCheck(argument))
                 {
-                    foreach (char character in argument)
-                    {
-                        if (character == ' ')
-                        {
-                            spaces = true;
-                            break;
-                        }
-                    }
+                    spaces = true;
+                    break;
                 }
             }
 
@@ -124,7 +118,9 @@ namespace scramblerVerify
                 Console.WriteLine(usage);
             }
             else if (spaces)
-                Console.WriteLine("Scrambler Verify: this program does not accept spaces in any argument.");
+            {
+                Console.Write("Scrambler Verify: Invalid characters; see README.MD for more details.");
+            }
 
             else if (setup.purge && !purgeOk)
                 Console.WriteLine("Error: No option given for the source file! See README.MD for more information on clearing a file.");
@@ -141,6 +137,22 @@ namespace scramblerVerify
                 }
                 else Console.Write(output);
             }
+        }
+        static char[] blackList = { ' ', '\t', '"', '\'', '\\' };
+        public static bool blackListCheck(string text)
+        {
+            foreach (char character in text)
+            {
+                for (int i = 0; i < blackList.Length; i++)
+                {
+                    if (character == blackList[i])
+                    {
+                        return true;
+                        break;
+                    }
+                }
+            }
+            return false;
         }
 
     }

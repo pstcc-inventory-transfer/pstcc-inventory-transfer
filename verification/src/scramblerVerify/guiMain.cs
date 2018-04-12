@@ -45,17 +45,20 @@ namespace scramblerVerify
             return success;
         }
 
+
         //Spaces are not allowed in this program; therefore, this blocks it:
-        public void check4Spaces(ref TextBox box, KeyEventArgs e)
+        public void check4Spaces(ref TextBox box)
         {
-            if(e.KeyCode == Keys.Space)
+            //I ran into a limitation: due to double quotes not being allowed and key events not supporting that individual key, i'm forced to scan every character in the text box...
+            
+            if(Program.blackListCheck(box.Text))
             {
-                MessageBox.Show("You can not use spaces in a password/scrambled text.", "Scrambler Verify: Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You can not use this character in the password/scrambled text.", "Scrambler Verify: Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 string old = box.Text;
                 box.Text = "";
                 foreach(char character in old)
                 {
-                    if (character != ' ')
+                    if (!Program.blackListCheck(""+character))
                         box.Text += ""+character;
                 }
             }
@@ -294,14 +297,14 @@ namespace scramblerVerify
             }
         }
 
-        private void inputBox2_KeyDown(object sender, KeyEventArgs e)
+        private void inputBox_TextChanged(object sender, EventArgs e)
         {
-            check4Spaces(ref inputBox2, e);
+            check4Spaces(ref inputBox);
         }
 
-        private void inputBox_KeyDown(object sender, KeyEventArgs e)
+        private void inputBox2_TextChanged(object sender, EventArgs e)
         {
-            check4Spaces(ref inputBox, e);
+            check4Spaces(ref inputBox2);
         }
     }
 }

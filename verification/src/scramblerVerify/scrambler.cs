@@ -166,27 +166,33 @@ static class Encrypt
         if (useReturn)
         {
             //HEY YOU!!!
-            //This only pertains to scramblerVerify.exe: the spacebar has been removed due to an error I had while making this for a dedicated project. If you need the spacebar for some reason, just replace ! with a space.
+            //This only pertains to scramblerVerify.exe: several characters have been removed due to an error I had while making this for a dedicated project. Check out Program.blackList for a list of blocked characters. To implement the posistions again, see: https://en.wikipedia.org/wiki/List_of_Unicode_characters
             charList = new char[][]
             {
             new char[] {'\n','\n'},
             new char[] {'\r','\r'}, //this is called the carrige return. It was designed a long time ago as a way to communicate to hardware and software "HEY YOU! RENDER A NEW LINE!" Since some programs still use this, It's supported here.
-            new char[] {'\t','\t'},
-            new char[]{'!','~'},
-            new char[]{'¡','£'},
-            new char[]{ '¿', '¿' },
-            new char[]{ '÷', '÷' }
+            //new char[] {'\t','\t'},
+            new char[]{'!','!'},
+            new char[]{'#','&'},
+            new char[]{'(','['},
+            new char[]{']','~'},
+            //new char[]{'¡','£'},
+            //new char[]{ '¿', '¿' },
+            //new char[]{ '÷', '÷' }
             };
         }
         else
         {
             charList = new char[][]
             {
-            new char[] {'\t','\t'},
-            new char[]{'!','~'},
-            new char[]{'¡','£'},
-            new char[]{ '¿', '¿' },
-            new char[]{ '÷', '÷' }
+            //new char[] {'\t','\t'},
+            new char[]{'!','!'},
+            new char[]{'#','&'},
+            new char[]{'(','['},
+            new char[]{']','~'},
+            //new char[]{'¡','£'},
+            //new char[]{ '¿', '¿' },
+            //new char[]{ '÷', '÷' }
             };
         }
 
