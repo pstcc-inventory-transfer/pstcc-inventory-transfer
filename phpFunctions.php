@@ -1,5 +1,6 @@
 <?php
 include 'db_connection.php';
+include 'resetEmail.php';
 
 // DB Connection
 $con1 = connectToDB();
@@ -10,13 +11,22 @@ if(isset($_REQUEST["idNum"]))
     $id = $_REQUEST["idNum"];
     checkForID($id, $con1);
 }
-
-if(isset($_REQUEST["room"]))
+else if(isset($_REQUEST["room"]))
 {
     $room = $_REQUEST["room"];
     getInventoryForRoom($room, $con1);
 }
-
+else if(isset($_REQUEST['user']) && isset($_REQUEST["newPwd"]))
+{
+    $user = $_REQUEST['user'];
+    $newPwd = $_REQUEST["newPwd"];
+    updatePassword($user, $newPwd, $con1);
+}
+else if(isset($_REQUEST["user"]))
+{
+    $user = $_REQUEST["user"];
+    generateResetLink($user, $con1);
+}
 
 // ------ START OF FUNCTIONS ------
 
@@ -67,7 +77,40 @@ function getInventoryForRoom($room, $con)
 
 	else echo false;
 }
+
+function generateResetLink($user, $con)
+{
+    if($user !== "")
+    {
+        date_default_timezone_set('UTC');
+        
+        $query = "SELECT password FROM tblUsers WHERE userName = '".($user == 'admin'?'Administrator':'Technician')."'";
+        $result = queryDB($con, $query);
+        
+        $pwdHash = trim($result[0]['password']);
+        
+        $expireDate = date('m-d');
+
+        $passDateHash = urlencode( str_replace('%', '%25', exec('.\verification\scramblerVerify.exe -e "'.$pwdHash.$expireDate.'"')));
+        
+        $link = "http://18.219.117.88/resetPassword.php?q1=$passDateHash&q2=$user";
+        
+        echo resetEmail(($user == 'admin'?'Administrator':'Technician'),$link);
+    }
+}
+
+function updatePassword($user, $newPwd, $con)
+{
+    if($newPwd !== "")
+    {
+        $newPwd = exec('.\verification\scramblerVerify.exe -e "'. $newPwd.'"');
+        
+        $query = "UPDATE tblUsers SET password = '$newPwd' WHERE userName = '".($user == 'admin'?'Administrator':'Technician')."'";
+        $result = odbc_exec($con, $query);
+        
+        if(odbc_error())
+            echo 'Failure';
+        else echo 'true';
+    }
+}
 ?>
-
-
-

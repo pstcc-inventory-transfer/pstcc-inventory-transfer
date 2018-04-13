@@ -56,25 +56,20 @@
                 -webkit-border-top-right-radius: 5px;
                 -moz-border-radius-topleft: 5px;
                 -moz-border-radius-topright: 5px;
-                 border-top-left-radius: 5px;
-                 border-top-right-radius: 5px;
-             }
-            
-            .reset-header
-            {
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
                 color: white;
                 background-color: #33b5e5;
-            }
+             }
             
             .alert-header
             {
-                color: white;
                 background-color: #ff4444;
             }
             
             #alertModal > *
             {
-                width: 400px;
+                max-width: 400px;
                 margin: auto;
                 margin-top: 30px;
             }
@@ -95,37 +90,59 @@
                 }
                 #login-panel
                 {
-                margin: 0 auto;
-                text-align: center;
-                background-color: #0066cc;
-                padding: 10px 30px 20px 30px;
-                border-radius: 20px 20px 20px 20px;
-                border: 2px solid #fcd955;
                 width: 90%;
-                height: 75%;
-                display: block;
-                float: none;
-                }
-                h2 {
-                font-size: 20px;
                 }
             }
         </style>
         
         <script>
-            function alertModal(title, body)
+            function alertModal(style, title, body)
             {
                 $('#alert-modal-title').text(title);
                 $('#alert-modal-body').text(body);
                 
+                if(style == "error")
+                {
+                    $('.alert-header').css('background-color', '#ff4444');
+                }
+                else if (style == "alert")
+                {
+                    $('.alert-header').css('background-color', '#33b5e5');
+                }
+                
                 $('#alertModal').modal('show');
+            }
+            
+            $( document ).ready(function() {
+            
+                $("#pwd").keyup(function(event) {
+                    if (event.keyCode === 13) 
+                    {
+                        $("#submit").click();
+                    }
+                });
+            });
+            
+            function testReset(username)
+            {
+                $.ajax(
+                {
+                    method: "POST",
+                    url: "phpFunctions.php",
+                    data:
+                    {
+                        user: username
+                    }
+                });
+                
+                alertModal('alert', 'Success', 'A reset email has been sent to the application administrator');
             }
             
             function validatePwd()
             {
                 var password = $('#pwd').val();
                 var username = $('#user').val();
-                console.log(username);
+
                 if(username != null)
                 {
                     if(password !== '')
@@ -178,23 +195,23 @@
                                 }
                                 else
                                 {
-                                    alertModal('Error', results + 'Incorrect password');
+                                    alertModal('error', 'Error', results + 'Incorrect password');
                                 }
                             });
                         }
                         else
                         {
-                            alertModal('Error', 'Password cannot include spaces.');
+                            alertModal('error', 'Error', 'Password cannot include spaces.');
                         }
                     }
                     else
                     {
-                        alertModal('Error', 'Password cannot be blank.');
+                        alertModal('error', 'Error', 'Password cannot be blank.');
                     }
                 }
                 else
                 {
-                    alertModal('Error', 'Please select a user.');
+                    alertModal('error', 'Error', 'Please select a user.');
                 }
             }
         </script>
@@ -228,7 +245,7 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <button name="submit" class="btn btn-info btn-block" style="margin-top: 15px;" onclick="validatePwd();">Submit</button>
+                                <button id="submit" class="btn btn-info btn-block" style="margin-top: 15px;" onclick="validatePwd();">Submit</button>
                             </div>
                         </div>
                         <br/>
@@ -242,15 +259,20 @@
             <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
-                    <div class="modal-header reset-header">
+                    <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Password Reset</h4>
                     </div>
                     <div class="modal-body" style="text-align: right">
-                        <h5 style="text-align: left;">Upon confirmation, a reset link will be sent to <b>[insert email here].</b></h5>
+                        <h5 style="text-align: left;"><b>Select password to be reset:</b></h5>
+                        <select class="form-control" style="width: 100%;" id="resetUser" name="resetUser">
+                            <option value="admin">Administrator</option>
+                            <option value="tech">Technician</option>
+                        </select>
+                        <h5 style="text-align: left;">Upon confirmation, a reset link will be emailed to the <b>application administartor</b></h5>
                         <br/>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-success"  data-dismiss="modal">Confirm</button>
+                        <button type="button" class="btn btn-success" data-dismiss="modal" onclick="testReset($('#resetUser').val());">Confirm</button>
                     </div>
                 </div>
             </div>
