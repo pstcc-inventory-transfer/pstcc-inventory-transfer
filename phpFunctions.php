@@ -91,7 +91,7 @@ function generateResetLink($user, $con)
         
         $expireDate = date('m-d');
 
-        $passDateHash = urlencode(exec('.\verification\scramblerVerify.exe -e "'.$pwdHash.$expireDate.'"'));
+        $passDateHash = urlencode( str_replace('%', '%25', exec('.\verification\scramblerVerify.exe -e "'.$pwdHash.$expireDate.'"')));
         
         $link = "http://18.219.117.88/resetPassword.php?q1=$passDateHash&q2=$user";
         
@@ -111,15 +111,6 @@ function updatePassword($user, $newPwd, $con)
         if(odbc_error())
             echo 'Failure';
         else echo 'true';
-
-        /*if($result)
-        {
-            echo var_dump($result);
-        }
-        else
-        {
-            echo 'Failure';
-        }*/
     }
 }
 ?>

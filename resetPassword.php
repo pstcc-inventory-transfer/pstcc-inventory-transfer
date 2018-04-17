@@ -89,14 +89,33 @@
         </style>
         
         <script>
-            function alertModal(title, body)
+            function alertModal(style, title, body)
             {
                 $('#alert-modal-title').text(title);
                 $('#alert-modal-body').text(body);
+
+                if(style == "error")
+                {
+                    $('.alert-header').css('background-color', '#ff4444');
+                }
+                else if (style == "alert")
+                {
+                    $('.alert-header').css('background-color', '#33b5e5');
+                }
                 
                 $('#alertModal').modal('show');
             }
             
+            $( document ).ready(function() {
+            
+                $("#newPwd").keyup(function(event) {
+                    if (event.keyCode === 13) 
+                    {
+                        $("#submit").click();
+                    }
+                });
+            });
+
             function updatePwd(username, password)
             {
                 if(password !== "")
@@ -116,22 +135,24 @@
                             {
                                 if(results.trim() == "true")
                                 {
-                                    alertModal('Succes', 'Password successfully changed!');
+                                    alertModal('alert', 'Success', 'Password successfully changed!');
+                                    
+                                    setTimeout(function(){window.location.replace('index.php');}, 2000);
                                 }
                                 else
                                 {
-                                    alertModal('Error', results);
+                                    alertModal('error', 'Error', results);
                                 }
                             });
                     }
                     else
                     {
-                        alertModal('Error', 'Password cannot include spaces.');
+                        alertModal('error', 'Error', 'Password cannot include spaces.');
                     }
                 }
                 else
                 {
-                    alertModal('Error', 'Password cannot be blank.');
+                    alertModal('error', 'Error', 'Password cannot be blank.');
                 }
             }
         </script>
@@ -169,7 +190,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-12">
-                                        <button name="submit" class="btn btn-info btn-block" style="margin-top: 15px;" onclick="updatePwd( '<?php echo $user; ?>', $('#newPwd').val());">Submit</button>
+                                        <button id="submit" type="submit" class="btn btn-info btn-block" style="margin-top: 15px;" onclick="updatePwd( '<?php echo $user; ?>', $('#newPwd').val());">Submit</button>
                                     </div>
                                 </div>
                             </div>
