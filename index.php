@@ -12,71 +12,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style/index.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <style>
-    html {
-      height: 100%;
-      width: 100%;
-    }
-    body
-    {
-      background: radial-gradient(rgb(255, 210, 79), rgb(0, 75, 141));
-      background-size: cover;
-      color: white;
-      display: flex;
-      width: 100%;
-    }
-    .container-fluid {
-      width: 100%;
-    }
-    form
-    {
-        margin-top: 20px;
-    }
-    .col-centered
-    {
-        margin: 0 auto;
-        float: none;
-    }
-    #login-panel
-    {
-      margin: 0 auto;
-      margin-top: 14%;
-      text-align: center;
-      background-color: #0066cc;
-      padding: 10px 60px 20px 60px;
-      border-radius: 30px;
-      border: 2px solid #fcd955;
-      width: 60%;
-    }
-    @media screen and (max-width: 768px) {
-      [class*="col-"] {
-        width: 75%;
-      }
-      body {
-        text-align: center;
-      }
-      #login-panel
-      {
-        margin: 0 auto;
-        margin-top: 25%;
-        text-align: center;
-        background-color: #0066cc;
-        padding: 10px 30px 20px 30px;
-        border-radius: 20px 20px 20px 20px;
-        border: 2px solid #fcd955;
-        width: 90%;
-        height: 75%;
-        display: block;
-        float: none;
-      }
-      h2 {
-        font-size: 20px;
-      }
-    }
-    </style>
 
 </head>
 
@@ -124,11 +62,11 @@
           <form method="post">
             <div class="form-group">
                 <div class="input-group">
-                    <input class="form-control" style="width: 100%" name="pwd" id="pwd" placeholder="Please enter technician password" type="password">
+                    <input class="form-control" name="pwd" id="pwd" placeholder="Please enter technician password" type="password">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
                 </div>
             </div>
-            <button type="submit" name="submit" class="btn btn-info btn-block" style="margin-top: 15px;">Submit</button>
+            <button id="button" type="submit" name="submit" class="btn btn-info btn-block">Submit</button>
           </form>
 
       </div>
