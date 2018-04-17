@@ -2,17 +2,6 @@
   -- Date last modified: 2/2/2018
   -- Dependices: Stylesheet = "desktop.css"
   -->
-<?php
-    session_start();
-    include("phpFunctions.php");
-    $con1 = connectToDB();
-
-    if (!$_SESSION['auth'])
-    {
-        header('Location: index.php');
-        die();
-    }
-?>
 
 <html lang="en">
     <head>
@@ -37,17 +26,7 @@
             <ul class="nav navbar-nav">
                 <li>
                     <select class="form-control" id="technician">
-                        <?php
-                        $query = "SELECT techName FROM tblTech order by techName asc;";
-                        $options = queryDB( $con1, $query );
-
-                        foreach ($options as $row) {
-                            foreach ($row as $value) {
-                                echo "<option>" . $value . "</option>";
-                            }
-                        }
-                        ?>
-                    </select>
+                        <option>Bunny, Buggs</option><option>Flinstone, Fred</option><option>Fox, Michael</option><option>Jetson, George</option><option>Looney, Michael</option><option>Montgomery, Charle</option><option>Powell, Liam</option>                    </select>
                 </li>
 
                 <li style="margin-left: 25px;"><button data-toggle="modal" data-target="#Add_Modal" class="btn btn-block" id="addBtn">Add Item</button></li>
@@ -105,17 +84,7 @@
                         <select class="form-control selectpicker" id="newRoom" data-show-subtext="true"
                                 data-live-search="true">
                             <option disabled selected value="none">Please choose room...</option>
-                            <?php
-                            $query = "SELECT Field1 FROM Inventory_location_lookup order by Field1 asc;";
-                            $options = queryDB( $con1, $query );
-
-                            foreach ($options as $row) {
-                                foreach ($row as $value) {
-                                    echo "<option>" . $value . "</option>";
-                                }
-                            }
-                            ?>
-                        </select>
+                            <option>BC197</option><option>ER126</option><option>ER219</option><option>ER324</option><option>ER326</option><option>MC230</option><option>MC306</option><option>MC337</option><option>MC338</option><option>MC340</option>                        </select>
                     </div>
                 </div>
 
@@ -125,17 +94,7 @@
                         <select class="form-control selectpicker" id="newOwner" data-show-subtext="true"
                                 data-live-search="true">
                             <option disabled selected value="none">Please choose room...</option>
-                            <?php
-                            $query = "SELECT DISTINCT [NAME] FROM dbo_tblCustodians order by [NAME] asc;";
-                            $options = queryDB( $con1, $query );
-
-                            foreach ($options as $row) {
-                                foreach ($row as $value) {
-                                    echo "<option>" . $value . "</option>";
-                                }
-                            }
-                            ?>
-                        </select>
+                            <option>Brown, David D.</option><option>Gosch, Judith A.</option><option>JAKE SIMMS</option><option>Smith-Staton, Linda D.</option><option>Vatter, Kasey A.</option>                        </select>
                     </div>
 
                     <div class="form-group" style="text-align: left; margin: 0 auto;">
@@ -143,17 +102,7 @@
                         <select class="form-control selectpicker" id="newDept" data-show-subtext="true"
                                 data-live-search="true">
                             <option disabled selected>Please choose dept. ...</option>
-                            <?php
-                            $query = "SELECT Field1 FROM tblDepts order by Field1 asc;";
-                            $options = queryDB( $con1, $query );
-
-                            foreach ($options as $row) {
-                                foreach ($row as $value) {
-                                    echo "<option>" . $value . "</option>";
-                                }
-                            }
-                            ?>
-                        </select>
+                            <option>LART</option><option>MATH</option><option>NTS</option>                        </select>
                     </div>
                 </div>
 

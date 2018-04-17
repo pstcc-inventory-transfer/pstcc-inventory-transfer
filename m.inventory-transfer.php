@@ -77,7 +77,7 @@
                 <div class="form-group" style="text-align: left; margin: 0 auto;">
                     <h4>PSCC ID#</h4>
                     <div class="input-group">
-                        <input class="form-control" name="ID" id="IDAdd" placeholder="Please enter/scan ID" value="" onkeyup="getInfoFromTag(this.value)">
+                        <input class="form-control" style="text-transform: uppercase" name="ID" id="IDAdd" placeholder="Please enter/scan ID" value="" onkeyup="getInfoFromTag(this.value)">
                         <span class="barcode input-group-addon" onclick="scan(IDAdd)"><span class="glyphicon glyphicon-barcode"></span></span>
                     </div>
                 </div>
@@ -167,8 +167,8 @@
         </div>
         <!-- Add Modal end -->
 
-        <script src="barcode/quagga/dist/quagga.min.js"></script>
+        <script src="barcode/quagga/dist/quagga.js"></script>
         <script src="barcode/scanner.js"></script>
-        <script src="manipulate_transfers.js"></script>
+        <script src="manipulate_transfers.js"></script>       
     </body>
 </html>

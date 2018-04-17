@@ -26,12 +26,15 @@ function bgGo(inputTag){
     //QuaggaJS:
     Quagga.decodeSingle({
         decoder:{
-        readers:["code_128_reader","ean_reader", "ean_8_reader"]
+        readers:["code_128_reader","ean_reader", "ean_8_reader", "codabar_reader"]
         },
         src: URL.createObjectURL(document.getElementById("ScannerJS").files[0])
   }, function(data) {
       if (data) {
           inputTag.value=data.codeResult.code.split(' ');
+          
+          getInfoFromTag(data.codeResult.code.split(' '));
+          
           return
       }
       else

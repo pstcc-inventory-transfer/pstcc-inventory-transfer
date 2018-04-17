@@ -132,7 +132,7 @@ function deleteTransfer(button)
 {
     if (confirm('Permanently delete this transfer?'))
     {
-        if (filename === "desktop.php")
+        if (filename === "inventory-transfer.php")
         {
             var index = $(button).closest('tr').attr('id');
             transfersArray.splice(index, 1);
@@ -152,7 +152,7 @@ function deleteTransfer(button)
 // * Stores the index of the object in a global variable.
 function setSelectedID(button)
 {
-    if (filename === "desktop.php")
+    if (filename === "inventory-transfer.php")
     {
         selectedTransferID = parseInt($(button).closest('tr').attr('id'));
     }
@@ -257,7 +257,7 @@ function submitEdit()
     transfersArray[selectedTransferID].preRoom = $('#pre_room').val();
     transfersArray[selectedTransferID].preOwner = $('#pre_owner').val();
     transfersArray[selectedTransferID].preDept = $('#pre_dept').val();
-    if (filename === "desktop.php")
+    if (filename === "inventory-transfer.php")
         refreshListDesktop();
     else
         refreshListMobile();
@@ -290,7 +290,7 @@ function submitNew()
 
     transfersArray.push(transfer);
 
-    if (filename === "desktop.php")
+    if (filename === "inventory-transfer.php")
         refreshListDesktop();
 
     else refreshListMobile();
@@ -332,7 +332,7 @@ function getInfoFromTag(str)
             idNum: str
         }
     }).done(function(results)
-    {
+    {        
         $('#IDAdd').val(cleanId($('#IDAdd').val()));
 
         if (results.trim() != 'error' && results.trim() != '')

@@ -74,7 +74,7 @@
             
             #alertModal > *
             {
-                width: 400px;
+                max-width: 400px;
                 margin: auto;
                 margin-top: 30px;
             }
@@ -95,19 +95,7 @@
                 }
                 #login-panel
                 {
-                margin: 0 auto;
-                text-align: center;
-                background-color: #0066cc;
-                padding: 10px 30px 20px 30px;
-                border-radius: 20px 20px 20px 20px;
-                border: 2px solid #fcd955;
                 width: 90%;
-                height: 75%;
-                display: block;
-                float: none;
-                }
-                h2 {
-                font-size: 20px;
                 }
             }
         </style>
@@ -119,6 +107,22 @@
                 $('#alert-modal-body').text(body);
                 
                 $('#alertModal').modal('show');
+            }
+            
+            function testReset(username)
+            {
+                $.ajax(
+                {
+                    method: "POST",
+                    url: "phpFunctions.php",
+                    data:
+                    {
+                        user: username
+                    }
+                }).done(function(results)
+                {
+                   console.log(results); 
+                });
             }
             
             function validatePwd()
@@ -166,10 +170,10 @@
                                     }
                                     };
                                     if (isMobile.any()) {
-                                    document.location.replace('mobile.php');
+                                    document.location.replace('m.inventory-transfer.php');
                                     }
                                     else {
-                                    document.location.replace('desktop.php');
+                                    document.location.replace('inventory-transfer.php');
                                     }
                                 }
                                 else if(results == 'admin true')
@@ -247,10 +251,15 @@
                         <h4 class="modal-title">Password Reset</h4>
                     </div>
                     <div class="modal-body" style="text-align: right">
-                        <h5 style="text-align: left;">Upon confirmation, a reset link will be sent to <b>[insert email here].</b></h5>
+                        <h5 style="text-align: left;"><b>Select password to be reset:</b></h5>
+                        <select class="form-control" style="width: 100%;" id="resetUser" name="resetUser">
+                            <option value="admin">Administrator</option>
+                            <option value="tech">Technician</option>
+                        </select>
+                        <h5 style="text-align: left;">Upon confirmation, a reset link will be emailed to the <b>application administartor</b></h5>
                         <br/>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-success"  data-dismiss="modal">Confirm</button>
+                        <button type="button" class="btn btn-success" data-dismiss="modal" onclick="testReset($('#resetUser').val());">Confirm</button>
                     </div>
                 </div>
             </div>
