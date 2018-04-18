@@ -188,7 +188,7 @@ function submitFinal()
 
         $.ajax(
         {
-            method: "GET",
+            method: "POST",
             url: "addTransfers.php",
             data:
             {
@@ -196,12 +196,19 @@ function submitFinal()
             }
         }).done(function(results)
         {
-            alert(results);
+            if(results == "Records added successfully")
+            {
+                alertModal("alert", "Sucess", "Transfers were successfully submitted.");
+            }
+            else
+            {
+                alertModal("error", "Error", "There was an error submitting these transfers.");
+            }
         });
     }
     else
     {
-        alert("Please add transfers before submitting.");
+        alertModal('error', 'Error', "Please add transfers before submitting.");
     }
 }
 
@@ -223,11 +230,11 @@ function submit()
                     submitEdit();
                 }
             }
-            else alert("It appears this item is already being transfered");
+            else alert('error', 'Error', "It appears this item is already being transfered");
         }
-        else alert("Please ensure you've completed all required fields.");
+        else alert('error', 'Error', "Please ensure you've completed all required fields.");
     }
-    else alert("Please enter a valid ID");
+    else alertModal('error', 'Error', "Please enter a valid ID");
 }
 
 function cleanId(str)
@@ -316,6 +323,23 @@ $('#Add_Modal').on('hidden.bs.modal', function()
     $('#pre_owner').val('');
     $('#pre_dept').val('');
 });
+
+function alertModal(style, title, body)
+{
+    $('#alert-modal-title').text(title);
+    $('#alert-modal-body').text(body);
+
+    if(style == "error")
+    {
+        $('.alert-header').css('background-color', '#ff4444');
+    }
+    else if (style == "alert")
+    {
+        $('.alert-header').css('background-color', '#33b5e5');
+    }
+
+    $('#alertModal').modal('show');
+}
 
 // * Takes the value in the ID field, searches the database for the associated info via Ajax,
 //   and returns the results to the appropriate fields.
