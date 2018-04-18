@@ -13,6 +13,7 @@ scanner.js is simply a vessel to launching QuaggaJS. It clicks a hidden "input" 
 ### Dependencies:
 * ./quagga/dist/quagga.min.js
 * ./scanner.js
+* jQuery
 *Insert these into "script" tags.*
 
 ## Example:

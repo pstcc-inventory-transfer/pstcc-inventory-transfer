@@ -2,7 +2,7 @@
  * Date last modified: 4/01/18
  * Dependencies: desktop.html
  */
- 
+
 var transfersArray = [];
 var selectedTransferID;
 var filename = window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1);
@@ -147,6 +147,22 @@ function deleteTransfer(button)
     }
 }
 
+function removeOld(){
+  if (filename === "inventory-transfer.php")
+  {
+    $('tbody').empty();
+    transfersArray = [];
+    console.log(transfersArray.length);
+    refreshListDesktop();
+  }
+  else
+  {
+      $('.mobile .panel').empty();
+      transfersArray = [];
+      refreshListMobile();
+  }
+}
+
 // * Called when user presses the edit button.
 //
 // * Stores the index of the object in a global variable.
@@ -205,13 +221,14 @@ function submitFinal()
                 alertModal("error", "Error", "There was an error submitting these transfers.");
             }
         });
+
+        removeOld();
     }
     else
     {
         alertModal('error', 'Error', "Please add transfers before submitting.");
     }
 }
-
 // * Determines if the user is trying to edit a transfer, or create a new one.
 function submit()
 {
@@ -244,7 +261,7 @@ function cleanId(str)
          str = str.split(' ');
          return str[0];
     }
-	
+
 	else return str;
 }
 
@@ -356,7 +373,7 @@ function getInfoFromTag(str)
             idNum: str
         }
     }).done(function(results)
-    {        
+    {
         $('#IDAdd').val(cleanId($('#IDAdd').val()));
 
         if (results.trim() != 'error' && results.trim() != '')

@@ -54,10 +54,10 @@
                     </select>
                 </li>
 
-				<li><input type='text' style="display: none;" id='inputBox' onkeyup="updateInventory(this.value)"/></li>
+				<li><input type='text' style="display: none; text-transform: uppercase;" id='inputBox' onkeyup="updateInventory(this.value)"/></li>
                 <li id="generateListBtn" style="margin-left: 50px;"><button class="btn btn-success btn-block" onclick="generateWorkingList()">Generate Inventory List</button></li>
 				<li id="resetBtn" style="margin-left: 50px; display: none;"><button class="btn btn-block" onclick="restartRoomSelection()">Select Another Room</button></li>
-              
+
 			  </ul>
               <ul class="nav navbar-nav navbar-right">
                 <li style="margin-right: 50px;"><button class="btn btn-danger btn-block" onclick="window.location.href='logout.php'">Logout</button></li>
@@ -85,10 +85,10 @@
                 </tbody>
             </table>
         </div>
-		
+
         <script src="manipulate_transfers.js"></script>
 		<script src="inventory_scan.js"></script>
-		
+
 		<div id="alertModal" class="modal fade" role="dialog" style="color: black; text-align: left;">
             <div class="modal-dialog">
                 <!-- Modal content-->
