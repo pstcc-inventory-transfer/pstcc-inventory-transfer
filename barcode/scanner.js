@@ -13,7 +13,7 @@ function scan(output){
     if(output == undefined)
          console.error("scan(): Please specifiy the insert tag you wish to output the barcode to.");
     else{
-        var newFile=document.getElementById("ScannerJS");
+        var newFile=$("#ScannerJS")[0];
         newFile.onchange=function(){bgGo(output);};
         newFile.click();
     }
@@ -26,11 +26,13 @@ function bgGo(inputTag){
     //QuaggaJS:
     Quagga.decodeSingle({
         decoder:{
-        readers:["code_128_reader","ean_reader", "ean_8_reader", "codabar_reader"]
+        //As of this writing, pellissippi uses this barcode type for each machine:
+        readers:["code_128_reader"]
         },
-        src: URL.createObjectURL(document.getElementById("ScannerJS").files[0])
+        src: URL.createObjectURL($("#ScannerJS")[0].files[0])
   }, function(data) {
       if (data) {
+          console.log(data);
           inputTag.value=data.codeResult.code.split(' ');
           
           getInfoFromTag(data.codeResult.code.split(' '));
