@@ -78,7 +78,6 @@
                     <th>Price</th>
                     <th>Description</th>
                     <th>Acquired Date</th>
-					<th>Actual Quantity</th>
 					<!--<th>Change Quantity</th>-->
                 </thead>
                 <tbody class="content-area">
@@ -89,5 +88,23 @@
 		
         <script src="manipulate_transfers.js"></script>
 		<script src="inventory_scan.js"></script>
+		
+		<div id="alertModal" class="modal fade" role="dialog" style="color: black; text-align: left;">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" id="alert-modal-title"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="alert-modal-body"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
