@@ -270,7 +270,7 @@
                             <option value="admin">Administrator</option>
                             <option value="tech">Technician</option>
                         </select>
-                        <h5 style="text-align: left;">Upon confirmation, a reset link will be emailed to the <b>application administartor</b></h5>
+                        <h5 style="text-align: left;">Upon confirmation, a reset link will be emailed to the <b>application administrator</b></h5>
                         <br/>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         <button type="button" class="btn btn-success" data-dismiss="modal" onclick="testReset($('#resetUser').val());">Confirm</button>

@@ -43,24 +43,23 @@ $GLOBALS['readyToSend'] = false;
      $json=json_decode($_GET['json'], true);
      if ( is_array( $json )) {
         $i=0;
-        $Instance = $i++;  //update to get largest instance number from DB and increase by one.
          foreach($json as $string) {
-             $Tech = $json[$i]['technician'];
+             $Tech = $string['technician'];
              $Date = date("j/d/Y");   // figure out how to get data and time
-             $Tag = $json[$i]['itemID'];
-             $Model = $json[$i]['model'];
-             $From = $json[$i]['preRoom'];
-             $Previous = $json[$i]['preOwner'];
-             $DeptFrom = $json[$i]['preDept'];
-             $To = $json[$i]['newRoom'];
-             $New = $json[$i]['newOwner'];
-             $NewOwnerPnum = pnumLookUp($dbCon, $json[$i]['newOwner']);
-             $DeptTo = $json[$i]['newDept'];
-             $Notes = $json[$i]['notes'];
+             $Tag = $string['itemID'];
+             $Model = $string['model'];
+             $From = $string['preRoom'];
+             $Previous = $string['preOwner'];
+             $DeptFrom = $string['preDept'];
+             $To = $string['newRoom'];
+             $New = $string['newOwner'];
+             $NewOwnerPnum = pnumLookUp($dbCon, $string['newOwner']);
+             $DeptTo = $string['newDept'];
+             $Notes = $string['notes'];
              $InstanceID = "{$Tag}{$To}".date("jdY");
 
-             $sql =  "INSERT INTO tblTransTemp(Tech, [Date], Tag, Model, [From], Previous, DeptFrom, [To], New, NewOwnerPnum, DeptTo, Notes, Instance, InstanceID) VALUES (
-                     '".$Tech."','".$Date."','".$Tag."','".$Model."','".$From."','".$Previous."','".$DeptFrom."','".$To."','".$New."','".$NewOwnerPnum."','".$DeptTo."','".$Notes."',".$Instance.",'".$InstanceID."');";
+             $sql =  "INSERT INTO tblTransTemp(Tech, [Date], Tag, Model, [From], Previous, DeptFrom, [To], New, NewOwnerPnum, DeptTo, Notes, InstanceID) VALUES (
+                      '$Tech', $Date, '$Tag', '$Model', '$From', '$Previous', '$DeptFrom', '$To', '$New', '$NewOwnerPnum', '$DeptTo', '$Notes', $Instance, '$InstanceID');";
 
              if(insertTransfers($sql))
                  $GLOBALS['readyToSend'] = true;
