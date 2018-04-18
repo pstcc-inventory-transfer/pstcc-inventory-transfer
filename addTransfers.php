@@ -58,7 +58,7 @@ $GLOBALS['readyToSend'] = false;
              $Notes = $string['notes'];
              $InstanceID = "{$Tag}{$To}".date("jdY");
 
-             $sql =  "INSERT INTO tblTransTemp(Tech, [Date], Tag, Model, [From], Previous, DeptFrom, [To], New, NewOwnerPnum, DeptTo, Notes, InstanceID) VALUES (
+             $sql =  "INSERT INTO tblTransTemp(Tech, [Date], Tag, Model, [From], Previous, DeptFrom, [To], New, NewOwnerPnum, DeptTo, Notes, Instance, InstanceID) VALUES (
                       '$Tech', $Date, '$Tag', '$Model', '$From', '$Previous', '$DeptFrom', '$To', '$New', '$NewOwnerPnum', '$DeptTo', '$Notes', $Instance, '$InstanceID');";
 
              if(insertTransfers($sql))
