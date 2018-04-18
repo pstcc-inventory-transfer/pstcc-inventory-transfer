@@ -59,18 +59,40 @@ function generateWorkingList()
 function updateInventory(str) 
 {
 	str = cleanId(str);
+	var errorFlag = 0;
 	
 	roomInventoryArray.forEach
 	(
 		function(element, index)
-		{	
+		{
 			if(element.itemID == str)
 			{
-				element.actQuantity = element.actQuantity+1;
-				document.getElementById("inputBox").value = "";
+				if(element.actQuantity > 0)
+				{
+					var title = "Item Already Scanned";
+					var body = "This ID has already been scanned. No changes have been made. Please try again.";
+					
+					alertModal(title, body);
+				}
+				
+				else
+				{
+					element.actQuantity = element.actQuantity+1;
+					document.getElementById("inputBox").value = "";
+				}
+
+				errorFlag = 1;
 			}
 		}
 	);
+	
+	if((str.length > 5)&&(errorFlag == 0))
+	{
+		var title = "Inventory Error";
+		var body = "The scanned ID is not in the room. No changes have been made. Please try again.";
+		
+		alertModal(title, body);
+	}
 	
 	refreshInventoryTable();
 }
@@ -109,7 +131,6 @@ function refreshInventoryTable()
 				  <td>` + element.price + `</td>
 				  <td>` + element.description + `</td>
 				  <td>` + element.aquiredDate + `</td>
-				  <td>` + element.actQuantity + `</td>
 			    </tr>`;
 				
 			var newElement = $.parseHTML(body);
@@ -151,4 +172,18 @@ function cleanId(str)
     }
 	
 	else return str;
+}
+
+function alertModal(title, body)
+{
+	$('#alert-modal-title').text(title);
+	$('#alert-modal-body').text(body);
+	
+	$('#alertModal').modal('show');
+	
+	$('#alertModal').on
+	('hide.bs.modal', function (e) 
+	{
+		document.getElementById("inputBox").value = "";
+	});
 }
