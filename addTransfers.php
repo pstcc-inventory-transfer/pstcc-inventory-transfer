@@ -42,7 +42,7 @@ $GLOBALS['readyToSend'] = false;
    if (isset($_GET['json'])){
      $json=json_decode($_GET['json'], true);
      if ( is_array( $json )) {
-        $i=0;
+        $Instance = 1; // write sql statement here < --------------------------
          foreach($json as $string) {
              $Tech = $string['technician'];
              $Date = date("j/d/Y");   // figure out how to get data and time

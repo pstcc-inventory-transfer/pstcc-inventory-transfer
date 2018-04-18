@@ -51,8 +51,8 @@
       <file leaf-file-name="addTransfers.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/addTransfers.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="60" column="151" selection-start-line="60" selection-start-column="151" selection-end-line="60" selection-end-column="151" />
+            <state relative-caret-position="170">
+              <caret line="45" column="36" lean-forward="true" selection-start-line="45" selection-start-column="36" selection-end-line="45" selection-end-column="36" />
               <folding>
                 <element signature="e#6#119#0#PHP" expanded="true" />
                 <element signature="n#generatePDF#0;n#!!top" />
@@ -240,7 +240,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="98327000" />
+    <option name="totallyTimeSpent" value="98661000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -658,8 +658,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/addTransfers.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="60" column="151" selection-start-line="60" selection-start-column="151" selection-end-line="60" selection-end-column="151" />
+        <state relative-caret-position="170">
+          <caret line="45" column="36" lean-forward="true" selection-start-line="45" selection-start-column="36" selection-end-line="45" selection-end-column="36" />
           <folding>
             <element signature="e#6#119#0#PHP" expanded="true" />
             <element signature="n#generatePDF#0;n#!!top" />
