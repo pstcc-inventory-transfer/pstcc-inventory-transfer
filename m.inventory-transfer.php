@@ -63,11 +63,11 @@
           </div>
         </div>
 
-		<!-- Add Modal start -->
+		<!-- Transfer Modal start -->
         <div id="Add_Modal" class="modal fade" role="dialog">
           <div class="modal-dialog">
 
-            <!-- Add Modal content start -->
+            <!-- Transfer Modal content start -->
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -78,7 +78,7 @@
                     <h4>PSCC ID#</h4>
                     <div class="input-group">
                         <input class="form-control" style="text-transform: uppercase" name="ID" id="IDAdd" placeholder="Please enter/scan ID" value="" onkeyup="getInfoFromTag(this.value)">
-                        <span class="barcode input-group-addon" onclick="scan(IDAdd)"><span class="glyphicon glyphicon-barcode"></span></span>
+                        <span class="barcode input-group-addon" onclick="barcodeScan(IDAdd)"><span class="glyphicon glyphicon-barcode"></span></span>
                     </div>
                 </div>
 
@@ -182,8 +182,31 @@
             </div>
         </div>
 
-        <script src="barcode/quagga/dist/quagga.js"></script>
-        <script src="barcode/scanner.js"></script>
-        <script src="manipulate_transfers.js"></script>       
+        <script src="manipulate_transfers.js"></script>   
+        
+        <script>
+        var android = false;
+        var barcodeScripts = [document.createElement("script")];
+            //lulz stole some of Jon's code ;P
+            if(navigator.userAgent.match(/Android/i)){
+                android = true;
+                barcodeScripts[0].src="barcode/scannerAndroid.js";
+                document.body.appendChild(barcodeScripts[0]);
+            }
+            else{
+                barcodeScripts[0].src="barcode/quagga/dist/quagga.js";
+                barcodeScripts[1] = document.createElement("script");
+                barcodeScripts[1].src="barcode/scanner.js";
+                document.body.appendChild(barcodeScripts[0]);
+                document.body.appendChild(barcodeScripts[1]);
+            }
+            function barcodeScan(){
+                if(android)
+                    getScan();
+                else scan(arguments[0]);
+            }
+
+        </script>
+        
     </body>
 </html>

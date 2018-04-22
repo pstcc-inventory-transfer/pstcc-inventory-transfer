@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e423e2c4-0222-41cd-b26f-6e7fbd742be3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/addTransfers.php" beforeDir="false" afterPath="$PROJECT_DIR$/addTransfers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -50,28 +48,18 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file leaf-file-name="addTransfers.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="addTransfers.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/addTransfers.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="57" column="29" selection-start-line="57" selection-start-column="29" selection-end-line="57" selection-end-column="29" />
+            <state relative-caret-position="170">
+              <caret line="45" column="36" lean-forward="true" selection-start-line="45" selection-start-column="36" selection-end-line="45" selection-end-column="36" />
               <folding>
                 <element signature="e#6#119#0#PHP" expanded="true" />
-                <element signature="e#310#965#0#PHP" />
                 <element signature="n#generatePDF#0;n#!!top" />
                 <element signature="n#FancyTable#0;n#!!top" />
                 <element signature="n#createTitle#0;n#!!top" />
                 <element signature="n#formatAndGenerateRow#0;n#!!top" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="642">
-              <caret line="132" column="21" lean-forward="true" selection-start-line="132" selection-start-column="21" selection-end-line="132" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -116,12 +104,12 @@
         <option value="$PROJECT_DIR$/db_connection.php" />
         <option value="$PROJECT_DIR$/manipulate_transfers_desktop.js" />
         <option value="$PROJECT_DIR$/manipulate_transfers.js" />
-        <option value="$PROJECT_DIR$/addTransfers.php" />
         <option value="$PROJECT_DIR$/phpFunctions.php" />
         <option value="$PROJECT_DIR$/desktop.php" />
         <option value="$PROJECT_DIR$/desktop.php" />
         <option value="$PROJECT_DIR$/style/desktop.css" />
         <option value="$PROJECT_DIR$/inventory-transfer.php" />
+        <option value="$PROJECT_DIR$/addTransfers.php" />
       </list>
     </option>
   </component>
@@ -252,10 +240,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="97315000" />
+    <option name="totallyTimeSpent" value="98661000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Messages" order="7" weight="0.3293011" />
@@ -345,7 +334,6 @@
           <caret line="94" column="21" selection-start-line="94" selection-start-column="21" selection-end-line="94" selection-end-column="21" />
           <folding>
             <element signature="e#6#119#0#PHP" expanded="true" />
-            <element signature="e#310#965#0#PHP" />
             <element signature="n#generatePDF#0;n#!!top" />
             <element signature="n#FancyTable#0;n#!!top" />
             <element signature="n#createTitle#0;n#!!top" />
@@ -366,6 +354,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="168" column="18" selection-start-line="168" selection-start-column="18" selection-end-line="168" selection-end-column="18" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -382,7 +373,6 @@
           <caret line="47" column="45" selection-start-line="47" selection-start-column="45" selection-end-line="47" selection-end-column="45" />
           <folding>
             <element signature="e#6#119#0#PHP" expanded="true" />
-            <element signature="e#310#965#0#PHP" />
             <element signature="n#generatePDF#0;n#!!top" />
             <element signature="n#FancyTable#0;n#!!top" />
             <element signature="n#createTitle#0;n#!!top" />
@@ -403,6 +393,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2856">
           <caret line="168" column="37" lean-forward="true" selection-start-line="168" selection-start-column="37" selection-end-line="168" selection-end-column="37" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -411,7 +404,6 @@
         <state>
           <folding>
             <element signature="e#6#119#0#PHP" expanded="true" />
-            <element signature="e#310#965#0#PHP" />
             <element signature="n#generatePDF#0;n#!!top" />
             <element signature="n#FancyTable#0;n#!!top" />
             <element signature="n#createTitle#0;n#!!top" />
@@ -425,6 +417,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2839">
           <caret line="167" column="18" selection-start-line="167" selection-start-column="18" selection-end-line="167" selection-end-column="18" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -440,7 +435,6 @@
         <state>
           <folding>
             <element signature="e#6#119#0#PHP" expanded="true" />
-            <element signature="e#310#965#0#PHP" />
             <element signature="n#generatePDF#0;n#!!top" />
             <element signature="n#FancyTable#0;n#!!top" />
             <element signature="n#createTitle#0;n#!!top" />
@@ -454,6 +448,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2856">
           <caret line="168" column="18" selection-start-line="168" selection-start-column="18" selection-end-line="168" selection-end-column="18" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -483,6 +480,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2856">
           <caret line="168" column="18" selection-start-line="168" selection-start-column="18" selection-end-line="168" selection-end-column="18" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -499,7 +499,6 @@
           <caret line="51" column="12" selection-start-line="51" selection-start-column="12" selection-end-line="51" selection-end-column="12" />
           <folding>
             <element signature="e#6#119#0#PHP" expanded="true" />
-            <element signature="e#310#965#0#PHP" />
             <element signature="n#generatePDF#0;n#!!top" />
             <element signature="n#FancyTable#0;n#!!top" />
             <element signature="n#createTitle#0;n#!!top" />
@@ -513,6 +512,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2856">
           <caret line="168" column="18" selection-start-line="168" selection-start-column="18" selection-end-line="168" selection-end-column="18" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -541,6 +543,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2856">
           <caret line="168" column="18" selection-start-line="168" selection-start-column="18" selection-end-line="168" selection-end-column="18" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -564,6 +569,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2839">
           <caret line="167" column="18" selection-start-line="167" selection-start-column="18" selection-end-line="167" selection-end-column="18" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -579,6 +587,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2839">
           <caret line="167" column="18" selection-start-line="167" selection-start-column="18" selection-end-line="167" selection-end-column="18" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -612,26 +623,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/addTransfers.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="57" column="29" selection-start-line="57" selection-start-column="29" selection-end-line="57" selection-end-column="29" />
-          <folding>
-            <element signature="e#6#119#0#PHP" expanded="true" />
-            <element signature="e#310#965#0#PHP" />
-            <element signature="n#generatePDF#0;n#!!top" />
-            <element signature="n#FancyTable#0;n#!!top" />
-            <element signature="n#createTitle#0;n#!!top" />
-            <element signature="n#formatAndGenerateRow#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mobile.php" />
     <entry file="file://$PROJECT_DIR$/manipulate_transfers.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2754">
           <caret line="165" column="47" selection-start-line="165" selection-start-column="37" selection-end-line="165" selection-end-column="47" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -654,6 +653,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="935">
           <caret line="57" column="16" selection-start-line="57" selection-start-column="16" selection-end-line="57" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addTransfers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="45" column="36" lean-forward="true" selection-start-line="45" selection-start-column="36" selection-end-line="45" selection-end-column="36" />
+          <folding>
+            <element signature="e#6#119#0#PHP" expanded="true" />
+            <element signature="n#generatePDF#0;n#!!top" />
+            <element signature="n#FancyTable#0;n#!!top" />
+            <element signature="n#createTitle#0;n#!!top" />
+            <element signature="n#formatAndGenerateRow#0;n#!!top" />
+          </folding>
         </state>
       </provider>
     </entry>

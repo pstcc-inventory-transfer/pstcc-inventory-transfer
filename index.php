@@ -1,6 +1,7 @@
 <?php
     session_start();
     $_SESSION['auth'] = false;
+    $_SESSION['isAdmin'] = false;
     ?>
 <!doctype html>
 <html>

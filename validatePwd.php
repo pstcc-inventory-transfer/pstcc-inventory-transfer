@@ -1,7 +1,6 @@
 <?php
 include 'db_connection.php';
 session_start();
-
 $query = "SELECT password FROM tblUsers WHERE userName = '".($_POST['user'] == 'admin'?'Administrator':'Technician')."'";
 $result = queryDB(connectToDB(), $query);
 
@@ -13,6 +12,7 @@ if($_POST['user'] == 'admin')
     if(exec('.\verification\scramblerVerify.exe -d '.$pwd.' "'.trim($result[0]['password']).'"') == "True")
     {
         $_SESSION['auth'] = true;
+        $_SESSION['isAdmin'] = true;
         echo "admin true";
     }
 }

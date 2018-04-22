@@ -39,6 +39,7 @@ $Hold = ''; // YES or NO bool - This is set by the user via an Access Form
 $GLOBALS['readyToSend'] = false;
 
 //JSON Parsing and SQL insert statement string creator.
+<<<<<<< HEAD
    if (isset($_POST['json']))
    {
         $json=json_decode($_POST['json'], true);
@@ -63,6 +64,28 @@ $GLOBALS['readyToSend'] = false;
                 $InstanceID = "{$Tag}{$To}".date("jdY");
 
                 $sql =  "INSERT INTO tblTransTemp(Tech, [Date], Tag, Model, [From], Previous, DeptFrom, [To], New, NewOwnerPnum, DeptTo, Notes, Instance, InstanceID) VALUES (
+=======
+   if (isset($_GET['json'])){
+     $json=json_decode($_GET['json'], true);
+     if ( is_array( $json )) {
+        $Instance = 1; // write sql statement here < --------------------------
+         foreach($json as $string) {
+             $Tech = $string['technician'];
+             $Date = date("j/d/Y");   // figure out how to get data and time
+             $Tag = $string['itemID'];
+             $Model = $string['model'];
+             $From = $string['preRoom'];
+             $Previous = $string['preOwner'];
+             $DeptFrom = $string['preDept'];
+             $To = $string['newRoom'];
+             $New = $string['newOwner'];
+             $NewOwnerPnum = pnumLookUp($dbCon, $string['newOwner']);
+             $DeptTo = $string['newDept'];
+             $Notes = $string['notes'];
+             $InstanceID = "{$Tag}{$To}".date("jdY");
+
+             $sql =  "INSERT INTO tblTransTemp(Tech, [Date], Tag, Model, [From], Previous, DeptFrom, [To], New, NewOwnerPnum, DeptTo, Notes, Instance, InstanceID) VALUES (
+>>>>>>> dfffb2ae9e7ea380dbceae4e5b3639fb62c468a4
                       '$Tech', $Date, '$Tag', '$Model', '$From', '$Previous', '$DeptFrom', '$To', '$New', '$NewOwnerPnum', '$DeptTo', '$Notes', $Instance, '$InstanceID');";
 
                 if(insertTransfers($sql))
