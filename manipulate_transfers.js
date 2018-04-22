@@ -209,20 +209,36 @@ function submitFinal()
             data:
             {
                 json: jsonString
-            }
+            },
+            error: function (xhr, ajaxOptions, thrownError){
+                       alert(xhr.status);
+                       console.log(xhr.responseText);
+                       alert(thrownError);
+                    }
         }).done(function(results)
         {
-            if(results == "Records added successfully")
+            console.log(results);
+            
+            if(results == "true")
             {
-                alertModal("alert", "Sucess", "Transfers were successfully submitted.");
+                if (filename === "inventory-transfer.php")
+                {
+                    transfersArray = [];
+                    refreshListDesktop();
+                }
+                else
+                {
+                    transfersArray = [];
+                    refreshListMobile();
+                }
+                
+                alertModal("alert", "Success", "Transfers were successfully submitted.");
             }
             else
             {
-                alertModal("error", "Error", "There was an error submitting these transfers.");
+                alertModal("error", "Error", "There was an error submitting these transfers. </p><p>" + results);
             }
         });
-
-        removeOld();
     }
     else
     {
@@ -247,9 +263,9 @@ function submit()
                     submitEdit();
                 }
             }
-            else alert('error', 'Error', "It appears this item is already being transfered");
+            else alertModal('error', 'Error', "It appears this item is already being transfered");
         }
-        else alert('error', 'Error', "Please ensure you've completed all required fields.");
+        else alertModal('error', 'Error', "Please ensure you've completed all required fields.");
     }
     else alertModal('error', 'Error', "Please enter a valid ID");
 }

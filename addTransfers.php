@@ -39,39 +39,47 @@ $Hold = ''; // YES or NO bool - This is set by the user via an Access Form
 $GLOBALS['readyToSend'] = false;
 
 //JSON Parsing and SQL insert statement string creator.
-   if (isset($_GET['json'])){
-     $json=json_decode($_GET['json'], true);
-     if ( is_array( $json )) {
-        $i=0;
-         foreach($json as $string) {
-             $Tech = $string['technician'];
-             $Date = date("j/d/Y");   // figure out how to get data and time
-             $Tag = $string['itemID'];
-             $Model = $string['model'];
-             $From = $string['preRoom'];
-             $Previous = $string['preOwner'];
-             $DeptFrom = $string['preDept'];
-             $To = $string['newRoom'];
-             $New = $string['newOwner'];
-             $NewOwnerPnum = pnumLookUp($dbCon, $string['newOwner']);
-             $DeptTo = $string['newDept'];
-             $Notes = $string['notes'];
-             $InstanceID = "{$Tag}{$To}".date("jdY");
+   if (isset($_POST['json']))
+   {
+        $json=json_decode($_POST['json'], true);
+        if ( is_array( $json )) 
+        {
+            $i=0;
+            foreach($json as $string) 
+            {
+                $Tech = $string['technician'];
+                $Date = date("j/d/Y");   // figure out how to get data and time
+                $Tag = $string['itemID'];
+                $Model = $string['model'];
+                $From = $string['preRoom'];
+                $Previous = $string['preOwner'];
+                $DeptFrom = $string['preDept'];
+                $To = $string['newRoom'];
+                $New = $string['newOwner'];
+                $NewOwnerPnum = pnumLookUp($dbCon, $string['newOwner']);
+                $DeptTo = $string['newDept'];
+                $Notes = $string['notes'];
+                $Instance = 1;
+                $InstanceID = "{$Tag}{$To}".date("jdY");
 
-             $sql =  "INSERT INTO tblTransTemp(Tech, [Date], Tag, Model, [From], Previous, DeptFrom, [To], New, NewOwnerPnum, DeptTo, Notes, InstanceID) VALUES (
+                $sql =  "INSERT INTO tblTransTemp(Tech, [Date], Tag, Model, [From], Previous, DeptFrom, [To], New, NewOwnerPnum, DeptTo, Notes, Instance, InstanceID) VALUES (
                       '$Tech', $Date, '$Tag', '$Model', '$From', '$Previous', '$DeptFrom', '$To', '$New', '$NewOwnerPnum', '$DeptTo', '$Notes', $Instance, '$InstanceID');";
 
-             if(insertTransfers($sql))
+                if(insertTransfers($sql))
                  $GLOBALS['readyToSend'] = true;
-         }
-     }
-     if($GLOBALS['readyToSend']){
-        sendEmail($_GET['json'], (generatePDF($json)?true:false));
-        echo "Records added successfully";
-     }
-   } else {
+            }
+        }
+       
+        if($GLOBALS['readyToSend'])
+        {
+            echo "true";
+            sendEmail($_POST['json'], (generatePDF($json)?true:false));
+        }
+   }
+    else 
+   {
        echo "No transfers to add";
-}
+   }
 
 function insertTransfers($uname) {
     $con=connectToDB();
