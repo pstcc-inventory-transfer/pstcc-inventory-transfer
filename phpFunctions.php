@@ -5,21 +5,32 @@ include 'resetEmail.php';
 // DB Connection
 $con1 = connectToDB();
 
-// checks for
+//SQL requests *added 4/24/18
+$techNames = "SELECT techName FROM tblTech order by techName asc;";
+$roomNumbers = "SELECT Field1 FROM Inventory_location_lookup order by Field1 asc;";
+$custodianNames = "SELECT DISTINCT [NAME] FROM dbo_tblCustodians order by [NAME] asc;";
+$departments = "SELECT Field1 FROM tblDepts order by Field1 asc;";
+$inventoryTag = "SELECT * FROM tblInventory WHERE TAG = '"; //needs to be accompanied by $end to close the statement.
+$inventoryRoom = "SELECT * FROM tblInventory WHERE Location = '"; //needs to be accompanied by $end to close the statement.
+$inventoryLocation= "SELECT DISTINCT Location FROM tblInventory order by Location asc;";
+$end = "';";
+
+
+// loads the read-only boxes with data.
 if(isset($_REQUEST["idNum"]))
 {
     $id = $_REQUEST["idNum"];
-    checkForID($id, $con1);
+    checkForID($id, $inventoryTag, $end, $con1); //updated 4/24/18
 }
 else if(isset($_REQUEST["room"]))
 {
     $room = $_REQUEST["room"];
-    getInventoryForRoom($room, $con1);
+    getInventoryForRoom($room, $inventoryRoom, $end, $con1); //updated 4/24/18
 }
 else if(isset($_REQUEST["check"]))
 {
     $check = $_REQUEST["check"];
-    checkForIdInRoom($check, $con1);
+    checkForIdInRoom($check, $inventoryTag, $end, $con1); //updated 4/24/18
 }
 else if(isset($_REQUEST['user']) && isset($_REQUEST["newPwd"]))
 {
@@ -35,27 +46,16 @@ else if(isset($_REQUEST["user"]))
 
 // ------ START OF FUNCTIONS ------
 
-function getInfo($id)
+function checkForID($id, $query, $end, $con) //updated 4/24/18 moved the $query up to the top and renamed it
 {
 	// lookup all hints from array if $q is different from "" 
 	if ($id !== "") 
 	{
-		$query= "SELECT * FROM [Complete Active inventory list 52914] WHERE TAG = '$id'";
-		echo $result;
-	}
-}
-
-function checkForID($id, $con)
-{
-	// lookup all hints from array if $q is different from "" 
-	if ($id !== "") 
-	{
-		$query = "SELECT * FROM [Complete Active inventory list 52914] WHERE TAG = '$id'";
-		$result = queryDB($con, $query);
+		$result = queryDB($con, $query.$id.$end); //updated 4/24/18 corrected the query variables
 		
 		if(count($result) > 0)
 		{
-			echo $result[0]['Model'] . "," . $result[0]['Location'] . "," . $result[0]['Custodian'];
+			echo $result[0]['Model'] . "," . $result[0]['Location'] . "," . $result[0]['Owner'];  //updated 4/24/18
 		}
 		
 		else echo "error";
@@ -64,13 +64,12 @@ function checkForID($id, $con)
 	else echo false;
 }
 
-function checkForIdInRoom($id, $con)
+function checkForIdInRoom($id, $query, $end, $con) //updated 4/24/18 moved the $query up to the top and renamed it
 {
 	// lookup all hints from array if $q is different from "" 
 	if ($id !== "") 
 	{
-		$query = "SELECT * FROM [Complete Active inventory list 52914] WHERE TAG = '$id'";
-		$result = queryDB($con, $query);
+		$result = queryDB($con, $query.$id.$end); //updated 4/24/18 corrected the query variables
 		
 		if(count($result) > 0)
 		{
@@ -83,13 +82,12 @@ function checkForIdInRoom($id, $con)
 	else echo "error";
 }
 
-function getInventoryForRoom($room, $con)
+function getInventoryForRoom($room, $query, $end, $con) //updated 4/24/18 moved the $query up to the top and renamed it
 {
 	// lookup all hints from array if $q is different from ""
 	if ($room !== "")
 	{
-		$query = "SELECT * FROM [Complete Active inventory list 52914] WHERE Location = '$room'";
-		$result = queryDB($con, $query);
+		$result = queryDB($con, $query.$room.$end); //updated 4/24/18 corrected the query variables
 
 		if(count($result) > 0)
 		{
@@ -116,8 +114,8 @@ function generateResetLink($user, $con)
         $expireDate = date('m-d');
 
         $passDateHash = urlencode( str_replace('%', '%25', exec('.\verification\scramblerVerify.exe -e "'.$pwdHash.$expireDate.'"')));
-        
-        $link = "http://18.219.117.88/resetPassword.php?q1=$passDateHash&q2=$user";
+        $url = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; //updated 4/24/18 dynamic link will now pull from the server hosting it.
+        $link = "$url?q1=$passDateHash&q2=$user";
         
         echo resetEmail(($user == 'admin'?'Administrator':'Technician'),$link);
     }
@@ -137,4 +135,16 @@ function updatePassword($user, $newPwd, $con)
         else echo 'true';
     }
 }
+
+function dropDowns($con1, $query) //created 4/24/18 this is the method that is being called by inventoryScan.php, inventory-transfers.php & m.inventory-transfers.php
+{
+    $options = queryDB( $con1, $query );
+
+    foreach ($options as $row) {
+        foreach ($row as $value) {
+            echo "<option>" . $value . "</option>";
+        }
+    }
+}
+
 ?>

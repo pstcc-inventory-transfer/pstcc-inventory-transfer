@@ -6,7 +6,6 @@
 <?php
     session_start();
 	include("phpFunctions.php");
-	$con = connectToDB();
 
     if(!$_SESSION['auth'])
     {
@@ -36,16 +35,7 @@
                 <li>
                     <select class="form-control" id="technician">
                         <?php
-                        $query= "SELECT techName FROM tblTech order by techName asc;";
-                        $options = queryDB($con1, $query);
-
-                        foreach($options as $row)
-                        {
-                            foreach($row as $value)
-                            {
-                                echo "<option>" . $value . "</option>";
-                            }
-                        }
+                            dropDowns($con1, $techNames); //updated 4/24/18 moved the code into the dropDowns function in phpFunctions.php
                         ?>
                     </select>
                 </li>
@@ -87,14 +77,7 @@
                     <select id="newRoom" class="form-control selectpicker" data-show-subtext="true" data-live-search="true">
                         <option value="none" selected disabled>Please choose room...</option>
                         <?php
-                        $query = "SELECT Field1 FROM Inventory_location_lookup order by Field1 asc;";
-                        $options = queryDB( $con1, $query );
-
-                        foreach ($options as $row) {
-                            foreach ($row as $value) {
-                                echo "<option>" . $value . "</option>";
-                            }
-                        }
+                            dropDowns($con1, $roomNumbers); //updated 4/24/18 moved the code into the dropDowns function in phpFunctions.php
                         ?>
                     </select>
                 </div>
@@ -102,18 +85,9 @@
                     <h4>New Owner</h4>
                     <select id="newOwner" class="form-control selectpicker" data-show-subtext="true" data-live-search="true">
                         <option value="none" selected disabled>Please choose owner...</option>
-						<?php
-							$query= "SELECT DISTINCT [NAME] FROM dbo_tblCustodians order by [NAME] asc;";
-							$options = queryDB($con1, $query);
-
-							foreach($options as $row)
-							{
-								foreach($row as $value)
-								{
-									echo "<option>" . $value . "</option>";
-								}
-							}
-						?>
+                        <?php
+                            dropDowns($con1, $custodianNames); //updated 4/24/18 moved the code into the dropDowns function in phpFunctions.php
+                        ?>
                     </select>
                 </div>
                 <div class="form-group" style="text-align: left; margin: 0 auto;">
@@ -121,14 +95,7 @@
                     <select id="newDept" class="form-control selectpicker" data-show-subtext="true" data-live-search="true">
                         <option value="none" selected disabled>Please choose dept...</option>
                         <?php
-                        $query = "SELECT Field1 FROM tblDepts order by Field1 asc;";
-                        $options = queryDB( $con1, $query );
-
-                        foreach ($options as $row) {
-                            foreach ($row as $value) {
-                                echo "<option>" . $value . "</option>";
-                            }
-                        }
+                            dropDowns($con1, $departments); //updated 4/24/18 moved the code into the dropDowns function in phpFunctions.php
                         ?>
                     </select>
                 </div>
