@@ -39,70 +39,47 @@ $Hold = ''; // YES or NO bool - This is set by the user via an Access Form
 $GLOBALS['readyToSend'] = false;
 
 //JSON Parsing and SQL insert statement string creator.
-<<<<<<< HEAD
-   if (isset($_POST['json']))
-   {
-        $json=json_decode($_POST['json'], true);
-        if ( is_array( $json )) 
-        {
-            $i=0;
-            foreach($json as $string) 
-            {
-                $Tech = $string['technician'];
-                $Date = date("j/d/Y");   // figure out how to get data and time
-                $Tag = $string['itemID'];
-                $Model = $string['model'];
-                $From = $string['preRoom'];
-                $Previous = $string['preOwner'];
-                $DeptFrom = $string['preDept'];
-                $To = $string['newRoom'];
-                $New = $string['newOwner'];
-                $NewOwnerPnum = pnumLookUp($dbCon, $string['newOwner']);
-                $DeptTo = $string['newDept'];
-                $Notes = $string['notes'];
-                $Instance = 1;
-                $InstanceID = "{$Tag}{$To}".date("jdY");
+if (isset($_POST['json']))
+{
+	$json=json_decode($_POST['json'], true);
+	if ( is_array( $json )) 
+	{
+		$i=0;
+		foreach($json as $string) 
+		{
+			$Tech = $string['technician'];
+			$Date = date("j/d/Y");   // figure out how to get data and time
+			$Tag = $string['itemID'];
+			$Model = $string['model'];
+			$From = $string['preRoom'];
+			$Previous = $string['preOwner'];
+			$DeptFrom = $string['preDept'];
+			$To = $string['newRoom'];
+			$New = $string['newOwner'];
+			$NewOwnerPnum = pnumLookUp($dbCon, $string['newOwner']);
+			$DeptTo = $string['newDept'];
+			$Notes = $string['notes'];
+			$Instance = 1;
+			$InstanceID = "{$Tag}{$To}".date("jdY");
 
-                $sql =  "INSERT INTO tblTransTemp(Tech, [Date], Tag, Model, [From], Previous, DeptFrom, [To], New, NewOwnerPnum, DeptTo, Notes, Instance, InstanceID) VALUES (
-=======
-   if (isset($_GET['json'])){
-     $json=json_decode($_GET['json'], true);
-     if ( is_array( $json )) {
-        $Instance = 1; // write sql statement here < --------------------------
-         foreach($json as $string) {
-             $Tech = $string['technician'];
-             $Date = date("j/d/Y");   // figure out how to get data and time
-             $Tag = $string['itemID'];
-             $Model = $string['model'];
-             $From = $string['preRoom'];
-             $Previous = $string['preOwner'];
-             $DeptFrom = $string['preDept'];
-             $To = $string['newRoom'];
-             $New = $string['newOwner'];
-             $NewOwnerPnum = pnumLookUp($dbCon, $string['newOwner']);
-             $DeptTo = $string['newDept'];
-             $Notes = $string['notes'];
-             $InstanceID = "{$Tag}{$To}".date("jdY");
+			$sql =  "INSERT INTO tblTransTemp(Tech, [Date], Tag, Model, [From], Previous, DeptFrom, [To], New, NewOwnerPnum, DeptTo, Notes, Instance, InstanceID) VALUES (
+				  '$Tech', $Date, '$Tag', '$Model', '$From', '$Previous', '$DeptFrom', '$To', '$New', '$NewOwnerPnum', '$DeptTo', '$Notes', $Instance, '$InstanceID');";
 
-             $sql =  "INSERT INTO tblTransTemp(Tech, [Date], Tag, Model, [From], Previous, DeptFrom, [To], New, NewOwnerPnum, DeptTo, Notes, Instance, InstanceID) VALUES (
->>>>>>> dfffb2ae9e7ea380dbceae4e5b3639fb62c468a4
-                      '$Tech', $Date, '$Tag', '$Model', '$From', '$Previous', '$DeptFrom', '$To', '$New', '$NewOwnerPnum', '$DeptTo', '$Notes', $Instance, '$InstanceID');";
-
-                if(insertTransfers($sql))
-                 $GLOBALS['readyToSend'] = true;
-            }
-        }
-       
-        if($GLOBALS['readyToSend'])
-        {
-            echo "true";
-            sendEmail($_POST['json'], (generatePDF($json)?true:false));
-        }
-   }
-    else 
-   {
-       echo "No transfers to add";
-   }
+			if(insertTransfers($sql))
+			 $GLOBALS['readyToSend'] = true;
+		}
+	}
+   
+	if($GLOBALS['readyToSend'])
+	{
+		echo "true";
+		sendEmail($_POST['json'], (generatePDF($json)?true:false));
+	}
+}
+else 
+{
+   echo "No transfers to add";
+}
 
 function insertTransfers($uname) {
     $con=connectToDB();
@@ -134,7 +111,7 @@ function generatePDF($jsonArr)
 	createTitle($pdf);
 	$pdf->SetFont('Arial','B',6);
 	
-	$header = array('PSCC ID', 'Model', 'Current Room', 'Current Owner', 'Current Dept.', 'Rew Room', 'New Owner', 'New Dept.', 'Notes');
+	$header = array('Transfer Tech', 'PSCC ID', 'Model', 'Current Room', 'Current Owner', 'New Room', 'New Owner', 'New Dept.', 'Notes');
 	
 	FancyTable($pdf, $header, $jsonArr);
 	
@@ -172,15 +149,15 @@ function FancyTable($pdf, $header, $data)
     $fill = false;
     foreach($data as $row)
     {
-		formatAndGenerateRow($pdf, $fill, $row['itemID']);
-		formatAndGenerateRow($pdf, $fill, $row['model']);
-		formatAndGenerateRow($pdf, $fill, $row['preRoom']);
-		formatAndGenerateRow($pdf, $fill, $row['preOwner']);
-		formatAndGenerateRow($pdf, $fill, $row['preDept']);
-		formatAndGenerateRow($pdf, $fill, $row['newRoom']);
-		formatAndGenerateRow($pdf, $fill, $row['newOwner']);
-		formatAndGenerateRow($pdf, $fill, $row['newDept']);
-		formatAndGenerateRow($pdf, $fill, $row['notes']);
+		formatAndGenerateRow($pdf, $fill, $row['technician'], 0);
+		formatAndGenerateRow($pdf, $fill, $row['itemID'], 0);
+		formatAndGenerateRow($pdf, $fill, $row['model'], 0);
+		formatAndGenerateRow($pdf, $fill, $row['preRoom'], 0);
+		formatAndGenerateRow($pdf, $fill, $row['preOwner'], 0);
+		formatAndGenerateRow($pdf, $fill, $row['newRoom'], 0);
+		formatAndGenerateRow($pdf, $fill, $row['newOwner'], 0);
+		formatAndGenerateRow($pdf, $fill, $row['newDept'], 0);
+		formatAndGenerateRow($pdf, $fill, $row['notes'], 1);
 			
 		$pdf->Ln();
 		$fill = !$fill;
@@ -193,27 +170,31 @@ function FancyTable($pdf, $header, $data)
 function createTitle($pdf)
 {
     // Logo
-    $pdf->Image('img_assets/pelli_full.png',10,6,30);
+    $pdf->Image('img_assets/pellissippilogo.png',5,5);
     // Arial bold 15
     $pdf->SetFont('Arial','B',15);
     // Move to the right
-    $pdf->Cell(50);
+	$pdf->Ln(15);
+    $pdf->Cell(64);
     // Title
-    $pdf->Cell(100,10,'PSCC Inventory Transfer List',1,0,'C');
+    $pdf->Cell(100,10,'Inventory Transfer List');
     // Line break
-    $pdf->Ln(15);
-	$pdf->Cell(75);
+    $pdf->Ln(10);
+	$pdf->Cell(80);
 	// Date
-	$pdf->Cell(50,10,date("m/d/Y"),1,0,'C');
-	
-	$pdf->Ln(35);
+	$pdf->Cell(50,10,date("m/d/Y"));
+	$pdf->Ln(25);
 }
 
-function formatAndGenerateRow($pdf, $fill, $str)
+function formatAndGenerateRow($pdf, $fill, $str, $isNotes)
 {
 	if(strlen($str) > 7)
 	{
-		$strFormatted = substr($str, 0, 13);
+		if($isNotes == 1)
+			$strFormatted = (substr($str, 0, 13)) . '...';
+		
+		else $strFormatted = substr($str, 0, 13);
+		
 		$pdf->Cell(21,6,$strFormatted,'LRB',0,'L',$fill);
 	}
 			

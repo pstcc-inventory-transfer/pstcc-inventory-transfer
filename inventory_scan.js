@@ -3,6 +3,7 @@
  */
  
 var roomInventoryArray = [];
+var foundArr = [];
 
 function generateWorkingList()
 {
@@ -24,7 +25,8 @@ function generateWorkingList()
         {
             room: str
         }
-    }).done(
+    }).done
+	(
 	function(results)
 	{
 		$('.content-area tr').remove();
@@ -58,7 +60,9 @@ function generateWorkingList()
 
 function updateInventory(str) 
 {
+	foundArr = [];
 	str = cleanId(str);
+	console.log(str);
 	var errorFlag = 0;
 	
 	roomInventoryArray.forEach
@@ -88,10 +92,55 @@ function updateInventory(str)
 	
 	if((str.length > 5)&&(errorFlag == 0))
 	{
-		var title = "Inventory Error";
-		var body = "The scanned ID is not in the room. No changes have been made. Please try again.";
-		
-		alertModal(title, body);
+		$.ajax(
+		{
+			method: "POST",
+			url: "phpFunctions.php",
+			data:
+			{
+				check: str
+			}
+		}).done(
+		function(results)
+		{
+			if(results != "error")
+			{
+				var resultArr = JSON.parse(results);
+				resultArr.forEach
+				(
+					function(element, index)
+					{
+						var item = 
+						{
+							itemID: element['TAG'],
+							serialNum: element['Serial Number'],
+							aquiredDate: element['Aquired Date'],
+							custodian: element['Custodian'],
+							description: element['Description'],
+							roomNum: element['Location'],
+							make: element['Make'],
+							model: element['Model'],
+							price: element['Price']
+						};
+					
+						foundArr.push(item);
+					}
+				);
+				
+				console.log(foundArr[0]['roomNum']);
+				
+				var title = "Inventory Error";
+				var body = "The scanned ID is not in this room. \n This item is currently in room " + foundArr[0]['roomNum'] + ".";
+				alertModal(title, body);
+			}
+			
+			else
+			{
+				var title = "Inventory Error";
+				var body = "The scanned ID does not exist. No changes have been made. Please try again.";
+				alertModal(title, body);
+			}
+		});
 	}
 	
 	refreshInventoryTable();

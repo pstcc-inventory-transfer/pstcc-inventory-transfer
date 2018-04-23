@@ -195,11 +195,6 @@ function submitFinal()
 {
     if (transfersArray.length != 0)
     {
-        transfersArray.forEach(function(element, index)
-        {
-            element.technician = $('#technician').val();
-        });
-
         var jsonString = JSON.stringify(transfersArray);
 
         $.ajax(
@@ -316,6 +311,7 @@ function submitEdit()
 function submitNew()
 {
     var transfer = {
+		technician: $('#technician').val(),
         itemID: $('#IDAdd').val().toUpperCase(),
         newRoom: $('#newRoom').val(),
         newOwner: $('#newOwner').val(),
@@ -325,7 +321,6 @@ function submitNew()
         preRoom: $('#pre_room').val(),
         preOwner: $('#pre_owner').val(),
         preDept: $('#pre_dept').val(),
-        technician: undefined
     };
 
     transfersArray.push(transfer);
