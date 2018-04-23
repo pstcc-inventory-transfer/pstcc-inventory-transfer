@@ -44,6 +44,27 @@ td
   margin-left: 10px;
 }
 
+.navbar-brand {
+  height: 100px;
+}
+
+.navbar-brand img {
+  height: 100%;
+}
+#add_btn {
+  margin-left: 25px;
+}
+#sub_btn {
+  margin-left: 50px;
+}
+#log_btn {
+  margin-right: 50px;
+}
+
+form-group {
+  text-align: left;
+  margin: 0 auto;
+}
 .error
 {
     background-color: rgba(255, 0, 0, 0.3);
@@ -64,5 +85,5 @@ td
 
 #inputBox {
 	border-radius: 5px;
-	
+
 }

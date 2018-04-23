@@ -31,7 +31,7 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" style="height: 100px;"><img style="height: 100%;" src="img_assets/pelli_full.svg"/></a>
+                <a class="navbar-brand"><img src="img_assets/pelli_full.svg"/></a>
             </div>
             <ul class="nav navbar-nav">
                 <li>
@@ -45,15 +45,15 @@
                                 echo "<option>" . $value . "</option>";
                             }
                         }
-                   ?>                     
+                   ?>
                     </select>
                 </li>
 
-                <li style="margin-left: 25px;"><button data-toggle="modal" data-target="#Add_Modal" class="btn btn-block" id="addBtn">Add Item</button></li>
-                <li style="margin-left: 50px;"><button class="btn btn-success btn-block" onclick="submitFinal()">Submit Transfer</button></li>
+                <li id="add_btn"><button data-toggle="modal" data-target="#Add_Modal" class="btn btn-block" id="addBtn">Add Item</button></li>
+                <li id="sub_btn"><button class="btn btn-success btn-block" onclick="submitFinal()">Submit Transfer</button></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
-                <li style="margin-right: 50px;"><button class="btn btn-danger btn-block" onclick="window.location.href='logout.php'">Logout</button></li>
+                <li id="log_btn"<button class="btn btn-danger btn-block" onclick="window.location.href='logout.php'">Logout</button></li>
               </ul>
           </div>
         </nav>
@@ -93,13 +93,13 @@
             <div class="modal-body container-fluid">
 
                 <div class="col-sm-6">
-                    <div class="form-group" style="text-align: left; margin: 0 auto;">
+                    <div class="form-group" >
                         <h4>PSCC ID#</h4>
                         <input class="form-control" name="ID" id="IDAdd" placeholder="Please enter/scan ID" value=""
                                onkeyup="getInfoFromTag(this.value)">
                     </div>
 
-                    <div class="form-group" style="text-align: left; margin: 0 auto;">
+                    <div class="form-group" >
                         <h4>New Room</h4>
                         <select class="form-control selectpicker" id="newRoom" data-show-subtext="true"
                                 data-live-search="true">
@@ -118,7 +118,7 @@
                 </div>
 
                 <div class="col-sm-6">
-                    <div class="form-group" style="text-align: left; margin: 0 auto;">
+                    <div class="form-group" >
                         <h4>New Owner</h4>
                         <select class="form-control selectpicker" id="newOwner" data-show-subtext="true"
                                 data-live-search="true">
@@ -136,7 +136,7 @@
                         </select>
                     </div>
 
-                    <div class="form-group" style="text-align: left; margin: 0 auto;">
+                    <div class="form-group" >
                         <h4>New Department</h4>
                         <select class="form-control selectpicker" id="newDept" data-show-subtext="true"
                                 data-live-search="true">
@@ -150,7 +150,7 @@
                                 }
                             }
                             ?>
-                       
+
                         </select>
                     </div>
                 </div>
@@ -162,26 +162,22 @@
                     </div>
                 </div>
 
-                <div class="col-sm-6">
-                    <div class="form-group" style="text-align: left; margin: 0 auto;">
+                <div class="col-sm-12">
+                    <div class="form-group" >
                         <h4>Model</h4>
                         <input class="form-control" id="model" name="model" readonly>
-                    </div>
-                    <div class="form-group" style="text-align: left; margin: 0 auto;">
-                        <h4>Previous Room</h4>
-                        <input class="form-control" id="pre_room" name="pre_room" readonly>
                     </div>
                 </div>
 
                 <div class="col-sm-6">
-                    <div class="form-group" style="text-align: left; margin: 0 auto;">
-                        <h4>Previous Owner</h4>
-                        <input class="form-control" id="pre_owner" name="pre_owner" readonly>
-                    </div>
-                    <div class="form-group" style="text-align: left; margin: 0 auto;">
-                        <h4>Previous Department</h4>
-                        <input class="form-control" id="pre_dept" name="pre_dept" readonly>
-                    </div>
+                  <div class="form-group" >
+                      <h4>Previous Room</h4>
+                      <input class="form-control" id="pre_room" name="pre_room" readonly>
+                  </div>
+                  <div class="form-group" >
+                      <h4>Previous Owner</h4>
+                      <input class="form-control" id="pre_owner" name="pre_owner" readonly>
+                  </div>
                 </div>
 
             </div>

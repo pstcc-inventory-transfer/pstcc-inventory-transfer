@@ -9,98 +9,16 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="style/index.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        
-        <style>
-            html {
-            height: 100%;
-            width: 100%;
-            }
-            body
-            {
-            background: radial-gradient(rgb(255, 210, 79), rgb(0, 75, 141));
-            background-size: cover;
-            color: white;
-            display: flex;
-            width: 100%;
-            }
-            a
-            {
-            cursor: pointer;
-            }
-            .container-fluid {
-            width: 100%;
-            }
-            .vertical-center {
-            min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
-            min-height: 100vh; /* These two lines are counted as one :-)       */
-            display: flex;
-            align-items: center;
-            }
-            form
-            {
-            margin-top: 20px;
-            }
-            .col-centered
-            {
-            margin: 0 auto;
-            float: none;
-            }
-            
-            .modal-header
-            {
-                padding:9px 15px;
-                border-bottom:1px solid #eee;
-                -webkit-border-top-left-radius: 5px;
-                -webkit-border-top-right-radius: 5px;
-                -moz-border-radius-topleft: 5px;
-                -moz-border-radius-topright: 5px;
-                border-top-left-radius: 5px;
-                border-top-right-radius: 5px;
-                color: white;
-                background-color: #33b5e5;
-             }
-            
-            .alert-header
-            {
-                background-color: #ff4444;
-            }
-            
-            #alertModal > *
-            {
-                max-width: 400px;
-                margin: auto;
-                margin-top: 30px;
-            }
-            
-            #login-panel
-            {
-            margin: 0 auto;
-            text-align: center;
-            background-color: #0066cc;
-            padding: 10px 60px 20px 60px;
-            border-radius: 30px;
-            border: 2px solid #fcd955;
-            width: 50%;
-            }
-            @media screen and (max-width: 768px) {
-                body {
-                text-align: center;
-                }
-                #login-panel
-                {
-                width: 90%;
-                }
-            }
-        </style>
-        
+
         <script>
             function alertModal(style, title, body)
             {
                 $('#alert-modal-title').text(title);
                 $('#alert-modal-body').text(body);
-                
+
                 if(style == "error")
                 {
                     $('.alert-header').css('background-color', '#ff4444');
@@ -109,20 +27,20 @@
                 {
                     $('.alert-header').css('background-color', '#33b5e5');
                 }
-                
+
                 $('#alertModal').modal('show');
             }
 
             $( document ).ready(function() {
-            
+
                 $("#pwd").keyup(function(event) {
-                    if (event.keyCode === 13) 
+                    if (event.keyCode === 13)
                     {
                         $("#submit").click();
                     }
                 });
             });
-        
+
             function testReset(username)
             {
                 $.ajax(
@@ -138,7 +56,7 @@
                     alertModal('alert', 'Success', 'A reset email has been sent to the application administrator');
                 });
             }
-            
+
             function validatePwd()
             {
                 var password = $('#pwd').val();
@@ -224,11 +142,11 @@
                     <img src="img_assets/pelli_full.svg"/>
                     <h1>Transfer Application</h1>
                     <hr/>
-                    <div class="container-fluid" style="margin: 0; padding: 0;" method="post">
+                    <div id="div_transfer" class="container-fluid" style="" method="post">
                         <div class="row">
                             <div class="col-xs-12 col-sm-6">
-                                <div class="form-group" style="text-align: left; width: 100%;">
-                                    <select class="form-control" style="width: 100%;" id="user" name="user">
+                                <div class="form-group">
+                                    <select class="form-control" id="user" name="user">
                                         <option value="null" selected disabled>Please select user</option>
                                         <option value="admin">Administrator</option>
                                         <option value="tech">Technician</option>
@@ -236,9 +154,9 @@
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-6">
-                                <div class="form-group" style="text-align:left; width: 100%;">
-                                    <div class="input-group" style="width: 100%;">
-                                        <input class="form-control" style="width: 100%" name="pwd" id="pwd" placeholder="Password" type="password">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input class="form-control" name="pwd" id="pwd" placeholder="Password" type="password">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
                                     </div>
                                 </div>
@@ -246,17 +164,17 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <button id="submit" class="btn btn-info btn-block" style="margin-top: 15px;" onclick="validatePwd();">Submit</button>
+                                <button id="submit" class="btn btn-info btn-block" style="" onclick="validatePwd();">Submit</button>
                             </div>
                         </div>
                         <br/>
                         <br/>
-                        <a style="color: white; margin-top: 10px;" data-target="#resetModal" data-toggle="modal">Forgot your password?</a>
+                        <a id="forgot_password" style="" data-target="#resetModal" data-toggle="modal">Forgot your password?</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="resetModal" class="modal fade" role="dialog" style="color: black;">
+        <div id="resetModal" class="modal fade" role="dialog" style="">
             <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
@@ -264,13 +182,13 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Password Reset</h4>
                     </div>
-                    <div class="modal-body" style="text-align: right">
-                        <h5 style="text-align: left;"><b>Select password to be reset:</b></h5>
-                        <select class="form-control" style="width: 100%;" id="resetUser" name="resetUser">
+                    <div class="modal-body">
+                        <h5><b>Select password to be reset:</b></h5>
+                        <select class="form-control" id="resetUser" name="resetUser">
                             <option value="admin">Administrator</option>
                             <option value="tech">Technician</option>
                         </select>
-                        <h5 style="text-align: left;">Upon confirmation, a reset link will be emailed to the <b>application administartor</b></h5>
+                        <h5>Upon confirmation, a reset link will be emailed to the <b>application administrator</b></h5>
                         <br/>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         <button type="button" class="btn btn-success" data-dismiss="modal" onclick="testReset($('#resetUser').val());">Confirm</button>
@@ -278,8 +196,8 @@
                 </div>
             </div>
         </div>
-        
-        <div id="alertModal" class="modal fade" role="dialog" style="color: black; text-align: left;">
+
+        <div id="alertModal" class="modal fade" role="dialog" style="">
             <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
@@ -287,7 +205,7 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title" id="alert-modal-title"></h4>
                     </div>
-                    <div class="modal-body" style="text-align: center;">
+                    <div class="modal-body" style="">
                         <p id="alert-modal-body"></p>
                     </div>
                 </div>
