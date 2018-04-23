@@ -236,7 +236,7 @@ function submitFinal()
             }
             else
             {
-                alertModal("error", "Error", "There was an error submitting these transfers. </p><p>" + results);
+                alertModal("error", "Error", "There was an error submitting these transfers. " + results);
             }
         });
     }

@@ -10,121 +10,82 @@
 include 'phpFunctions.php';
 include 'email.php';
 require 'fpdf/wordwrap.php';
+//Create DB exceptions
+class InsertException extends Exception{}
 
+//Create date format
 date_default_timezone_set("US/Eastern");
 
 
 //DB Connection
 $dbCon=connectToDB();
 
-//tblTransTemp Column NOTES
-/*$Tech = ''; //tech making the move
-$Date = ''; //date of transaction
-$Tag = ''; //Pellissippi Asset tag number
-$Model = ''; //model number
-$From = ''; //previous room
-$Previous = ''; //previous owner
-$DeptFrom = ''; //previous department
-$To = ''; //new room
-$New = ''; //new owner
-$NewOwnerPnum = ''; //new owners P number
-$DeptTo = ''; //new department
-$Notes = ''; //Notes
-$Instance = ''; //transfer number ????? maybe serial number
-$InstanceID = ''; // This is a combo of the $Tag + $To + $Date
-$Submit = ''; // YES or NO bool - This is set by the user via an Access Form
-$Hold = ''; // YES or NO bool - This is set by the user via an Access Form
-*/
-
+$GLOBALS['inserted'] = false;
 $GLOBALS['readyToSend'] = false;
 
 //JSON Parsing and SQL insert statement string creator.
-<<<<<<< HEAD
-   if (isset($_POST['json']))
-   {
-        $json=json_decode($_POST['json'], true);
-        if ( is_array( $json )) 
+if (isset($_POST['json']))
+{
+    $json=json_decode($_POST['json'], true);
+    if ( is_array( $json ))
+    {
+        $i = 1;
+        foreach($json as $string)
         {
-            $i=0;
-            foreach($json as $string) 
-            {
-                $Tech = $string['technician'];
-                $Date = date("j/d/Y");   // figure out how to get data and time
-                $Tag = $string['itemID'];
-                $Model = $string['model'];
-                $From = $string['preRoom'];
-                $Previous = $string['preOwner'];
-                $DeptFrom = $string['preDept'];
-                $To = $string['newRoom'];
-                $New = $string['newOwner'];
-                $NewOwnerPnum = pnumLookUp($dbCon, $string['newOwner']);
-                $DeptTo = $string['newDept'];
-                $Notes = $string['notes'];
-                $Instance = 1;
-                $InstanceID = "{$Tag}{$To}".date("jdY");
+            $Tech = $string['technician'];
+            $Date = 'date()';
+            $Tag = $string['itemID'];
+            $Model = $string['model'];
+            $From = $string['preRoom'];
+            $Previous = $string['preOwner'];
+            $DeptFrom = $string['preDept'];
+            $To = $string['newRoom'];
+            $New = $string['newOwner'];
+            $NewOwnerPnum = pnumLookUp($dbCon, $string['newOwner']);
+            $DeptTo = $string['newDept'];
+            $Notes = $string['notes'];
+            $Instance = $i;
+            $InstanceID = "{$Tag}{$To}".date("jdY");
 
-                $sql =  "INSERT INTO tblTransTemp(Tech, [Date], Tag, Model, [From], Previous, DeptFrom, [To], New, NewOwnerPnum, DeptTo, Notes, Instance, InstanceID) VALUES (
-=======
-   if (isset($_GET['json'])){
-     $json=json_decode($_GET['json'], true);
-     if ( is_array( $json )) {
-        $Instance = 1; // write sql statement here < --------------------------
-         foreach($json as $string) {
-             $Tech = $string['technician'];
-             $Date = date("j/d/Y");   // figure out how to get data and time
-             $Tag = $string['itemID'];
-             $Model = $string['model'];
-             $From = $string['preRoom'];
-             $Previous = $string['preOwner'];
-             $DeptFrom = $string['preDept'];
-             $To = $string['newRoom'];
-             $New = $string['newOwner'];
-             $NewOwnerPnum = pnumLookUp($dbCon, $string['newOwner']);
-             $DeptTo = $string['newDept'];
-             $Notes = $string['notes'];
-             $InstanceID = "{$Tag}{$To}".date("jdY");
+            $sql =  "INSERT INTO tblTransTemp(Tech, [Date], Tag, Model, [From], Previous, DeptFrom, [To], New, NewOwnerPnum, DeptTo, Notes, Instance, InstanceID) VALUES (
+                    '$Tech', $Date, '$Tag', '$Model', '$From', '$Previous', '$DeptFrom', '$To', '$New', '$NewOwnerPnum', '$DeptTo', '$Notes', $Instance, '$InstanceID');";
 
-             $sql =  "INSERT INTO tblTransTemp(Tech, [Date], Tag, Model, [From], Previous, DeptFrom, [To], New, NewOwnerPnum, DeptTo, Notes, Instance, InstanceID) VALUES (
->>>>>>> dfffb2ae9e7ea380dbceae4e5b3639fb62c468a4
-                      '$Tech', $Date, '$Tag', '$Model', '$From', '$Previous', '$DeptFrom', '$To', '$New', '$NewOwnerPnum', '$DeptTo', '$Notes', $Instance, '$InstanceID');";
-
-                if(insertTransfers($sql))
-                 $GLOBALS['readyToSend'] = true;
+            if (insertTransfers($dbCon, $sql) == true) {
+                $GLOBALS['readyToSend'] = true;
             }
         }
-       
-        if($GLOBALS['readyToSend'])
-        {
-            echo "true";
-            sendEmail($_POST['json'], (generatePDF($json)?true:false));
-        }
-   }
-    else 
-   {
-       echo "No transfers to add";
-   }
-
-function insertTransfers($uname) {
-    $con=connectToDB();
-
-    odbc_exec($con,$uname);
-    if (odbc_error()){
-        echo odbc_errormsg($con);
-    return false;
     }
-	
-	else return true;
+    if($GLOBALS['readyToSend']){
+        echo 'true';
+        sendEmail($_POST['json'], (generatePDF($json)?true:false));
+    }
+}
+else
+{
+    echo "No transfers to add";
 }
 
+function insertTransfers($con, $sqlStatement)
+{
+    Try {
+      if ( !odbc_exec( $con, $sqlStatement )){
+          throw new InsertException( odbc_errormsg($con)." The tables could be locked by other users or forms.");
+      } else {
+          return true;
+      }
+  }
+  catch (InsertException $ex){
+      echo ' Error: '.$ex->getMessage();
+  }
+}
 function pnumLookUp($con, $newName) {
 
     $pNumNew = "SELECT [ID] FROM dbo_tblCustodians where [NAME] = '".$newName."';";
-       $pNumAnsr = odbc_exec($con, $pNumNew);
-       $reply = odbc_fetch_array($pNumAnsr);
-       foreach($reply as $value){
+    $pNumAnsr = odbc_exec($con, $pNumNew);
+    $reply = odbc_fetch_array($pNumAnsr);
+    foreach($reply as $value){
         return $value;
     }
-    odbc_close($con);
 }
 
 function generatePDF($jsonArr)
@@ -133,13 +94,13 @@ function generatePDF($jsonArr)
 	$pdf->AddPage();
 	createTitle($pdf);
 	$pdf->SetFont('Arial','B',6);
-	
+
 	$header = array('PSCC ID', 'Model', 'Current Room', 'Current Owner', 'Current Dept.', 'Rew Room', 'New Owner', 'New Dept.', 'Notes');
-	
+
 	FancyTable($pdf, $header, $jsonArr);
-	
+
 	$pdf->Output("./emailClient/transferlist.pdf", "F");
-	
+
 	if(!file_exists("./emailClient/transferlist.pdf"))
 	{
         echo "Failed to create pdf file.";
@@ -156,18 +117,18 @@ function FancyTable($pdf, $header, $data)
     $pdf->SetDrawColor(128,0,0);
     $pdf->SetLineWidth(.3);
     $pdf->SetFont('','B');
-	
+
     // Header
     $w = array(40, 35, 40, 45);
     for($i=0;$i<count($header);$i++)
         $pdf->Cell(21,7,$header[$i],1,0,'C',true);
     $pdf->Ln();
-	
+
     // Color and font restoration
     $pdf->SetFillColor(224,235,255);
     $pdf->SetTextColor(0);
     $pdf->SetFont('');
-	
+
     // Data
     $fill = false;
     foreach($data as $row)
@@ -181,11 +142,11 @@ function FancyTable($pdf, $header, $data)
 		formatAndGenerateRow($pdf, $fill, $row['newOwner']);
 		formatAndGenerateRow($pdf, $fill, $row['newDept']);
 		formatAndGenerateRow($pdf, $fill, $row['notes']);
-			
+
 		$pdf->Ln();
 		$fill = !$fill;
     }
-	
+
     // Closing line
     $pdf->Cell(array_sum($w),0,'','T');
 }
@@ -205,7 +166,7 @@ function createTitle($pdf)
 	$pdf->Cell(75);
 	// Date
 	$pdf->Cell(50,10,date("m/d/Y"),1,0,'C');
-	
+
 	$pdf->Ln(35);
 }
 
@@ -216,7 +177,7 @@ function formatAndGenerateRow($pdf, $fill, $str)
 		$strFormatted = substr($str, 0, 13);
 		$pdf->Cell(21,6,$strFormatted,'LRB',0,'L',$fill);
 	}
-			
+
 	else $pdf->Cell(21,6,$str,'LRB',0,'L',$fill);
 }
 
