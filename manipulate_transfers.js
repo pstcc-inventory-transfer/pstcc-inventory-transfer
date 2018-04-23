@@ -214,7 +214,8 @@ function submitFinal()
                        alert(xhr.status);
                        console.log(xhr.responseText);
                        alert(thrownError);
-                    }
+                    },
+            timeout: 5000
         }).done(function(results)
         {
             console.log(results);
