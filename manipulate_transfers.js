@@ -209,7 +209,8 @@ function submitFinal()
                        alert(xhr.status);
                        console.log(xhr.responseText);
                        alert(thrownError);
-                    }
+                    },
+            timeout: 5000
         }).done(function(results)
         {
             console.log(results);
@@ -231,7 +232,7 @@ function submitFinal()
             }
             else
             {
-                alertModal("error", "Error", "There was an error submitting these transfers. </p><p>" + results);
+                alertModal("error", "Error", "There was an error submitting these transfers. " + results);
             }
         });
     }
