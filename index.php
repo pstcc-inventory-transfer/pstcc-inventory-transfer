@@ -1,6 +1,7 @@
 <?php
     session_start();
     $_SESSION['auth'] = false;
+    $_SESSION['isAdmin'] = false;
     ?>
 <!doctype html>
 <html>
@@ -188,7 +189,11 @@
                             <option value="admin">Administrator</option>
                             <option value="tech">Technician</option>
                         </select>
+<<<<<<< HEAD
                         <h5>Upon confirmation, a reset link will be emailed to the <b>application administrator</b></h5>
+=======
+                        <h5 style="text-align: left;">Upon confirmation, a reset link will be emailed to the <b>application administrator</b></h5>
+>>>>>>> b345c979149943af3e33135031e9a086f0704de0
                         <br/>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         <button type="button" class="btn btn-success" data-dismiss="modal" onclick="testReset($('#resetUser').val());">Confirm</button>

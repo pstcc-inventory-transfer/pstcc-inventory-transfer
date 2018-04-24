@@ -95,14 +95,15 @@
                 <div class="col-sm-6">
                     <div class="form-group" >
                         <h4>PSCC ID#</h4>
-                        <input class="form-control" name="ID" id="IDAdd" placeholder="Please enter/scan ID" value=""
-                               onkeyup="getInfoFromTag(this.value)">
+                        <input class="form-control" name="ID" id="IDAdd" placeholder="Please enter/scan ID"
+                               onkeyup="getInfoFromTag(this.value)" style="text-transform: uppercase">
                     </div>
 
                     <div class="form-group" >
                         <h4>New Room</h4>
                         <select class="form-control selectpicker" id="newRoom" data-show-subtext="true"
-                                data-live-search="true">
+                                data-live-search="true">                          
+                            <option value="none" selected disabled>Please choose owner...</option>
                             <?php
                             $query = "SELECT Field1 FROM Inventory_location_lookup order by Field1 asc;";
                             $options = queryDB( $con1, $query );
@@ -122,6 +123,7 @@
                         <h4>New Owner</h4>
                         <select class="form-control selectpicker" id="newOwner" data-show-subtext="true"
                                 data-live-search="true">
+                            <option value="none" selected disabled>Please choose owner...</option>
                             <?php
                             $query = "SELECT DISTINCT [NAME] FROM dbo_tblCustodians order by [NAME] asc;";
                             $options = queryDB( $con1, $query );
@@ -140,6 +142,7 @@
                         <h4>New Department</h4>
                         <select class="form-control selectpicker" id="newDept" data-show-subtext="true"
                                 data-live-search="true">
+                            <option value="none" selected disabled>Please choose dept...</option>
                             <?php
                             $query = "SELECT Field1 FROM tblDepts order by Field1 asc;";
                             $options = queryDB( $con1, $query );
@@ -192,6 +195,21 @@
     </div>
 </div>
 <!-- Add Modal end -->
+        
+<div id="alertModal" class="modal fade" role="dialog" style="color: black; text-align: left;">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header alert-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="alert-modal-title"></h4>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+                <p id="alert-modal-body"></p>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="manipulate_transfers.js"></script>
 </body>

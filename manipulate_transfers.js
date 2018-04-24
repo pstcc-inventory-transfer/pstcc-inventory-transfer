@@ -195,31 +195,50 @@ function submitFinal()
 {
     if (transfersArray.length != 0)
     {
-        transfersArray.forEach(function(element, index)
-        {
-            element.technician = $('#technician').val();
-        });
-
         var jsonString = JSON.stringify(transfersArray);
 
         $.ajax(
         {
-            method: "GET",
+            method: "POST",
             url: "addTransfers.php",
             data:
             {
                 json: jsonString
-            }
+            },
+            error: function (xhr, ajaxOptions, thrownError){
+                       alert(xhr.status);
+                       console.log(xhr.responseText);
+                       alert(thrownError);
+                    },
+            timeout: 5000
         }).done(function(results)
         {
-            alert(results);
+            console.log(results);
+            
+            if(results == "true")
+            {
+                if (filename === "inventory-transfer.php")
+                {
+                    transfersArray = [];
+                    refreshListDesktop();
+                }
+                else
+                {
+                    transfersArray = [];
+                    refreshListMobile();
+                }
+                
+                alertModal("alert", "Success", "Transfers were successfully submitted.");
+            }
+            else
+            {
+                alertModal("error", "Error", "There was an error submitting these transfers. " + results);
+            }
         });
-
-        removeOld();
     }
     else
     {
-        alert("Please add transfers before submitting.");
+        alertModal('error', 'Error', "Please add transfers before submitting.");
     }
 }
 // * Determines if the user is trying to edit a transfer, or create a new one.
@@ -240,11 +259,11 @@ function submit()
                     submitEdit();
                 }
             }
-            else alert("It appears this item is already being transfered");
+            else alertModal('error', 'Error', "It appears this item is already being transfered");
         }
-        else alert("Please ensure you've completed all required fields.");
+        else alertModal('error', 'Error', "Please ensure you've completed all required fields.");
     }
-    else alert("Please enter a valid ID");
+    else alertModal('error', 'Error', "Please enter a valid ID");
 }
 
 function cleanId(str)
@@ -293,6 +312,7 @@ function submitEdit()
 function submitNew()
 {
     var transfer = {
+		technician: $('#technician').val(),
         itemID: $('#IDAdd').val().toUpperCase(),
         newRoom: $('#newRoom').val(),
         newOwner: $('#newOwner').val(),
@@ -302,7 +322,6 @@ function submitNew()
         preRoom: $('#pre_room').val(),
         preOwner: $('#pre_owner').val(),
         preDept: $('#pre_dept').val(),
-        technician: undefined
     };
 
     transfersArray.push(transfer);
@@ -333,6 +352,23 @@ $('#Add_Modal').on('hidden.bs.modal', function()
     $('#pre_owner').val('');
     $('#pre_dept').val('');
 });
+
+function alertModal(style, title, body)
+{
+    $('#alert-modal-title').text(title);
+    $('#alert-modal-body').text(body);
+
+    if(style == "error")
+    {
+        $('.alert-header').css('background-color', '#ff4444');
+    }
+    else if (style == "alert")
+    {
+        $('.alert-header').css('background-color', '#33b5e5');
+    }
+
+    $('#alertModal').modal('show');
+}
 
 // * Takes the value in the ID field, searches the database for the associated info via Ajax,
 //   and returns the results to the appropriate fields.

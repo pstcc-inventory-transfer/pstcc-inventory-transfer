@@ -8,7 +8,7 @@
 	include("phpFunctions.php");
 	$con1 = connectToDB();
 
-    if(!$_SESSION['auth'])
+    if(!$_SESSION['auth'] || !$_SESSION['isAdmin'])
     {
         header('Location: index.php');
         die();

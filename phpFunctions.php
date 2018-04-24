@@ -16,6 +16,11 @@ else if(isset($_REQUEST["room"]))
     $room = $_REQUEST["room"];
     getInventoryForRoom($room, $con1);
 }
+else if(isset($_REQUEST["check"]))
+{
+    $check = $_REQUEST["check"];
+    checkForIdInRoom($check, $con1);
+}
 else if(isset($_REQUEST['user']) && isset($_REQUEST["newPwd"]))
 {
     $user = $_REQUEST['user'];
@@ -36,7 +41,7 @@ function getInfo($id)
 	if ($id !== "") 
 	{
 		$query= "SELECT * FROM [Complete Active inventory list 52914] WHERE TAG = '$id'";
-		echo "this is a test";
+		echo $result;
 	}
 }
 
@@ -57,6 +62,25 @@ function checkForID($id, $con)
 	}
 	
 	else echo false;
+}
+
+function checkForIdInRoom($id, $con)
+{
+	// lookup all hints from array if $q is different from "" 
+	if ($id !== "") 
+	{
+		$query = "SELECT * FROM [Complete Active inventory list 52914] WHERE TAG = '$id'";
+		$result = queryDB($con, $query);
+		
+		if(count($result) > 0)
+		{
+			echo json_encode($result);
+		}
+		
+		else echo "error";
+	}
+	
+	else echo "error";
 }
 
 function getInventoryForRoom($room, $con)
