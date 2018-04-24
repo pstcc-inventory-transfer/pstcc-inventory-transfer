@@ -1,40 +1,44 @@
-html {
-height: 100%;
-width: 100%;
+html
+{
+    height: 100%;
+    width: 100%;
 }
 body
 {
-background: radial-gradient(rgb(255, 210, 79), rgb(0, 75, 141));
-background-size: cover;
-color: white;
-display: flex;
-width: 100%;
+    background: radial-gradient(rgb(255, 210, 79), rgb(0, 75, 141));
+    background-size: cover;
+    color: white;
+    display: flex;
+    width: 100%;
 }
 a
 {
-cursor: pointer;
+    cursor: pointer;
 }
-.container-fluid {
-width: 100%;
+.container-fluid
+{
+    width: 100%;
 }
-.vertical-center {
-min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
-min-height: 100vh; /* These two lines are counted as one :-)       */
-display: flex;
-align-items: center;
+.vertical-center
+{
+    min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+    min-height: 100vh; /* These two lines are counted as one :-)       */
+    display: flex;
+    align-items: center;
 }
 form
 {
-margin-top: 20px;
+    margin-top: 20px;
 }
-#div_transfer {
-  margin: 0; 
-  padding: 0;
+#div_transfer
+{
+    margin: 0;
+    padding: 0;
 }
 .col-centered
 {
-margin: 0 auto;
-float: none;
+    margin: 0 auto;
+    float: none;
 }
 
 .modal-header
@@ -49,7 +53,7 @@ float: none;
     border-top-right-radius: 5px;
     color: white;
     background-color: #33b5e5;
- }
+}
 
 .alert-header
 {
@@ -65,20 +69,22 @@ float: none;
 
 #login-panel
 {
-margin: 0 auto;
-text-align: center;
-background-color: #0066cc;
-padding: 10px 60px 20px 60px;
-border-radius: 30px;
-border: 2px solid #fcd955;
-width: 50%;
-}
-@media screen and (max-width: 768px) {
-    body {
+    margin: 0 auto;
     text-align: center;
+    background-color: #0066cc;
+    padding: 10px 60px 20px 60px;
+    border-radius: 30px;
+    border: 2px solid #fcd955;
+    width: 50%;
+}
+@media screen and (max-width: 768px)
+{
+    body
+    {
+      text-align: center;
     }
     #login-panel
     {
-    width: 90%;
+        width: 90%;
     }
 }

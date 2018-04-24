@@ -7,63 +7,71 @@
  ****
  * Dependencies: Stylesheet for "desktop.PHP".
  */
- body {
-   background-color: white;
- }
+body
+{
+    background-color: white;
+}
 
-tr:hover >td {
-  filter: drop-shadow(3px 3px 5px rgba(0,0,0,.35));
+tr:hover >td
+{
+    filter: drop-shadow(3px 3px 5px rgba(0,0,0,.35));
 }
 td
 {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 .form-control
 {
-  min-width: 0px;
+    min-width: 0px;
 }
 
 .content-main
 {
-  margin-top: 100px;
+    margin-top: 100px;
 }
 
 .navbar
 {
-  background-color: #0066cc;
-  border-bottom: solid medium #fcd955;
-  border-bottom-left-radius: 25px;
-  border-bottom-right-radius: 25px;
+    background-color: #0066cc;
+    border-bottom: solid medium #fcd955;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
 }
 
 .navbar-nav > li
 {
-  margin-top: 30px;
-  margin-right: 10px;
-  margin-left: 10px;
+    margin-top: 30px;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
-.navbar-brand {
-  height: 100px;
+.navbar-brand
+{
+    height: 100px;
 }
 
-.navbar-brand img {
-  height: 100%;
+.navbar-brand img
+{
+    height: 100%;
 }
-#add_btn {
-  margin-left: 25px;
+#add_btn
+{
+    margin-left: 25px;
 }
-#sub_btn {
-  margin-left: 50px;
+#sub_btn
+{
+    margin-left: 50px;
 }
-#log_btn {
-  margin-right: 50px;
+#log_btn
+{
+    margin-right: 50px;
 }
 
-form-group {
-  text-align: left;
-  margin: 0 auto;
+form-group
+{
+    text-align: left;
+    margin: 0 auto;
 }
 .error
 {
@@ -87,8 +95,11 @@ form-group {
     border-top-right-radius: 5px;
     color: white;
     background-color: #33b5e5;
- }
-
+}
+.modal-body
+{
+    text-align: center;
+}
 .alert-header
 {
     background-color: #ff4444;
@@ -96,20 +107,27 @@ form-group {
 
 #alertModal > *
 {
+    color: black;
+    text-align: left;
     max-width: 400px;
     margin: auto;
     margin-top: 30px;
 }
-
-#addBtn {
-  color: white;
-  background-color: #FCD955;
+#IDAdd
+{
+    text-transform: uppercase
 }
-#addBtn:hover {
-  background-color: rgba(252, 217, 85, 0.85);
+#addBtn
+{
+    color: white;
+    background-color: #FCD955;
+}
+#addBtn:hover
+{
+    background-color: rgba(252, 217, 85, 0.85);
 }
 
-#inputBox {
-	border-radius: 5px;
-
+#inputBox
+{
+	 border-radius: 5px;
 }

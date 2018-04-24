@@ -88,7 +88,7 @@
                     <div class="form-group" >
                         <h4>PSCC ID#</h4>
                         <input class="form-control" name="ID" id="IDAdd" placeholder="Please enter/scan ID"
-                               onkeyup="getInfoFromTag(this.value)" style="text-transform: uppercase">
+                               onkeyup="getInfoFromTag(this.value)">
                     </div>
 
                     <div class="form-group" >
@@ -165,7 +165,7 @@
 </div>
 <!-- Add Modal end -->
 
-<div id="alertModal" class="modal fade" role="dialog" style="color: black; text-align: left;">
+<div id="alertModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
@@ -173,7 +173,7 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title" id="alert-modal-title"></h4>
             </div>
-            <div class="modal-body" style="text-align: center;">
+            <div class="modal-body">
                 <p id="alert-modal-body"></p>
             </div>
         </div>

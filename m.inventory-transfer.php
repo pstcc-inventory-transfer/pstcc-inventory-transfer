@@ -67,7 +67,7 @@
                 <div class="form-group" >
                     <h4>PSCC ID#</h4>
                     <div class="input-group">
-                        <input class="form-control" style="text-transform: uppercase" name="ID" id="IDAdd" placeholder="Please enter/scan ID" value="" onkeyup="getInfoFromTag(this.value)">
+                        <input class="form-control" name="ID" id="IDAdd" placeholder="Please enter/scan ID" value="" onkeyup="getInfoFromTag(this.value)">
                         <span class="barcode input-group-addon" onclick="barcodeScan(IDAdd)"><span class="glyphicon glyphicon-barcode"></span></span>
                     </div>
                 </div>
@@ -133,8 +133,8 @@
           </div>
         </div>
         <!-- Add Modal end -->
-        
-        <div id="alertModal" class="modal fade" role="dialog" style="color: black; text-align: left;">
+
+        <div id="alertModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
@@ -142,7 +142,7 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title" id="alert-modal-title"></h4>
                     </div>
-                    <div class="modal-body" style="text-align: center;">
+                    <div id="alert_ModalBody" class="modal-body">
                         <p id="alert-modal-body"></p>
                     </div>
                 </div>
@@ -154,8 +154,8 @@
         <script src="barcode/scanner.js"></script>
         <script src="manipulate_transfers.js"></script>
 =======
-        <script src="manipulate_transfers.js"></script>   
-        
+        <script src="manipulate_transfers.js"></script>
+
         <script>
         var android = false;
         var barcodeScripts = [document.createElement("script")];
@@ -179,7 +179,7 @@
             }
 
         </script>
-        
+
 >>>>>>> b345c979149943af3e33135031e9a086f0704de0
     </body>
 </html>
