@@ -7,7 +7,8 @@ It also saves this to a specified file, then sends it off as an email with the h
 $GLOBALS['fileName'] = './emailClient/default.html';
 $GLOBALS['emailCommand'] = 'cd emailClient && cliEmail.exe';
 
-function sendEmail($json,$usePdf = true){
+function sendEmail($json,$usePdf = true)
+{
     //The three parts of the message: the head and foot are the top and bottom of the page, and the body is generated for each transfer object in the json string.
     $head = file('./emailClient/head.html');
     $body = file('./emailClient/body.html');
@@ -21,16 +22,18 @@ function sendEmail($json,$usePdf = true){
 
     //Lets find the longest key so that the searching process can go faster:
     //(We assume that all json files are the same)
-    foreach($json[0] as $key => $element){
+    foreach($json[0] as $key => $element)
+    {
         if(strlen($key) > $longestKeyLength)
             $longestKeyLength = strlen($key);
     }
 
     //Inserting the head:
     $total.=keyParser($json,$longestKeyLength,0,$head);
-    
+
     //body:
-    for($jsonIter = 0;$jsonIter < count($json);$jsonIter++){
+    for($jsonIter = 0;$jsonIter < count($json);$jsonIter++)
+    {
         $total.=keyParser($json,$longestKeyLength,$jsonIter,$body);
     }
     //The foot:
@@ -47,23 +50,29 @@ function sendEmail($json,$usePdf = true){
     }
 
     //This is the core parser for scanning json keys:
-    function keyParser(&$json,$longestKeyLength,$jsonIter,$htmlArray){
+    function keyParser(&$json,$longestKeyLength,$jsonIter,$htmlArray)
+    {
         $result='';
-        for($i=0;$i<count($htmlArray);$i++){
-            for($j=0;$j<strlen($htmlArray[$i]);$j++){
-                if($htmlArray[$i][$j] == "@"){
+        for($i=0;$i<count($htmlArray);$i++)
+        {
+            for($j=0;$j<strlen($htmlArray[$i]);$j++)
+            {
+                if($htmlArray[$i][$j] == "@")
+                {
                     //retrieve the string based on the longest string count:
                     $snippit = '';
-                    for($k = 0;$k<$longestKeyLength;$k++){
+                    for($k = 0;$k<$longestKeyLength;$k++)
+                    {
                         $snippit.=$htmlArray[$i][$j + $k + 1];
                     }
                     //Let's do an extensive search!
                     $key='';
-                    if($key = keyEval($snippit,$json[$jsonIter])){ //This is NOT a comparison error: the alternitave is if $key turns into null after this function is run.
+                    if($key = keyEval($snippit,$json[$jsonIter]))
+                    { //This is NOT a comparison error: the alternitave is if $key turns into null after this function is run.
                         $result.=$json[$jsonIter][$key];
                         $j+=strlen($key);
                     }
-                    else $result.=$htmlArray[$i][$j];    
+                    else $result.=$htmlArray[$i][$j];
                 }
                 else $result.=$htmlArray[$i][$j];
             }
@@ -74,20 +83,24 @@ function sendEmail($json,$usePdf = true){
     }
 
     //This function searches a given snippet, and if it matches a key, it returns that key. It otherwise returns null;
-    function keyEval($snippit, &$jsonArray){
+    function keyEval($snippit, &$jsonArray)
+    {
         //We're kindof forced to recreate a new string each time since we're going backwards to find the longest string:
         $subtraction = 0;
         $currKey = '';
 
-        for($i=strlen($snippit);$i>0;$i--){
+        for($i=strlen($snippit);$i>0;$i--)
+        {
             //Create/Re-create currKey:
             $currKey = '';
-            for($j=0;$j<$i;$j++){
+            for($j=0;$j<$i;$j++)
+            {
                 $currKey.=$snippit[$j];
             }
 
             //Let's get to the beef: actually searching through keys:
-            foreach($jsonArray as $key => $element){
+            foreach($jsonArray as $key => $element)
+            {
                 if($key == $currKey){
                     return $currKey;
                 }

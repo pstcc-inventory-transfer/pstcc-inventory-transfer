@@ -32,9 +32,11 @@
                 $('#alertModal').modal('show');
             }
 
-            $( document ).ready(function() {
+            $( document ).ready(function()
+            {
 
-                $("#pwd").keyup(function(event) {
+                $("#pwd").keyup(function(event)
+                {
                     if (event.keyCode === 13)
                     {
                         $("#submit").click();

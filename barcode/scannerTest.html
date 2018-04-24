@@ -15,45 +15,53 @@
         leCanvas.globalAlpha = 1;
         midpointToggle.value=midpoint;
 
-        midpointToggle.onchange = function(){
+        midpointToggle.onchange = function()
+        {
             midpoint = midpointToggle.value;
             reDraw();
             blackAndWhite();
             bgGo(results);
         }
 
-        start.onclick = function(){
+        start.onclick = function()
+        {
             midpointToggle.value = midpoint;
             reDraw();
             blackAndWhite();
             bgGo(results);
         }
-        reset.click = function(){
+        reset.click = function()
+        {
             reDraw(true);
             midpoint = gba() * 3.8;
             midpointToggle.value = midpoint
         }
 
         var mouseDown = false;
-        gfx.onmousedown = function(){
+        gfx.onmousedown = function()
+        {
             mouseDown = true;
         }
 
-        gfx.onmouseup = function(){
+        gfx.onmouseup = function()
+        {
             mouseDown = false;
             reDraw(true);
         }
-        gfx.onmousemove = function(e){
+        gfx.onmousemove = function(e)
+        {
             if(mouseDown){
                 this.width=e.x;
                 this.height = e.y;
             }
         }
 
-        image.onchange = function(){
+        image.onchange = function()
+        {
             sourceFile.src= URL.createObjectURL(image.files[0]);
         }
-        sourceFile.onload = function(){
+        sourceFile.onload = function()
+        {
             gfx.width = sourceFile.width;
             gfx.height = sourceFile.height;
             reDraw(true);
@@ -61,26 +69,31 @@
             midpointToggle.value = midpoint;
         }
 
-        function reDraw(resize = false){
+        function reDraw(resize = false)
+        {
             leCanvas.globalAlpha = 1;
             leCanvas.fillStyle="white";
             leCanvas.fillRect(0,0,gfx.width,gfx.height);
-            if(resize){
+            if(resize)
+            {
                 imgScale=adjustObjectSize(sourceFile);
                 leCanvas.scale(imgScale,imgScale);
             }
             leCanvas.drawImage(sourceFile,0,0);
         }
 
-        function blackAndWhite(){
+        function blackAndWhite()
+        {
             data = leCanvas.getImageData(0,0,gfx.width,gfx.height);
-            for(var i=0;i<data.data.length;i+=4){
+            for(var i=0;i<data.data.length;i+=4)
+            {
                 if(data.data[i] + data.data[i+1] + data.data[i+2] > midpoint){
                     data.data[i] = 255;
                     data.data[i+1] = 255;
                     data.data[i+2] = 255;
                 }
-                else{
+                else
+                {
                     data.data[i] = 0;
                     data.data[i+1] = 0;
                     data.data[i+2] = 0;
@@ -91,25 +104,30 @@
         //Get brightness average
         //I'm exprimenting with automatic brightness levels, here's what I have so far:
         //midpoint = averageBrightness * 3.80;
-        function gba(){
+        function gba()
+        {
             data = leCanvas.getImageData(0,0,gfx.width,gfx.height);
             averageBrightness = 0;
             var sum = 0;
-            for(var i=0;i<data.data.length;i+=4){
+            for(var i=0;i<data.data.length;i+=4)
+            {
                 sum+=data.data[i] + data.data[i+1]+data.data[i+2];
             }
             return sum / (data.data.length*.75);
         }
 
-        function adjustObjectSize(imgObject){
+        function adjustObjectSize(imgObject)
+        {
             //We search for width and height that's greater than the pixels on canvas:
             //first let's check which is greater, width or height...
             var result=1;
 
-            if(imgObject.width > gfx.width){
+            if(imgObject.width > gfx.width)
+            {
                 result =  (100/imgObject.width) * gfx.width * .01;
             }
-            if(imgObject.height > gfx.height){
+            if(imgObject.height > gfx.height)
+            {
                 var temp = (100/imgObject.height) * gfx.height * .01;
                 if(result > temp)
                     result = temp;
@@ -118,17 +136,21 @@
         }
 
         //Experiment using scanner.js' code
-        function bgGo(inputTag){
+        function bgGo(inputTag)
+        {
             inputTag.innerHTML="";
             //QuaggaJS:
-            Quagga.decodeSingle({
+            Quagga.decodeSingle(
+                {
                 decoder:{
                 //As of this writing, pellissippi uses this barcode type for each machine:
                 readers:["code_128_reader","ean_reader", "ean_8_reader"]
                 },
                 src: gfx.toDataURL()
-            }, function(data) {
-              if (data) {
+            }, function(data)
+            {
+              if (data)
+              {
                   console.log(data);
                   inputTag.innerHTML=data.codeResult.code.split(' ')[0];
 
@@ -136,11 +158,12 @@
 
                   return
               }
-              else{
+              else
+              {
                 alert("Barcode not found... Please try again.");
               }
             });
-            }
+        }
         </script>
     </body>
 </html>

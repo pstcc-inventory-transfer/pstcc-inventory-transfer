@@ -147,7 +147,8 @@ function deleteTransfer(button)
     }
 }
 
-function removeOld(){
+function removeOld()
+{
   if (filename === "inventory-transfer.php")
   {
     $('tbody').empty();
@@ -205,19 +206,21 @@ function submitFinal()
             {
                 json: jsonString
             },
-            error: function (xhr, ajaxOptions, thrownError){
+            error: function (xhr, ajaxOptions, thrownError)
+            {
                        console.log(xhr.status);
                        console.log(xhr.responseText);
                        console.log(thrownError);
                     },
-            success: function (){
+            success: function ()
+            {
                 alertModal("alert", "Success", "Transfers were successfully submitted.");
             },
             timeout: 5000
         }).done(function(results)
         {
             console.log(results);
-            
+
             if(results == "true")
             {
                 if (filename === "inventory-transfer.php")
@@ -230,7 +233,7 @@ function submitFinal()
                     transfersArray = [];
                     refreshListMobile();
                 }
-                
+
                 alertModal("alert", "Success", "Transfers were successfully submitted.");
             }
             else
@@ -276,7 +279,6 @@ function cleanId(str)
          str = str.split(' ');
          return str[0];
     }
-
 	else return str;
 }
 

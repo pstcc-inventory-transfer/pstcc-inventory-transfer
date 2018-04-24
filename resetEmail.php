@@ -1,7 +1,8 @@
 <?php
 //Author: Zachary Mitchell
 //Since the password email hardly requires any information (comapred to email.php for sure!), the email is generated here, then sent off.
-function resetEmail($username,$link){
+function resetEmail($username,$link)
+{
     $emailString = <<<EOD
 Pellissippi Inventory, Account Reset:$username.
 <body style="color:navy">

@@ -49,12 +49,14 @@ if (isset($_POST['json']))
             $sql =  "INSERT INTO tblTransTemp(Tech, [Date], Tag, Model, [From], Previous, DeptFrom, [To], New, NewOwnerPnum, DeptTo, Notes, Instance, InstanceID) VALUES (
                     '$tech', $date, '$tag', '$model', '$from', '$previous', '$deptFrom', '$to', '$new', '$newOwnerPnum', '$deptTo', '$notes', $instance, '$instanceID');";
 
-            if (insertTransfers($dbCon, $sql) == true) {
+            if (insertTransfers($dbCon, $sql) == true)
+            {
                 $GLOBALS['readyToSend'] = true;
             }
         }
     }
-    if($GLOBALS['readyToSend']){
+    if($GLOBALS['readyToSend'])
+    {
         echo 'true';
         sendEmail($_POST['json'], (generatePDF($json)?true:false));
     }
@@ -66,20 +68,24 @@ else
 
 function insertTransfers($con, $sqlStatement)
 {
-    Try {
-      if ( !@odbc_exec( $con, $sqlStatement )){
+    try
+    {
+      if ( !@odbc_exec( $con, $sqlStatement ))
+      {
           throw new InsertException( odbc_errormsg($con)." The tables could be locked by other users or forms.");
-      } else {
+      } else
+      {
           return true;
       }
   }
-  catch (InsertException $ex){
+  catch (InsertException $ex)
+  {
       echo ' Error: '.$ex->getMessage();
   }
 }
 
-function pnumLookUp($con, $newName) {
-
+function pnumLookUp($con, $newName)
+{
     $pNumNew = "SELECT [ID] FROM dbo_tblCustodians where [NAME] = '".$newName."';";
     $pNumAnsr = odbc_exec($con, $pNumNew);
     $reply = odbc_fetch_array($pNumAnsr);
@@ -88,8 +94,8 @@ function pnumLookUp($con, $newName) {
     }
 }
 
-function iNumIncrease($con) {
-
+function iNumIncrease($con)
+{
     $iNumNew = "SELECT Instance FROM tblTransTemp;";
     $iNumAnsr = odbc_exec($con, $iNumNew);
     $rows = array();
@@ -108,9 +114,9 @@ function generatePDF($jsonArr)
 	$pdf->AddPage();
 	createTitle($pdf);
 	$pdf->SetFont('Arial','B',6);
-	
+
 	$header = array('Transfer Tech', 'PSCC ID', 'Model', 'Current Room', 'Current Owner', 'New Room', 'New Owner', 'New Dept.', 'Notes');
-	
+
 	FancyTable($pdf, $header, $jsonArr);
 
 	$pdf->Output("./emailClient/transferlist.pdf", "F");
@@ -156,7 +162,7 @@ function FancyTable($pdf, $header, $data)
 		formatAndGenerateRow($pdf, $fill, $row['newOwner'], 0);
 		formatAndGenerateRow($pdf, $fill, $row['newDept'], 0);
 		formatAndGenerateRow($pdf, $fill, $row['notes'], 1);
-		
+
 		$pdf->Ln();
 		$fill = !$fill;
     }
@@ -190,9 +196,9 @@ function formatAndGenerateRow($pdf, $fill, $str, $isNotes)
 	{
 		if($isNotes == 1)
 			$strFormatted = (substr($str, 0, 13)) . '...';
-		
+
 		else $strFormatted = substr($str, 0, 13);
-		
+
 		$pdf->Cell(21,6,$strFormatted,'LRB',0,'L',$fill);
 	}
 
