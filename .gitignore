@@ -1,4 +1,4 @@
-barcode/scanjsTest.html
+barcode/barcodes/*
 .vs/
 emailClient/default.econf
 emailTest.php
