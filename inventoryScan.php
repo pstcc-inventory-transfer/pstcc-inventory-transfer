@@ -40,16 +40,7 @@
                     <select class="form-control" id="roomSelection">
                         <!-- possibly make this auto-filled with database stuff -->
                         <?php
-                        $query= "SELECT DISTINCT Location FROM [Complete Active inventory list 52914];";
-                        $options = queryDB($con1, $query);
-
-                        foreach($options as $row)
-                        {
-                            foreach($row as $value)
-                            {
-                                echo "<option>" . $value . "</option>";
-                            }
-                        }
+                            dropDowns($con1, $inventoryLocation); //updated 4/24/18 moved the code into the dropDowns function in phpFunctions.php
                         ?>
                     </select>
                 </li>

@@ -206,10 +206,13 @@ function submitFinal()
                 json: jsonString
             },
             error: function (xhr, ajaxOptions, thrownError){
-                       alert(xhr.status);
+                       console.log(xhr.status);
                        console.log(xhr.responseText);
-                       alert(thrownError);
+                       console.log(thrownError);
                     },
+            success: function (){
+                alertModal("alert", "Success", "Transfers were successfully submitted.");
+            },
             timeout: 5000
         }).done(function(results)
         {
@@ -386,6 +389,7 @@ function getInfoFromTag(str)
         }
     }).done(function(results)
     {
+        console.log(results);
         $('#IDAdd').val(cleanId($('#IDAdd').val()));
 
         if (results.trim() != 'error' && results.trim() != '')

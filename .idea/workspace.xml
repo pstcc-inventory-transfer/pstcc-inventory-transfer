@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e423e2c4-0222-41cd-b26f-6e7fbd742be3" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PPDB.accdb" beforeDir="false" afterPath="$PROJECT_DIR$/PPDB.accdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addTransfers.php" beforeDir="false" afterPath="$PROJECT_DIR$/addTransfers.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory-transfer.php" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-transfer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventoryScan.php" beforeDir="false" afterPath="$PROJECT_DIR$/inventoryScan.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory_scan.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventory_scan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/m.inventory-transfer.php" beforeDir="false" afterPath="$PROJECT_DIR$/m.inventory-transfer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/manipulate_transfers.js" beforeDir="false" afterPath="$PROJECT_DIR$/manipulate_transfers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phpFunctions.php" beforeDir="false" afterPath="$PROJECT_DIR$/phpFunctions.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -13,20 +21,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="scanner.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/barcode/scanner.js">
+      <file leaf-file-name="phpFunctions.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/phpFunctions.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" selection-start-line="7" selection-end-line="7" selection-end-column="101" />
+            <state relative-caret-position="238">
+              <caret line="14" column="88" lean-forward="true" selection-start-line="14" selection-start-column="88" selection-end-line="14" selection-end-column="88" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="phpFunctions.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/phpFunctions.php">
+      <file leaf-file-name="inventoryScan.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/inventoryScan.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="25" lean-forward="true" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
+            <state relative-caret-position="285">
+              <caret line="42" column="51" selection-start-line="42" selection-start-column="51" selection-end-line="42" selection-end-column="51" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="inventory_scan.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/inventory_scan.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret lean-forward="true" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -40,11 +60,23 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="manipulate_transfers.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/manipulate_transfers.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="6443">
+              <caret line="379" column="26" selection-start-line="379" selection-start-column="26" selection-end-line="379" selection-end-column="26" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="inventory-transfer.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/inventory-transfer.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="8" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
+            <state relative-caret-position="323">
+              <caret line="100" column="30" lean-forward="true" selection-start-line="100" selection-start-column="30" selection-end-line="100" selection-end-column="30" />
               <folding>
                 <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -62,35 +94,26 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="m.inventory-transfer.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/m.inventory-transfer.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="659">
+              <caret line="97" column="140" selection-start-line="97" selection-start-column="140" selection-end-line="97" selection-end-column="140" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="addTransfers.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/addTransfers.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+            <state relative-caret-position="340">
+              <caret line="30" column="39" lean-forward="true" selection-start-line="30" selection-start-column="39" selection-end-line="30" selection-end-column="39" />
               <folding>
                 <element signature="e#6#119#0#PHP" expanded="true" />
+                <element signature="n#generatePDF#0;n#!!top" />
+                <element signature="n#FancyTable#0;n#!!top" />
+                <element signature="n#createTitle#0;n#!!top" />
                 <element signature="n#formatAndGenerateRow#0;n#!!top" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="email.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/email.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="36" column="32" lean-forward="true" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="manipulate_transfers.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manipulate_transfers.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="216" column="21" lean-forward="true" selection-start-line="216" selection-start-column="21" selection-end-line="216" selection-end-column="21" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -105,20 +128,23 @@
       <find>submit</find>
       <find>Final</find>
       <find>q</find>
-      <find>custo</find>
-      <find>custodian</find>
       <find>cus</find>
       <find>desktop</find>
       <find>margin</find>
-      <find>date</find>
-      <find>get</find>
       <find>//</find>
       <find>/*</find>
       <find>insert</find>
       <find>content</find>
-      <find>close</find>
       <find>*/</find>
       <find>there was</find>
+      <find>close</find>
+      <find>custo</find>
+      <find>custodian</find>
+      <find>room</find>
+      <find>serial</find>
+      <find>date</find>
+      <find>get</find>
+      <find>info</find>
     </findStrings>
     <replaceStrings>
       <replace>_POST</replace>
@@ -147,13 +173,16 @@
       <list>
         <option value="$PROJECT_DIR$/db_connection.php" />
         <option value="$PROJECT_DIR$/manipulate_transfers_desktop.js" />
-        <option value="$PROJECT_DIR$/phpFunctions.php" />
         <option value="$PROJECT_DIR$/desktop.php" />
         <option value="$PROJECT_DIR$/desktop.php" />
         <option value="$PROJECT_DIR$/style/desktop.css" />
-        <option value="$PROJECT_DIR$/inventory-transfer.php" />
-        <option value="$PROJECT_DIR$/manipulate_transfers.js" />
         <option value="$PROJECT_DIR$/addTransfers.php" />
+        <option value="$PROJECT_DIR$/manipulate_transfers.js" />
+        <option value="$PROJECT_DIR$/inventoryScan.php" />
+        <option value="$PROJECT_DIR$/inventory-transfer.php" />
+        <option value="$PROJECT_DIR$/m.inventory-transfer.php" />
+        <option value="$PROJECT_DIR$/phpFunctions.php" />
+        <option value="$PROJECT_DIR$/inventory_scan.js" />
       </list>
     </option>
   </component>
@@ -284,19 +313,19 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="127171000" />
+    <option name="totallyTimeSpent" value="154466000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <layout>
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.3293011" />
-      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3293011" />
+      <window_info anchor="bottom" id="TODO" order="10" />
+      <window_info anchor="bottom" id="Messages" order="20" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50064266" side_tool="true" weight="0.3293011" />
+      <window_info anchor="bottom" id="Database Changes" order="14" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.4993573" weight="0.3293011" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.3293011" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15884861" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.3293011" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19151671" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3293011" />
@@ -304,47 +333,24 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Docker" order="15" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15519765" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="TODO" order="13" />
+      <window_info anchor="bottom" id="Version Control" order="16" />
+      <window_info anchor="bottom" id="Run" order="4" />
+      <window_info anchor="bottom" id="Database Changes" order="19" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="bottom" id="Messages" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.329718" />
+      <window_info anchor="bottom" id="Event Log" order="17" side_tool="true" />
+      <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
+      <window_info anchor="bottom" id="Debug" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Terminal" order="18" weight="0.329718" />
       <window_info id="Favorites" order="2" side_tool="true" />
     </layout>
-    <layout-to-restore>
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15745501" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.3293011" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.329718" />
-      <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.329718" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Messages" order="11" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -364,35 +370,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/addTransfers.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1224">
-          <caret line="94" column="21" selection-start-line="94" selection-start-column="21" selection-end-line="94" selection-end-column="21" />
-          <folding>
-            <element signature="e#6#119#0#PHP" expanded="true" />
-            <element signature="n#formatAndGenerateRow#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/desktop.php" />
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="69" column="19" selection-start-line="69" selection-start-column="19" selection-end-line="69" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manipulate_transfers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="168" column="18" selection-start-line="168" selection-start-column="18" selection-end-line="168" selection-end-column="18" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/phpFunctions.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -406,6 +383,9 @@
           <caret line="47" column="45" selection-start-line="47" selection-start-column="45" selection-end-line="47" selection-end-column="45" />
           <folding>
             <element signature="e#6#119#0#PHP" expanded="true" />
+            <element signature="n#generatePDF#0;n#!!top" />
+            <element signature="n#FancyTable#0;n#!!top" />
+            <element signature="n#createTitle#0;n#!!top" />
             <element signature="n#formatAndGenerateRow#0;n#!!top" />
           </folding>
         </state>
@@ -434,6 +414,9 @@
         <state>
           <folding>
             <element signature="e#6#119#0#PHP" expanded="true" />
+            <element signature="n#generatePDF#0;n#!!top" />
+            <element signature="n#FancyTable#0;n#!!top" />
+            <element signature="n#createTitle#0;n#!!top" />
             <element signature="n#formatAndGenerateRow#0;n#!!top" />
           </folding>
         </state>
@@ -462,6 +445,9 @@
         <state>
           <folding>
             <element signature="e#6#119#0#PHP" expanded="true" />
+            <element signature="n#generatePDF#0;n#!!top" />
+            <element signature="n#FancyTable#0;n#!!top" />
+            <element signature="n#createTitle#0;n#!!top" />
             <element signature="n#formatAndGenerateRow#0;n#!!top" />
           </folding>
         </state>
@@ -523,6 +509,9 @@
           <caret line="51" column="12" selection-start-line="51" selection-start-column="12" selection-end-line="51" selection-end-column="12" />
           <folding>
             <element signature="e#6#119#0#PHP" expanded="true" />
+            <element signature="n#generatePDF#0;n#!!top" />
+            <element signature="n#FancyTable#0;n#!!top" />
+            <element signature="n#createTitle#0;n#!!top" />
             <element signature="n#formatAndGenerateRow#0;n#!!top" />
           </folding>
         </state>
@@ -646,10 +635,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/phpFunctions.php">
+    <entry file="file://$PROJECT_DIR$/email.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="25" lean-forward="true" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
+        <state relative-caret-position="612">
+          <caret line="36" column="32" lean-forward="true" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/barcode/scanner.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="7" selection-start-line="7" selection-end-line="7" selection-end-column="101" />
         </state>
       </provider>
     </entry>
@@ -660,10 +656,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/inventory_scan.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inventoryScan.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="42" column="51" selection-start-line="42" selection-start-column="51" selection-end-line="42" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/phpFunctions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="88" lean-forward="true" selection-start-line="14" selection-start-column="88" selection-end-line="14" selection-end-column="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manipulate_transfers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6443">
+          <caret line="379" column="26" selection-start-line="379" selection-start-column="26" selection-end-line="379" selection-end-column="26" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/inventory-transfer.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="8" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
+        <state relative-caret-position="323">
+          <caret line="100" column="30" lean-forward="true" selection-start-line="100" selection-start-column="30" selection-end-line="100" selection-end-column="30" />
           <folding>
             <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -680,29 +710,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/email.php">
+    <entry file="file://$PROJECT_DIR$/m.inventory-transfer.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="36" column="32" lean-forward="true" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manipulate_transfers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="216" column="21" lean-forward="true" selection-start-line="216" selection-start-column="21" selection-end-line="216" selection-end-column="21" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
+        <state relative-caret-position="659">
+          <caret line="97" column="140" selection-start-line="97" selection-start-column="140" selection-end-line="97" selection-end-column="140" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/addTransfers.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        <state relative-caret-position="340">
+          <caret line="30" column="39" lean-forward="true" selection-start-line="30" selection-start-column="39" selection-end-line="30" selection-end-column="39" />
           <folding>
             <element signature="e#6#119#0#PHP" expanded="true" />
+            <element signature="n#generatePDF#0;n#!!top" />
+            <element signature="n#FancyTable#0;n#!!top" />
+            <element signature="n#createTitle#0;n#!!top" />
             <element signature="n#formatAndGenerateRow#0;n#!!top" />
           </folding>
         </state>

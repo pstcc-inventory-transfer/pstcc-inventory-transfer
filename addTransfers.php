@@ -67,7 +67,7 @@ else
 function insertTransfers($con, $sqlStatement)
 {
     Try {
-      if ( !odbc_exec( $con, $sqlStatement )){
+      if ( !@odbc_exec( $con, $sqlStatement )){
           throw new InsertException( odbc_errormsg($con)." The tables could be locked by other users or forms.");
       } else {
           return true;
@@ -86,6 +86,20 @@ function pnumLookUp($con, $newName) {
     foreach($reply as $value){
         return $value;
     }
+}
+
+function iNumIncrease($con) {
+
+    $iNumNew = "SELECT Instance FROM tblTransTemp;";
+    $iNumAnsr = odbc_exec($con, $iNumNew);
+    $rows = array();
+    while($reply = odbc_fetch_array($iNumAnsr))
+    {
+        $rows[] = $reply;
+    }
+    $sorted = rsort($rows);
+    echo $sorted[0];
+    return $sorted[0];
 }
 
 function generatePDF($jsonArr)

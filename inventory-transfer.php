@@ -5,7 +5,6 @@
 <?php
     session_start();
     include("phpFunctions.php");
-    $con1 = connectToDB();
 
     if (!$_SESSION['auth'])
     {
@@ -37,15 +36,8 @@
                 <li>
                     <select class="form-control" id="technician">
                     <?php
-                        $query = "SELECT techName FROM tblTech order by techName asc;";
-                        $options = queryDB( $con1, $query );
-
-                        foreach ($options as $row) {
-                            foreach ($row as $value) {
-                                echo "<option>" . $value . "</option>";
-                            }
-                        }
-                   ?>
+                        dropDowns($con1, $techNames); //updated 4/24/18 moved the code into the dropDowns function in phpFunctions.php
+                    ?>
                     </select>
                 </li>
 
@@ -102,17 +94,10 @@
                     <div class="form-group" >
                         <h4>New Room</h4>
                         <select class="form-control selectpicker" id="newRoom" data-show-subtext="true"
-                                data-live-search="true">                          
+                                data-live-search="true">
                             <option value="none" selected disabled>Please choose owner...</option>
                             <?php
-                            $query = "SELECT Field1 FROM Inventory_location_lookup order by Field1 asc;";
-                            $options = queryDB( $con1, $query );
-
-                            foreach ($options as $row) {
-                                foreach ($row as $value) {
-                                    echo "<option>" . $value . "</option>";
-                                }
-                            }
+                                dropDowns($con1, $roomNumbers); //updated 4/24/18 moved the code into the dropDowns function in phpFunctions.php
                             ?>
                         </select>
                     </div>
@@ -125,16 +110,8 @@
                                 data-live-search="true">
                             <option value="none" selected disabled>Please choose owner...</option>
                             <?php
-                            $query = "SELECT DISTINCT [NAME] FROM dbo_tblCustodians order by [NAME] asc;";
-                            $options = queryDB( $con1, $query );
-
-                            foreach ($options as $row) {
-                                foreach ($row as $value) {
-                                    echo "<option>" . $value . "</option>";
-                                }
-                            }
+                                dropDowns($con1, $custodianNames); //updated 4/24/18 moved the code into the dropDowns function in phpFunctions.php
                             ?>
-
                         </select>
                     </div>
 
@@ -144,16 +121,8 @@
                                 data-live-search="true">
                             <option value="none" selected disabled>Please choose dept...</option>
                             <?php
-                            $query = "SELECT Field1 FROM tblDepts order by Field1 asc;";
-                            $options = queryDB( $con1, $query );
-
-                            foreach ($options as $row) {
-                                foreach ($row as $value) {
-                                    echo "<option>" . $value . "</option>";
-                                }
-                            }
+                                dropDowns($con1, $departments); //updated 4/24/18 moved the code into the dropDowns function in phpFunctions.php
                             ?>
-
                         </select>
                     </div>
                 </div>
@@ -195,7 +164,7 @@
     </div>
 </div>
 <!-- Add Modal end -->
-        
+
 <div id="alertModal" class="modal fade" role="dialog" style="color: black; text-align: left;">
     <div class="modal-dialog">
         <!-- Modal content-->

@@ -27,22 +27,8 @@ form
 {
 margin-top: 20px;
 }
-
-.form-group {
-  text-align: left;
-  width: 100%;
-}
-.form-control {
-  width: 100%;
-}
-h5 {
-  text-align: left;
-}
-.input-group {
-  width: 100%;
-}
 #div_transfer {
-  margin: 0;
+  margin: 0; 
   padding: 0;
 }
 .col-centered
@@ -64,6 +50,7 @@ float: none;
     color: white;
     background-color: #33b5e5;
  }
+
 .alert-header
 {
     background-color: #ff4444;
@@ -74,24 +61,8 @@ float: none;
     max-width: 400px;
     margin: auto;
     margin-top: 30px;
-    color: black;
-    text-align: left;
 }
 
-#alertModal > .modal-body {
-  text-align: right;
-}
-#reset_modal {
-  color: black;
-}
-
-#reset_modal > .modal-body {
-  text-align: center;
-}
-#forgot_password {
-  color: white;
-  margin-top: 10px;
-}
 #login-panel
 {
 margin: 0 auto;
@@ -101,9 +72,6 @@ padding: 10px 60px 20px 60px;
 border-radius: 30px;
 border: 2px solid #fcd955;
 width: 50%;
-}
-#submit {
-  margin-top: 15px;
 }
 @media screen and (max-width: 768px) {
     body {

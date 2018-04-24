@@ -37,16 +37,16 @@ function generateWorkingList()
 			function(element, index)
 			{
 				var item = 
-				{
+				{	//updated 4/24/18 I changed the names to match the tblInventory table.
 					itemID: element['TAG'],
-					serialNum: element['Serial Number'],
-					aquiredDate: element['Aquired Date'],
-					custodian: element['Custodian'],
+					serialNum: element['SerialNumber'],
+					aquiredDate: element['Date'],
+					custodian: element['Owner'],
 					description: element['Description'],
 					roomNum: element['Location'],
 					make: element['Make'],
 					model: element['Model'],
-					price: element['Price'],
+					price: element['Cost'],
 					actQuantity: 0
 				};
 			
@@ -110,17 +110,17 @@ function updateInventory(str)
 				(
 					function(element, index)
 					{
-						var item = 
-						{
-							itemID: element['TAG'],
-							serialNum: element['Serial Number'],
-							aquiredDate: element['Aquired Date'],
-							custodian: element['Custodian'],
-							description: element['Description'],
-							roomNum: element['Location'],
-							make: element['Make'],
-							model: element['Model'],
-							price: element['Price']
+						var item =
+						{	//updated 4/24/18 I changed the names to match the tblInventory table.
+                            itemID: element['TAG'],
+                            serialNum: element['SerialNumber'],
+                            aquiredDate: element['Date'],
+                            custodian: element['Owner'],
+                            description: element['Description'],
+                            roomNum: element['Location'],
+                            make: element['Make'],
+                            model: element['Model'],
+                            price: element['Cost']
 						};
 					
 						foundArr.push(item);
