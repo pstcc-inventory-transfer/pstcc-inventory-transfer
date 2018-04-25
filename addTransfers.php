@@ -37,7 +37,6 @@ if (isset($_POST['json']))
             $model = $string['model'];
             $from = $string['preRoom'];
             $previous = $string['preOwner'];
-            $deptFrom = $string['preDept'];
             $to = $string['newRoom'];
             $new = $string['newOwner'];
             $newOwnerPnum = pnumLookUp($dbCon, $string['newOwner']);
@@ -46,8 +45,8 @@ if (isset($_POST['json']))
             $instance = $i;
             $instanceID = "{$tag}{$to}".date("jdY");
 
-            $sql =  "INSERT INTO tblTransTemp(Tech, [Date], Tag, Model, [From], Previous, DeptFrom, [To], New, NewOwnerPnum, DeptTo, Notes, Instance, InstanceID) VALUES (
-                    '$tech', $date, '$tag', '$model', '$from', '$previous', '$deptFrom', '$to', '$new', '$newOwnerPnum', '$deptTo', '$notes', $instance, '$instanceID');";
+            $sql =  "INSERT INTO tblTransTemp(Tech, [Date], Tag, Model, [From], Previous, [To], New, NewOwnerPnum, DeptTo, Notes, Instance, InstanceID) VALUES (
+                    '$tech', $date, '$tag', '$model', '$from', '$previous', '$to', '$new', '$newOwnerPnum', '$deptTo', '$notes', $instance, '$instanceID');";
 
             if (insertTransfers($dbCon, $sql) == true)
             {
