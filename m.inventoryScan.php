@@ -32,27 +32,20 @@
 
         <nav class="navbar navbar-default navbar-fixed-top" >
           <div class="container-fluid">
-            <div class="navbar-header">
-              <a class="navbar-brand" style="height: 100px;"><img style="height: 100%;" src="img_assets/pelli_full.svg"/></a>
-            </div>
             <ul class="nav navbar-nav">
                 <li>
-                    <select class="form-control"  style="width: 62.5%;" id="roomSelection">
-                        <!-- possibly make this auto-filled with database stuff -->
+                    <select class="form-control" id="roomSelection">
                         <?php
                             dropDowns($con1, $inventoryLocation); //updated 4/24/18 moved the code into the dropDowns function in phpFunctions.php
                         ?>
                     </select>
                 </li>
 
-				<li><input type='text' style="display: none; text-transform: uppercase; height:33px" id='inputBox' onkeyup="updateInventory(this.value)"/></li>
+				<li><input type='text' id='inputBox' onkeyup="updateInventory(this.value)"/></li>
                 <li id="generateListBtn"><button class="btn btn-success btn-block" onclick="generateWorkingList()">Generate Inventory List</button></li>
-				<li id="resetBtn" style="display: none;"><button class="btn btn-success btn-block" onclick="restartRoomSelection()">Select Another Room</button></li>
-
+				<li id="resetBtn"><button class="btn btn-success btn-block" onclick="restartRoomSelection()">Select Another Room</button></li>
+                <li id="logBtn"><button class="btn btn-danger btn-block" onclick="window.location.href='logout.php'">Logout</button></li>
 			  </ul>
-              <ul class="nav navbar-nav navbar-right">
-                <li><button class="btn btn-danger btn-block" style="width: 62.5%;" onclick="window.location.href='logout.php'">Logout</button></li>
-              </ul>
           </div>
         </nav>
 
@@ -75,7 +68,7 @@
         <script src="manipulate_transfers.js"></script>
 		<script src="m.inventory_scan.js"></script>
 
-		<div id="alertModal" class="modal fade" role="dialog" style="color: black; text-align: left;">
+		<div id="alertModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
