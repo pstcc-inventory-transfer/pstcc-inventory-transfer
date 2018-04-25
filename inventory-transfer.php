@@ -1,5 +1,7 @@
 <!-- Designer(s): Jon Knight
-  -- Date last modified: 2/2/2018
+  -- Date last modified: 4/25/2018
+  -- Modifed by: Mathew Ratliff
+  -- Reason: Changes to look and fixes to navbar.
   -- Dependices: Stylesheet = "desktop.css"
   -->
 <?php
@@ -30,7 +32,7 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand"><img src="img_assets/pelli_full.svg"/></a>
+                <a class="navbar-brand"><img src="img_assets/pelli_full.svg"></a>
             </div>
             <ul class="nav navbar-nav">
                 <li>
@@ -45,7 +47,7 @@
                 <li id="sub_btn"><button class="btn btn-success btn-block" onclick="submitFinal()">Submit Transfer</button></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
-                <li id="log_btn"<button class="btn btn-danger btn-block" onclick="window.location.href='logout.php'">Logout</button></li>
+                <li id="log_btn"><button class="btn btn-danger btn-block" onclick="window.location.href='logout.php'">Logout</button></li>
               </ul>
           </div>
         </nav>
