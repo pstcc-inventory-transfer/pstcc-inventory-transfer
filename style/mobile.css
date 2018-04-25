@@ -5,7 +5,7 @@
  */
 body
 {
-    background-color: ghostwhite;
+    background-color: white;
 }
 td
 {
@@ -29,8 +29,8 @@ td
     background-color: #0066cc;
     border-color: #fcd955;
     border-bottom-width: medium;
-    border-left-width: medium;
-    border-right-width: medium;
+    border-left-width: 0px;
+    border-right-width: 0px;
     border-top-width: 0px;
     border-bottom-style: solid;
     border-bottom-left-radius: 10px;
