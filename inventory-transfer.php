@@ -85,13 +85,13 @@
             <div class="modal-body container-fluid">
 
                 <div class="col-sm-6">
-                    <div class="form-group" >
+                    <div class="form-group">
                         <h4>PSCC ID#</h4>
                         <input class="form-control" name="ID" id="IDAdd" placeholder="Please enter/scan ID"
                                onkeyup="getInfoFromTag(this.value)">
                     </div>
 
-                    <div class="form-group" >
+                    <div class="form-group">
                         <h4>New Room</h4>
                         <select class="form-control selectpicker" id="newRoom" data-show-subtext="true"
                                 data-live-search="true">
@@ -142,10 +142,12 @@
                 </div>
 
                 <div class="col-sm-6">
-                  <div class="form-group" >
-                      <h4>Previous Room</h4>
-                      <input class="form-control" id="pre_room" name="pre_room" readonly>
-                  </div>
+                    <div class="form-group">
+                        <h4>Previous Room</h4>
+                        <input class="form-control" id="pre_room" name="pre_room" readonly>
+                    </div>
+                </div>
+                <div class="col-sm-6">
                   <div class="form-group" >
                       <h4>Previous Owner</h4>
                       <input class="form-control" id="pre_owner" name="pre_owner" readonly>
@@ -173,7 +175,6 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title" id="alert-modal-title"></h4>
             </div>
-            
             <div class="modal-body">
                 <p id="alert-modal-body"></p>
             </div>
