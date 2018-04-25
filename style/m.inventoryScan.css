@@ -30,13 +30,22 @@ td
 {
     margin-top: 100px;
 }
-
 .navbar
 {
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+.navbar-default
+{
     background-color: #0066cc;
-    border-bottom: solid medium #fcd955;
-    border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 25px;
+    border-color: #fcd955;
+    border-bottom-width: medium;
+    border-left-width: 0px;
+    border-right-width: 0px;
+    border-top-width: 0px;
+    border-bottom-style: solid;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .navbar-nav > li
@@ -51,21 +60,15 @@ td
     height: 100px;
 }
 
-.navbar-brand img
-{
-    height: 100%;
+#inputBox {
+    display: none;
+    text-transform: uppercase;
+    height: 33px;
 }
-#add_btn
-{
-    margin-left: 25px;
-}
-#sub_btn
-{
-    margin-left: 50px;
-}
-#log_btn
-{
-    margin-right: 50px;
+#resetBtn {
+    display: none;
+    margin: 0 auto;
+    padding: 0;
 }
 
 form-group
@@ -130,18 +133,17 @@ form-group
 #inputBox
 {
 	 border-radius: 5px;
-	 width: 63%;
+     margin: 0 3px;
+     padding: 0;
 }
-#generateListBtn
+.navbar-nav > li
 {
-	width: 60%;
-}
-#resetBtn
-{
-	width: 60%;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 #inventoryScanTable
 {
-	margin-top:200px
+	margin-top: 15%;
 }
