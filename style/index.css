@@ -77,6 +77,12 @@ form
     border: 2px solid #fcd955;
     width: 50%;
 }
+#forgot_password {
+  color: black;
+}
+#resetModal {
+  color: black;
+}
 @media screen and (max-width: 768px)
 {
     body
