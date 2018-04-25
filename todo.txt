@@ -1,7 +1,0 @@
-TO DO:
-
-Fix header on PDF
-Fix typo on PDF
-Display correct RN when scanning an item not in room
-Create globals for something
-Make IP dynamic instead of hardcoded
