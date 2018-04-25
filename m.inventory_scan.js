@@ -173,12 +173,7 @@ function refreshInventoryTable()
 			   `<tr id="` + index + `">
 				  <td>` + element.itemID + `</td>
 				  <td>` + element.serialNum + `</td>
-				  <td>` + element.custodian + `</td>
 				  <td>` + element.roomNum + `</td>
-				  <td>` + element.make + `</td>
-				  <td>` + element.model + `</td>
-				  <td>` + element.price + `</td>
-				  <td>` + element.description + `</td>
 				  <td>` + cleanDate(element.aquiredDate) + `</td>
 			    </tr>`;
 
