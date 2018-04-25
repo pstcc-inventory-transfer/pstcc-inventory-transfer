@@ -147,23 +147,6 @@ function deleteTransfer(button)
     }
 }
 
-function removeOld()
-{
-  if (filename === "inventory-transfer.php")
-  {
-    $('tbody').empty();
-    transfersArray = [];
-    console.log(transfersArray.length);
-    refreshListDesktop();
-  }
-  else
-  {
-      $('.mobile .panel').empty();
-      transfersArray = [];
-      refreshListMobile();
-  }
-}
-
 // * Called when user presses the edit button.
 //
 // * Stores the index of the object in a global variable.
@@ -206,12 +189,21 @@ function submitFinal()
             {
                 json: jsonString
             },
-            error: function (xhr, ajaxOptions, thrownError)
+            error: function ()
             {
-                       console.log(xhr.status);
-                       console.log(xhr.responseText);
-                       console.log(thrownError);
-                    },
+                if (filename === "inventory-transfer.php")
+                {
+                    transfersArray = [];
+                    refreshListDesktop();
+                }
+                else
+                {
+                    transfersArray = [];
+                    refreshListMobile();
+                }
+
+                alertModal("alert", "Success", "Transfers were successfully submitted.");
+            },
             success: function ()
             {
                 alertModal("alert", "Success", "Transfers were successfully submitted.");
