@@ -41,7 +41,7 @@
                     </select>
                 </li>
 
-				        <li id="inputBox"><input type='text' onkeyup="updateInventory(this.value)"/></li>
+				        <li id="inputBox"><input type='text' style="width:94.8%;" onkeyup="updateInventory(this.value)"/></li>
                 <li id="generateListBtn"><button class="btn btn-success btn-block" onclick="generateWorkingList()">Generate Inventory List</button></li>
 				        <li id="resetBtn"><button class="btn btn-success btn-block" onclick="restartRoomSelection()">Select Another Room</button></li>
                 <li id="logBtn"><button class="btn btn-danger btn-block" onclick="window.location.href='logout.php'">Logout</button></li>

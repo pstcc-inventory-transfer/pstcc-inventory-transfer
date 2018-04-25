@@ -62,7 +62,6 @@ function updateInventory(str)
 {
 	foundArr = [];
 	str = cleanId(str);
-	console.log(str);
 	var errorFlag = 0;
 
 	roomInventoryArray.forEach

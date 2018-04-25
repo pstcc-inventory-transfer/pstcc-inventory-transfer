@@ -59,12 +59,6 @@ td
 {
     height: 100px;
 }
-
-#inputBox {
-    display: none;
-    text-transform: uppercase;
-    height: 33px;
-}
 #resetBtn {
     display: none;
     padding: 0;
@@ -128,12 +122,12 @@ form-group
 {
     background-color: rgba(252, 217, 85, 0.85);
 }
-
-#inputBox
-{
-	 border-radius: 5px;
-     margin: 0 3px;
-     padding: 0;
+#inputBox {
+    display: none;
+    text-transform: uppercase;
+    height: 33px;
+	border-radius: 5px;
+	width: 	100%;
 }
 .navbar-nav > li
 {
