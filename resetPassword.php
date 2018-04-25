@@ -205,7 +205,7 @@
         else
         {
             echo "It doesn't appear this link is valid. Please ensure you've receieved this email today.";
-            echo "<br>\"".exec('.\verification\scramblerVerify.exe -e "'.$pwdDB.$today.'"')."\"<br>\"".$pwdDateHash.'<br>'.$today;
+            //echo "<br>\"".exec('.\verification\scramblerVerify.exe -e "'.$pwdDB.$today.'"')."\"<br>\"".$pwdDateHash.'<br>'.$today;
             //exec('echo "'.$pwdDateHash.'" > .\verification\test.txt');
         }
     }
