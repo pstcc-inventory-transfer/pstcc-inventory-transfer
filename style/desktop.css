@@ -30,7 +30,12 @@ td
 {
     margin-top: 100px;
 }
-
+.navbar-brand {
+  height: 100px;
+}
+img {
+  height: 100%;
+}
 .navbar
 {
     background-color: #0066cc;
@@ -82,7 +87,6 @@ form-group
 {
     background-color: rgba(0, 255, 0, 0.3);
 }
-
 .modal-header
 {
     padding:9px 15px;

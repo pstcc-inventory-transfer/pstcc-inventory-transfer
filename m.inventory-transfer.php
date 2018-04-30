@@ -64,7 +64,8 @@
                 <h4 class="modal-title">Transfer Details</h4>
               </div>
               <div class="modal-body">
-                <div class="form-group" >
+                  
+                <div class="form-group">
                     <h4>PSCC ID#</h4>
                     <div class="input-group">
                         <input class="form-control" name="ID" id="IDAdd" placeholder="Please enter/scan ID" value="" onkeyup="getInfoFromTag(this.value)">
@@ -72,7 +73,7 @@
                     </div>
                 </div>
 
-                <div class="form-group" >
+                <div class="form-group">
                     <h4>New Room</h4>
                     <select id="newRoom" class="form-control selectpicker" data-show-subtext="true" data-live-search="true">
                         <option value="none" selected disabled>Please choose room...</option>
@@ -81,7 +82,8 @@
                         ?>
                     </select>
                 </div>
-                <div class="form-group" >
+                  
+                <div class="form-group">
                     <h4>New Owner</h4>
                     <select id="newOwner" class="form-control selectpicker" data-show-subtext="true" data-live-search="true">
                         <option value="none" selected disabled>Please choose owner...</option>
@@ -90,7 +92,8 @@
                         ?>
                     </select>
                 </div>
-                <div class="form-group" >
+
+                <div class="form-group">
                     <h4>New Department</h4>
                     <select id="newDept" class="form-control selectpicker" data-show-subtext="true" data-live-search="true">
                         <option value="none" selected disabled>Please choose dept...</option>
