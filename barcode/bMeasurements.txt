@@ -1,0 +1,26 @@
+==brightness measurements:==
+[1] 172.4 (bright){
+multipliers:
+min - 1.79 (310 / average)
+max - 2.9 (500 / average)
+}
+
+[2] 145.4 (bright){
+min - 3.65 (532 / average)
+max - 3.8 (555 / average)
+}
+
+[3] 60.27 (dark){
+min - 3.69 (223 / average)
+max - 3.98 (240 / average)
+}
+
+[4] 69.8 (dark){
+min - 5.12 (358 / average)
+max - 8.86 (619 / average)
+}
+
+[5] 124 (bright){
+min - 1.2 (148 / average)
+max - 3 (374 / average)
+}

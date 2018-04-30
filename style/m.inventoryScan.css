@@ -1,0 +1,142 @@
+/*
+ * Designer(s): Jon Knight, Mathew Ratliff
+ * Date Last Edited: 3/04/2018
+ ****
+ * Reason for modification
+ * Changed what happens when addBtn is hovered over (darkens)
+ ****
+ * Dependencies: Stylesheet for "desktop.PHP".
+ */
+body
+{
+    background-color: white;
+}
+
+tr:hover >td
+{
+    filter: drop-shadow(3px 3px 5px rgba(0,0,0,.35));
+}
+td
+{
+    font-size: 14px;
+}
+
+.form-control
+{
+    min-width: 0px;
+}
+
+.content-main
+{
+    margin-top: 100px;
+}
+.navbar
+{
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+.navbar-default
+{
+    background-color: #0066cc;
+    border-color: #fcd955;
+    border-bottom-width: medium;
+    border-left-width: 0px;
+    border-right-width: 0px;
+    border-top-width: 0px;
+    border-bottom-style: solid;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.navbar-nav > li
+{
+    margin-top: 30px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.navbar-brand
+{
+    height: 100px;
+}
+#resetBtn {
+    display: none;
+    padding: 0;
+}
+
+form-group
+{
+    text-align: left;
+    margin: 0 auto;
+}
+.error
+{
+    background-color: rgba(255, 0, 0, 0.3);
+}
+
+.success
+{
+    background-color: rgba(0, 255, 0, 0.3);
+}
+
+.modal-header
+{
+    padding:9px 15px;
+    border-bottom:1px solid #eee;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color: white;
+    background-color: #33b5e5;
+}
+.modal-body
+{
+    text-align: center;
+}
+.alert-header
+{
+    background-color: #ff4444;
+}
+
+#alertModal > *
+{
+    color: black;
+    text-align: left;
+    max-width: 300px;
+    margin: auto;
+    margin-top: 30px;
+}
+#IDAdd
+{
+    text-transform: uppercase
+}
+#addBtn
+{
+    color: white;
+    background-color: #FCD955;
+}
+#addBtn:hover
+{
+    background-color: rgba(252, 217, 85, 0.85);
+}
+#inputBox {
+    display: none;
+    text-transform: uppercase;
+    height: 33px;
+	border-radius: 5px;
+	width: 	100%;
+}
+.navbar-nav > li
+{
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+#inventoryScanTable
+{
+	margin-top: 15%;
+}

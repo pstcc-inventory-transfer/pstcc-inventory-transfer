@@ -4,69 +4,204 @@
  * User: Jacob Simms
  * Date: 3/1/2018
  * Time: 8:40 PM
+ * Last Updated: 4/6/2018
  */
-include 'db_connection.php';
 
-//tblTransTemp
+include 'phpFunctions.php';
+include 'email.php';
+require 'fpdf/wordwrap.php';
+//Create DB exceptions
+class InsertException extends Exception{}
 
-$Tech = ''; //tech making the move
-$Date = ''; //date of transaction
-$Tag = ''; //Pellissippi Asset tag number
-$Model = ''; //model number
-$From = ''; //previous room
-$Previous = ''; //previous owner
-$DeptFrom = ''; //previous department
-$To = ''; //new room
-$New = ''; //new owner
-$NewOwnerPnum = ''; //new owners P number
-$DeptTo = ''; //new department
-$Notes = ''; //Notes
-$Instance = ''; //transfer number ????? maybe serial number
-$InstanceID = ''; //??????
-$Submit = ''; //????????
-$Hold = ''; // YES or NO are the only answers allowed
+//Create date format
+date_default_timezone_set("US/Eastern");
+
+
+//DB Connection
+$dbCon=connectToDB();
+
+$GLOBALS['readyToSend'] = false;
 
 //JSON Parsing and SQL insert statement string creator.
-   if (isset($_GET['json'])){
-     $json=json_decode($_GET['json'], true);
-     if ( is_array( $json )) {
-         foreach($json as $string) {
-             $i=0;
-             $Tech = 'You are';
-             //$Date = date(date_timestamp_get())      // figure out how to get data and time
-             $Tag = $json[$i]['itemID'];
-             $Model = $json[$i]['model'];
-             $From = $json[$i]['preRoom'];
-             $Previous = $json[$i]['preOwner'];
-             $DeptFrom = $json[$i]['preDept'];
-             $To = $json[$i]['newRoom'];
-             $New = $json[$i]['newOwner'];
-             $NewOwnerPnum = '';
-             $DeptTo = $json[$i]['newDept'];
-             $Notes = $json[$i]['notes'];
-             $Instance = $i + 1;
-             $InstanceID = $i + 1;
-             $Submit = '';
-             $Hold = 'Yes';
+if (isset($_POST['json']))
+{
+    $json=json_decode($_POST['json'], true);
+    if ( is_array( $json ))
+    {
+        $i = 1; //iNumIncrease($dbCon);
+        foreach($json as $string)
+        {
+            $tech = $string['technician'];
+            $date = 'date()';
+            $tag = $string['itemID'];
+            $model = $string['model'];
+            $from = $string['preRoom'];
+            $previous = $string['preOwner'];
+            $to = $string['newRoom'];
+            $new = $string['newOwner'];
+            $newOwnerPnum = pnumLookUp($dbCon, $string['newOwner']);
+            $deptTo = $string['newDept'];
+            $notes = $string['notes'];
+            $instance = $i;
+            $instanceID = "{$tag}{$to}".date("jdY");
 
-             $sql =  "INSERT INTO tblTransTemp(Tech, Tag, Model, [From], Previous, DeptFrom, [To], New, NewOwnerPnum, DeptTo, Notes, Instance, InstanceID, Submit, Hold) VALUES ('".$Tech."', '".$Tag."','".$Model."','".$From."','".$Previous."','".$DeptFrom."','".$To."','".$New."','".$NewOwnerPnum."','".$DeptTo."','".$Notes."','".$Instance."','".$InstanceID."','".$Submit."',".$Hold.")";
+            $sql =  "INSERT INTO tblTransTemp(Tech, [Date], Tag, Model, [From], Previous, [To], New, NewOwnerPnum, DeptTo, Notes, Instance, InstanceID) VALUES (
+                    '$tech', $date, '$tag', '$model', '$from', '$previous', '$to', '$new', '$newOwnerPnum', '$deptTo', '$notes', $instance, '$instanceID');";
 
-             insertTransfers($sql);
-         }
-     } else {
-         echo "ERROR in the is_array if statement.";
-     }
-   } else {
-       echo "No transfers to add";
+            if (insertTransfers($dbCon, $sql) == true)
+            {
+                $GLOBALS['readyToSend'] = true;
+            }
+        }
+    }
+    if($GLOBALS['readyToSend'])
+    {
+        echo 'true';
+        sendEmail($_POST['json'], (generatePDF($json)?true:false));
+    }
+}
+else
+{
+    echo "No transfers to add";
 }
 
-function insertTransfers($uname) {
-    $con=connectToDB();
+function insertTransfers($con, $sqlStatement)
+{
+    try
+    {
+      if ( !@odbc_exec( $con, $sqlStatement ))
+      {
+          throw new InsertException( odbc_errormsg($con)." The tables could be locked by other users or forms.");
+      } else
+      {
+          return true;
+      }
+  }
+  catch (InsertException $ex)
+  {
+      echo ' Error: '.$ex->getMessage();
+  }
+}
 
-    //$sql = "INSERT INTO dbo_tblCustodians(ID, NAME, FFBMAST_CUSTODIAN_PIDM) VALUES ('P1234567', '" . $uname ."', 12345)";
-echo $uname;
-    odbc_exec($con,$uname);
+function pnumLookUp($con, $newName)
+{
+    $pNumNew = "SELECT [ID] FROM dbo_tblCustodians where [NAME] = '".$newName."';";
+    $pNumAnsr = odbc_exec($con, $pNumNew);
+    $reply = odbc_fetch_array($pNumAnsr);
+    foreach($reply as $value){
+        return $value;
+    }
+}
 
+function iNumIncrease($con)
+{
+    $iNumNew = "SELECT Instance FROM tblTransTemp;";
+    $iNumAnsr = odbc_exec($con, $iNumNew);
+    $rows = array();
+    while($reply = odbc_fetch_array($iNumAnsr))
+    {
+        $rows[] = $reply;
+    }
+    $sorted = rsort($rows);
+    echo $sorted[0];
+    return $sorted[0];
+}
+
+function generatePDF($jsonArr)
+{
+	$pdf = new FPDF();
+	$pdf->AddPage();
+	createTitle($pdf);
+	$pdf->SetFont('Arial','B',6);
+
+	$header = array('Transfer Tech', 'PSCC ID', 'Model', 'Current Room', 'Current Owner', 'New Room', 'New Owner', 'New Dept.', 'Notes');
+
+	FancyTable($pdf, $header, $jsonArr);
+
+	$pdf->Output("./emailClient/transferlist.pdf", "F");
+
+	if(!file_exists("./emailClient/transferlist.pdf"))
+	{
+        echo "Failed to create pdf file.";
+        return false;
+    }
+    else return true;
+}
+
+function FancyTable($pdf, $header, $data)
+{
+    // Colors, line width and bold font
+    $pdf->SetFillColor(0,75,142);
+    $pdf->SetTextColor(255);
+    $pdf->SetDrawColor(128,0,0);
+    $pdf->SetLineWidth(.3);
+    $pdf->SetFont('','B');
+
+    // Header
+    $w = array(40, 35, 40, 45);
+    for($i=0;$i<count($header);$i++)
+        $pdf->Cell(21,7,$header[$i],1,0,'C',true);
+    $pdf->Ln();
+
+    // Color and font restoration
+    $pdf->SetFillColor(224,235,255);
+    $pdf->SetTextColor(0);
+    $pdf->SetFont('');
+
+    // Data
+    $fill = false;
+    foreach($data as $row)
+    {
+		formatAndGenerateRow($pdf, $fill, $row['technician'], 0);
+		formatAndGenerateRow($pdf, $fill, $row['itemID'], 0);
+		formatAndGenerateRow($pdf, $fill, $row['model'], 0);
+		formatAndGenerateRow($pdf, $fill, $row['preRoom'], 0);
+		formatAndGenerateRow($pdf, $fill, $row['preOwner'], 0);
+		formatAndGenerateRow($pdf, $fill, $row['newRoom'], 0);
+		formatAndGenerateRow($pdf, $fill, $row['newOwner'], 0);
+		formatAndGenerateRow($pdf, $fill, $row['newDept'], 0);
+		formatAndGenerateRow($pdf, $fill, $row['notes'], 1);
+
+		$pdf->Ln();
+		$fill = !$fill;
+    }
+
+    // Closing line
+    $pdf->Cell(array_sum($w),0,'','T');
+}
+
+function createTitle($pdf)
+{
+    // Logo
+    $pdf->Image('img_assets/pellissippilogo.png',5,5);
+    // Arial bold 15
+    $pdf->SetFont('Arial','B',15);
+    // Move to the right
+	$pdf->Ln(15);
+    $pdf->Cell(64);
+    // Title
+    $pdf->Cell(100,10,'Inventory Transfer List');
+    // Line break
+    $pdf->Ln(10);
+	$pdf->Cell(80);
+	// Date
+	$pdf->Cell(50,10,date("m/d/Y"));
+	$pdf->Ln(25);
+}
+
+function formatAndGenerateRow($pdf, $fill, $str, $isNotes)
+{
+	if(strlen($str) > 7)
+	{
+		if($isNotes == 1)
+			$strFormatted = (substr($str, 0, 13)) . '...';
+
+		else $strFormatted = substr($str, 0, 13);
+
+		$pdf->Cell(21,6,$strFormatted,'LRB',0,'L',$fill);
+	}
+
+	else $pdf->Cell(21,6,$str,'LRB',0,'L',$fill);
 }
 
 ?>

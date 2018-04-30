@@ -9,11 +9,13 @@ document.body.innerHTML+='<input id="ScannerJS" type="file" accept="image/*" sty
 
 //This activates bgGo(), and expects the output variable to be an "input" tag.
 //Why have this function? It allows an image request in virtually any scenario, not just when the user clicks on an input tag.
-function scan(output){
+function scan(output)
+{
     if(output == undefined)
          console.error("scan(): Please specifiy the insert tag you wish to output the barcode to.");
-    else{
-        var newFile=document.getElementById("ScannerJS");
+    else
+    {
+        var newFile=$("#ScannerJS")[0];
         newFile.onchange=function(){bgGo(output);};
         newFile.click();
     }
@@ -21,17 +23,26 @@ function scan(output){
 
 //launches the scanner, and if successful, places the result inside "value" attribute of inputTag.
 //WARNING! Anything in inputTag.value will be OVERWRITTEN!
-function bgGo(inputTag){
+function bgGo(inputTag)
+{
 
     //QuaggaJS:
-    Quagga.decodeSingle({
+    Quagga.decodeSingle(
+        {
         decoder:{
-        readers:["code_128_reader","ean_reader", "ean_8_reader"]
+        //As of this writing, pellissippi uses this barcode type for each machine:
+        readers:["code_128_reader"]
         },
-        src: URL.createObjectURL(document.getElementById("ScannerJS").files[0])
-  }, function(data) {
-      if (data) {
-          inputTag.value=data.codeResult.code;
+        src: URL.createObjectURL($("#ScannerJS")[0].files[0])
+  }, function(data)
+  {
+      if (data)
+      {
+          console.log(data);
+          inputTag.value=data.codeResult.code.split(' ');
+
+          getInfoFromTag(data.codeResult.code.split(' '));
+
           return
       }
       else

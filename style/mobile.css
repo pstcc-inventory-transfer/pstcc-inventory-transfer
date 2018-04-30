@@ -3,8 +3,9 @@
  * Date Last Edited: 2/2/2018
  * Dependencies: Stylesheet for "mobile.HTML/PHP".
  */
-body {
-  background-color: ghostwhite;
+body
+{
+    background-color: white;
 }
 td
 {
@@ -18,20 +19,22 @@ td
     color: black;
 }
 
-.navbar {
-  margin-top: 0px;
-  margin-bottom: 5px;
+.navbar
+{
+    margin-top: 0px;
+    margin-bottom: 5px;
 }
-.navbar-default {
-  background-color: #233b79;
-  border-color: #fcd955;
-  border-bottom-width: medium;
-  border-left-width: medium;
-  border-right-width: medium;
-  border-top-width: 0px;
-  border-bottom-style: solid;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+.navbar-default
+{
+    background-color: #0066cc;
+    border-color: #fcd955;
+    border-bottom-width: medium;
+    border-left-width: 0px;
+    border-right-width: 0px;
+    border-top-width: 0px;
+    border-bottom-style: solid;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .error
@@ -44,8 +47,41 @@ td
     background-color: rgba(0, 255, 0, 0.3);
 }
 
-select {
-  margin-top: -10px;
+.modal-header
+{
+    padding:9px 15px;
+    border-bottom:1px solid #eee;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color: white;
+    background-color: #33b5e5;
+ }
+
+.alert-header
+{
+    background-color: #ff4444;
+}
+
+#alertModal > *
+{
+    color: black;
+    text-align: left;
+    max-width: 400px;
+    margin: auto;
+    margin-top: 30px;
+}
+
+#alert_ModalBody {
+    text-align: center;
+}
+
+select
+{
+    margin-top: -10px;
 }
 .panel
 {
@@ -61,12 +97,15 @@ select {
 {
     font-size: 14px;
 }
-
-.form-group {
-  text-align: left;
-  margin: 0 auto;
+form-group
+{
+    text-align: left;
+    margin: 0 auto;
 }
-
+#IDAdd
+{
+    text-transform: uppercase;
+}
 #add-item
 {
     font-size: 17px;
@@ -91,17 +130,18 @@ select {
 
 .mobile
 {
-  background-image: url('../img_assets/pelli.svg');
-  background-size: 70% 90%;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 69%;
-  display: inherit;
-  overflow-y:scroll;
-  margin: 0px;
+    background-image: url('../img_assets/pelli.svg');
+    background-size: 70% 90%;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 69%;
+    display: inherit;
+    overflow-y:scroll;
+    margin: 0px;
 }
-#items {
-  opacity: 100%;
+#items
+{
+    opacity: 100%;
 }
 .navbar-nav > li
 {

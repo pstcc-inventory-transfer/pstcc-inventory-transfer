@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
+using System.Windows.Forms;
 
 /// <summary>
 /// Author: Zachary Mitchell
@@ -16,18 +17,24 @@ namespace scramblerVerify
 {
     class Program
     {
-        //The actual thing that get's scrambled. The program NEVER stores passwords ;)
-        static string test = "theQuickBrownFoxJumpsOverTheLazyDog";
+        static bool help = false;
+
+        //This is having issues from the command-line side... If you want to try your hand at this problem, set this program to a "Windows Application" in properties.
+
+        //This is needed to blend the command prompt and gui together.
+        //It was basically taken directly from: https://stackoverflow.com/questions/7198639/c-sharp-application-both-gui-and-commandline
+        /*[DllImport("kernel32.dll")]
+        static extern bool AttachConsole(int dwProcessId);
+        private const int ATTACH_PARENT_PROCESS = -1;*/
+
+        [STAThread]
         static void Main(string[] args)
         {
-            bool encrypt = false;
-            bool useFile = false;
-            bool removeWord = false;
-            string saveLocation = "";
+            //AttachConsole(ATTACH_PARENT_PROCESS);
+            string usage = "Usage:\n\nEncrypting: scramblerVerify.exe -e password [password2] [password3] [-f ./path/to/textFile]\nDecrypting: ./scramblerVerify.exe password scrambledString [scrambledString2] [scrambledString3] [-f ./path/to/textFile.txt]\n\nThis program can check a password amongst a \"database\" of phrases that only unlock with said password.\n\nSee included README.MD for more information.";
 
             bool gotFirstWord = false;
-            List<string> wordList = new List<string>();
-            string compare = "";
+            bool purgeOk = false;
 
             //Grabbing the flags and arguments
             for(int i = 0; i < args.Length; i++)
@@ -35,166 +42,118 @@ namespace scramblerVerify
                 switch (args[i])
                 {
                     case "-e":
-                        encrypt = true;
+                        setup.encrypt = true;
+                        break;
+                    case "-E":
+                        setup.encrypt = true;
+                        setup.verbose = true;
+                        break;
+                    case "-d":
+                        setup.decrypt = true;
                         break;
                     case "-f":
                         try {
-                            saveLocation = args[i + 1];
-                            useFile = true;
+                            setup.saveLocation = args[i + 1];
+                            setup.useFile = true;
+                            purgeOk = true;
                         }
                         catch (IndexOutOfRangeException)
                         {
                             Console.WriteLine("Error: No option given for the source file! Proceeding without an external file...");
                         }
                         break;
+                    case "-Z":
+                        setup.purge = true;
+                        try
+                        {
+                            if (setup.useFile || System.IO.File.Exists(args[i + 1]))
+                            {
+                                setup.saveLocation = args[i + 1];
+                                purgeOk = true;
+                            }
+                        }
+                        catch (IndexOutOfRangeException)
+                        {
+                        }
+                        break;
                     case "-r":
-                        removeWord = true;
+                        setup.removeWord = true;
+                        break;
+                    case "-p":
+                        setup.replaceWord = true;
+                        break;
+                    case "-h":
+                        help = true;
                         break;
                     default:
-                        if (args[i] != saveLocation)
+                        if (args[i] != setup.saveLocation)
                         {
                             if (!gotFirstWord)
                             {
-                                compare = args[i];
+                                setup.compare = args[i];
                                 gotFirstWord = true;
                             }
-                            else wordList.Add(args[i]);
+                            else setup.wordList.Add(args[i]);
                         }
                         break;
                 }
             }
-            if (removeWord)
-            {
-                //Guessing this should be removed as well:
-                wordList.Add(compare);
-                remove(saveLocation,test,wordList.ToArray());
-            }
-            else if (encrypt)
-            {
-                wordList.Add(compare);
 
-                if (useFile)
+            //Checking for spaces:
+            bool spaces = false;
+            foreach(string argument in args)
+            {
+                if (blackListCheck(argument))
                 {
-                    save(saveLocation, test, wordList.ToArray(),true);
-                }
-                else
-                {
-                    foreach(string word in wordList)
-                    {
-                        Console.WriteLine(enDecrypt(true,test,word));
-                    }
+                    spaces = true;
+                    break;
                 }
             }
+
+            if(setup.encrypt || setup.removeWord)
+                setup.wordList.Add(setup.compare);
+
+            if (help)
+            {
+                Console.WriteLine(usage);
+            }
+            else if (spaces)
+            {
+                Console.Write("Scrambler Verify: Invalid characters; see README.MD for more details.");
+            }
+
+            else if (setup.purge && !purgeOk)
+                Console.WriteLine("Error: No option given for the source file! See README.MD for more information on clearing a file.");
             else
             {
-                if (useFile)
-                    wordList.AddRange(load(saveLocation));
-                if (search(test, wordList.ToArray(),compare))
+                string output = setup.execute();
+                if (output == null)
                 {
-                    Console.WriteLine(true);
+                    //Start the gui!
+                    Console.WriteLine("scramblerVerify: The GUI is starting! If this wasn't intended, kill me with \"taskkill /IM scramblerVerify.exe\" (If you launched this in the command prompt, use CTRL + C)\n\nFor help, use \"scramblerVerify.exe -h\"");
+                    Application.EnableVisualStyles();
+                    Application.SetCompatibleTextRenderingDefault(false);
+                    Application.Run(new guiMain());
                 }
-                else Console.WriteLine(false);
+                else Console.Write(output);
             }
-
         }
-
-        public static string enDecrypt(bool encrypt, string input,string uuidGen)
+        static char[] blackList = { ' ', '\t', '"', '\'', '\\' };
+        public static bool blackListCheck(string text)
         {
-            string uuid = Uuid.generate(new Random(Uuid.txt2PsudoRandom(uuidGen)),true);
-            string result = input;
-            if (encrypt)
+            foreach (char character in text)
             {
-                result = Encrypt.scrambler(true, uuid, result);
-                result = Encrypt.fluctuate(true, uuid, result);
-                result = Encrypt.reverse(result);
-            }
-            else
-            {
-                result = Encrypt.reverse(result);
-                result = Encrypt.fluctuate(false, uuid, result);
-                result = Encrypt.scrambler(false, uuid, result);
-            }
-            return result;
-        }
-
-        public static void save(string location,string input,string[] uuidGen,bool keepEverything)
-        {
-            int i;
-            string[] everything = { };
-            if (keepEverything)
-                everything = load(location);
-
-            StreamWriter saveLocation = new StreamWriter(location);
-            if (keepEverything)
-            {
-                for (i = 0; i < everything.Length; i++)
+                for (int i = 0; i < blackList.Length; i++)
                 {
-                    saveLocation.WriteLine(everything[i]);
-                }
-            }
-
-            //Insert all input:
-            for (i = 0; i < uuidGen.Length; i++)
-            {
-                saveLocation.WriteLine(enDecrypt(true, input,uuidGen[i]));
-            }
-            saveLocation.Close();
-        }
-
-        public static void remove(string location,string input,string[] uuidGen)
-        {
-            string[] everything = load(location);
-
-            List<string> newList = new List<string>();
-            //remake the list with the requested strings ommited:
-            int j = 0;
-            for (int i = 0; i < everything.Length; i++)
-            {
-                bool copy = false;
-                for(j = 0; j < uuidGen.Length; j++)
-                {
-                    //Console.WriteLine(uuidGen[j]+":"+enDecrypt(true, input, uuidGen[j])+" | save entry:"+everything[i]);
-                    if(enDecrypt(true,input,uuidGen[j]) == everything[i])
+                    if (character == blackList[i])
                     {
-                        copy = true;
+                        return true;
                         break;
                     }
                 }
-                if (!copy)
-                {
-                    newList.Add(everything[i]);
-                }
-            }
-            //After sifting through all options, re-save:
-            save(location, input, newList.ToArray(),false);
-        }
-
-        public static string[] load(string location)
-        {
-            List<string> result = new List<string>();
-            try
-            {
-                StreamReader reader = File.OpenText(location);
-                while (!reader.EndOfStream)
-                {
-                    result.Add(reader.ReadLine());
-                }
-                reader.Close();
-            }
-            catch (FileNotFoundException ex)
-            {
-            }
-            return result.ToArray();
-        }
-
-        public static bool search(string needle, string[] haystack,string uuidGen)
-        {
-            foreach(string element in haystack)
-            {
-                if (enDecrypt(false,element,uuidGen) == needle)
-                    return true;
             }
             return false;
         }
+
     }
 }
