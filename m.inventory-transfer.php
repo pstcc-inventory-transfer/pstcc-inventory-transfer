@@ -149,11 +149,6 @@
             </div>
         </div>
 
-<<<<<<< HEAD
-        <script src="barcode/quagga/dist/quagga.js"></script>
-        <script src="barcode/scanner.js"></script>
-        <script src="manipulate_transfers.js"></script>
-=======
         <script src="manipulate_transfers.js"></script>
 
         <script>
@@ -179,7 +174,5 @@
             }
 
         </script>
-
->>>>>>> b345c979149943af3e33135031e9a086f0704de0
     </body>
 </html>
